@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="utf-8"/>
+    <title>EcoTactics</title>
+    <link rel="stylesheet" href="src/style.css"/>
+    <script src="src/main.js" defer></script>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1 class="gameHeader">EcoTactics</h1>
+        <div class="day"></div>
+    </header>
+
+    <div class="card">
+        <div class="statusCard">
+            <div class="stat">
+                <label class="barHeader">Umwelt</label>
+                <div class="bar">
+                    <div class="realEnvBar"></div>
+                </div>
+                <div class="envCounter"></div>
+            </div>
+            <div class="stat">
+                <label class="barHeader">Geld</label>
+                <div class="bar">
+                    <div class="realMoneybar"></div>
+                </div>
+                <div class="moneyCounter"></div>
+            </div>
+            <div class="stat">
+                <label class="barHeader">Zufriedenheit</label>
+                <div class="bar">
+                    <div class="realHappinessBar"></div>
+                </div>
+                <div class="happinessCounter"></div>
+            </div>
+        </div>
+
+        <div class="selectHeader"> Wähle eine Aktion.</div>
+
+        <div class="actions"></div>
+
+        <div class="controls">
+            <button class="resetButton">Neustart</button>
+            <div class="goal">Ziel: Halte Umwelt, Geld & Zufriedenheit über 10.</div>
+
+            <div class="log" id="log"></div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer">
+            <p class="footerText">EcoTactics von Senem und Niklas</p>
+            <a href="https://github.com/CreepyNiki/EcoTactics"><img class="gitHubIcon" src="assets/github-brands-solid.svg" alt="Link zum GithubRepo"></a>
+        </div>
+    </footer>
+</body>
+</html>

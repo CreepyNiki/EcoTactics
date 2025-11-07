@@ -1,0 +1,70 @@
+{
+  "actions": [
+    {
+      "id": "solar",
+      "name": "Solarenergie fördern",
+      "desc": "Investiere in Solaranlagen (langfristig gut).",
+      "effects": {
+        "environment": 12,
+        "money": -20,
+        "happiness": 4
+      },
+      "cost": 20
+    },
+    {
+      "id": "recycle",
+      "name": "Mülltrennung ausbauen",
+      "desc": "Verbessere Recycling-Infrastruktur.",
+      "effects": {
+        "environment": 8,
+        "money": -10,
+        "happiness": 3
+      },
+      "cost": 10
+    },
+    {
+      "id": "public",
+      "name": "ÖPNV stärken",
+      "desc": "Öffentliche Verkehrsmittel attraktiver machen.",
+      "effects": {
+        "environment": 6,
+        "money": -15,
+        "happiness": 6
+      },
+      "cost": 15
+    },
+    {
+      "id": "cheap",
+      "name": "Billigstrom importieren",
+      "desc": "Schnell günstig, aber umweltbelastend.",
+      "effects": {
+        "environment": -18,
+        "money": 30,
+        "happiness": -6
+      },
+      "cost": 0
+    },
+    {
+      "id": "tax",
+      "name": "Umweltsteuer erhöhen",
+      "desc": "Erhöht Einnahmen, senkt Zufriedenheit.",
+      "effects": {
+        "environment": 5,
+        "money": 20,
+        "happiness": -8
+      },
+      "cost": 0
+    },
+    {
+      "id": "festival",
+      "name": "Stadtfest veranstalten",
+      "desc": "Kurzfristige Zufriedenheit, kostet Geld.",
+      "effects": {
+        "environment": -2,
+        "money": -12,
+        "happiness": 18
+      },
+      "cost": 12
+    }
+  ]
+}

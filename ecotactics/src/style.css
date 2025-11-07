@@ -1,0 +1,193 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: linear-gradient(180deg, #071023 0%, #081226 100%);
+    color: #e6eef6;
+    padding: 24px 0 0 0;
+}
+
+.container {
+    width: 980px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.gameHeader {
+    font-size: 20px;
+}
+
+.day{
+    font-size: 16px;
+}
+
+.card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.statusCard {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.stat {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.barHeader {
+    font-size: 13px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.bar {
+  width: 100%;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.realEnvBar {
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.3s;
+  background: linear-gradient(90deg, #34d399, #10b981);
+}
+
+.realMoneybar {
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.3s;
+  background: linear-gradient(90deg, #f97316, #f59e0b);
+}
+
+.realHappinessBar {
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.3s;
+  background: linear-gradient(90deg, #60a5fa, #3b82f6);
+}
+
+.envCounter {
+    margin-top: 8px;
+    font-size: 13px;
+}
+
+.moneyCounter {
+    margin-top: 8px;
+    font-size: 13px;
+}
+
+.happinessCounter {
+    margin-top: 8px;
+    font-size: 13px;
+}
+
+.selectHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+}
+
+.actionName {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.actionDesc {
+    font-size: 13px;
+    margin-bottom: 12px;
+
+}
+
+.actionEffects {
+    font-size: 13px;
+    color: #a0aec0;
+}
+
+button.action {
+    min-width: 220px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.resetButton {
+    font-size: 13px;
+    padding: 8px 10px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    color: white;
+    cursor: pointer;
+}
+
+.goal{
+  font-size: 13px;
+  padding: 10px;
+}
+
+.log {
+    max-height: 140px;
+    overflow: auto;
+    margin-top: 8px;
+    border-radius: 8px;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.15);
+    font-size: 13px;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    background-color: forestgreen;
+    color: white;
+}
+
+.footerText {
+    text-align: center;
+}
+
+.gitHubIcon {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    position: static;
+}
