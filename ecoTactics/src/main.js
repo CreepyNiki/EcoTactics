@@ -52,15 +52,15 @@ function log(message) {
     logContainer.prepend(entry);
 }
 
-function checkBorders(value, min, max) {
+function clamp(value, min, max) {
     return Math.max(min, Math.min(max, value));
 }
 
 function applyAction(action) {
 
-    state.environment = checkBorders(state.environment + action.effects.environment, MIN_VALUE, MAX_ENVIRONMENT);
-    state.money = checkBorders(state.money + action.effects.money, MIN_VALUE, MAX_MONEY);
-    state.happiness = checkBorders(state.happiness + action.effects.happiness, MIN_VALUE, MAX_HAPPINESS);
+    state.environment = clamp(state.environment + action.effects.environment, MIN_VALUE, MAX_ENVIRONMENT);
+    state.money = clamp(state.money + action.effects.money, MIN_VALUE, MAX_MONEY);
+    state.happiness = clamp(state.happiness + action.effects.happiness, MIN_VALUE, MAX_HAPPINESS);
     log(`Tag ${state.day}: Aktion "${action.name}" ausgeführt. Effekte - Umwelt: ${action.effects.environment}, Geld: ${action.effects.money}, Zufriedenheit: ${action.effects.happiness}`);
     nextDay();
     checkGameOver();
@@ -73,7 +73,7 @@ function updateUI() {
     document.querySelector('.happinessCounter').textContent = state.happiness;
     document.querySelector('.day').textContent = "Tag " + state.day;
     document.querySelector('.realEnvBar').style.width = state.environment + '%';
-    document.querySelector('.realMoneybar').style.width = state.money + '%';
+    document.querySelector('.realMoneybar').style.width = state.money / 1000 + '%';
     document.querySelector('.realHappinessBar').style.width = state.happiness + '%';
     document.querySelector('.population').textContent = state.population;
 }
@@ -95,10 +95,10 @@ function nextDay() {
 
     const rnd = Math.random();
     if (rnd < 0.15) {
-        state.environment = checkBorders(state.environment - 8, MIN_VALUE, MAX_ENVIRONMENT);
+        state.environment = clamp(state.environment - 8, MIN_VALUE, MAX_ENVIRONMENT);
         log(`Tag ${state.day - 1}: Regensturm beschädigt Infrastruktur (-8 Umwelt)`);
     } else if (rnd < 0.30) {
-        state.money = checkBorders(state.money + 10, MIN_VALUE, MAX_MONEY);
+        state.money = clamp(state.money + 10, MIN_VALUE, MAX_MONEY);
         log(`Tag ${state.day - 1}: Wirtschaftswachstum bringt Einnahmen (+10 Geld)`);
     } else {
     }

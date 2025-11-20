@@ -1,37 +1,52 @@
-html, body {
-    height: 100%;
-}
-
 body {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    background: linear-gradient(180deg, #071023 0%, #081226 100%);
     color: #e6eef6;
-    padding: 24px 0 0 0;
+    background: #161a21;
 }
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 18px;
+    margin-bottom: 180px;
+    position: relative;
 }
 
-
-.logo{
-    height: 200px;
+.logo {
+    width: 160px;
+    height: 80px;
+    object-fit: cover;
 }
 
 .day{
     font-size: 16px;
 }
 
-.statusCard {
+.populationCounter{
     display: flex;
-    gap: 12px;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.populationIcon{
+    width: 32px;
+    height: 32px;
+    margin-right: 4px;
+}
+
+.population{
+    color:white;
+    font-size: 14px;
+}
+
+.statusCard {
+    position: absolute;
+    top: 10vh;
+    right: 0;
+    width: 160px;
     margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .stat {
@@ -92,14 +107,13 @@ header {
 }
 
 .selectHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
+    margin-left: 43vh;
+    margin-bottom: 8px;
 }
 
 .actions {
     display: flex;
+    justify-content: center;
     gap: 12px;
 }
 
@@ -133,7 +147,8 @@ button.action {
 .controls {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 100px;
     align-items: center;
     margin-top: 12px;
 }
@@ -148,7 +163,7 @@ button.action {
 }
 
 .goal{
-  font-size: 13px;
+  font-size: 16px;
   padding: 10px;
 }
 
@@ -162,29 +177,14 @@ button.action {
     font-size: 13px;
 }
 
-.populationCounter{
-    display: flex;
-    align-items: center;
-    margin-top: 8px;
-}
-
-.populationIcon{
-    width: 32px;
-    height: 32px;
-    margin-right: 4px;
-}
-
-.population{
-    color:white;
-    font-size: 14px;
-}
-
 .footer {
+    margin-top: 30px;
+    padding: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 32px;
-    background-color: forestgreen;
+    background-color: #25995c;
     color: white;
 }
 
