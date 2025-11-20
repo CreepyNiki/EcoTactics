@@ -1,10 +1,16 @@
-const defaultValues = [50, 50, 50, 1]; // Umwelt, Geld, Zufriedenheit, Tag
+const MAX_ENVIRONMENT = 100;
+const MAX_MONEY = 100000;
+const MAX_HAPPINESS = 100;
+const MIN_VALUE = 0;
+
+const defaultValues = [50, 50000, 50, 1, 10000]; // Umwelt, Geld, Zufriedenheit, Tag
 
 let state = {
     environment: defaultValues[0],
     money: defaultValues[1],
     happiness: defaultValues[2],
     day: defaultValues[3],
+    population: defaultValues[4],
     history: []
 };
 
@@ -46,11 +52,15 @@ function log(message) {
     logContainer.prepend(entry);
 }
 
+function checkBorders(value, min, max) {
+    return Math.max(min, Math.min(max, value));
+}
+
 function applyAction(action) {
 
-    state.environment = state.environment + action.effects.environment;
-    state.money = state.money + action.effects.money;
-    state.happiness = state.happiness + action.effects.happiness;
+    state.environment = checkBorders(state.environment + action.effects.environment, MIN_VALUE, MAX_ENVIRONMENT);
+    state.money = checkBorders(state.money + action.effects.money, MIN_VALUE, MAX_MONEY);
+    state.happiness = checkBorders(state.happiness + action.effects.happiness, MIN_VALUE, MAX_HAPPINESS);
     log(`Tag ${state.day}: Aktion "${action.name}" ausgeführt. Effekte - Umwelt: ${action.effects.environment}, Geld: ${action.effects.money}, Zufriedenheit: ${action.effects.happiness}`);
     nextDay();
     checkGameOver();
@@ -65,14 +75,15 @@ function updateUI() {
     document.querySelector('.realEnvBar').style.width = state.environment + '%';
     document.querySelector('.realMoneybar').style.width = state.money + '%';
     document.querySelector('.realHappinessBar').style.width = state.happiness + '%';
+    document.querySelector('.population').textContent = state.population;
 }
 
 function checkGameOver() {
     if (state.money <= 0) {
         endGame('Bankrott! Dein Budget ist erschöpft. Spiel vorbei.');
-    } else if (state.environment <= 5) {
+    } else if (state.environment <= 0) {
         endGame('Ökologische Katastrophe! Die Umweltwerte sind zu niedrig. Spiel vorbei.');
-    } else if (state.happiness <= 5) {
+    } else if (state.happiness <= 0) {
         endGame('Soziale Unruhe! Zufriedenheit zu niedrig. Spiel vorbei.');
     } else if (state.day >= 30) {
         endGame('Glückwunsch! 30 Tage überstanden — du hast gezeigt, dass Nachhaltigkeit möglich ist.');
@@ -84,10 +95,10 @@ function nextDay() {
 
     const rnd = Math.random();
     if (rnd < 0.15) {
-        state.environment = state.environment - 8;
+        state.environment = checkBorders(state.environment - 8, MIN_VALUE, MAX_ENVIRONMENT);
         log(`Tag ${state.day - 1}: Regensturm beschädigt Infrastruktur (-8 Umwelt)`);
     } else if (rnd < 0.30) {
-        state.money = state.money + 10;
+        state.money = checkBorders(state.money + 10, MIN_VALUE, MAX_MONEY);
         log(`Tag ${state.day - 1}: Wirtschaftswachstum bringt Einnahmen (+10 Geld)`);
     } else {
     }
@@ -107,6 +118,7 @@ function resetGame() {
         money: defaultValues[1],
         happiness: defaultValues[2],
         day: defaultValues[3],
+        population: defaultValues[4],
     };
     gameOver = false;
     renderActions(actions)

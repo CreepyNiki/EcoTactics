@@ -12,11 +12,6 @@ body {
     color: #e6eef6;
     padding: 24px 0 0 0;
 }
-
-.container {
-    width: 980px;
-}
-
 header {
     display: flex;
     align-items: center;
@@ -31,12 +26,6 @@ header {
 
 .day{
     font-size: 16px;
-}
-
-.card {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-    border-radius: 12px;
-    padding: 16px;
 }
 
 .statusCard {
@@ -171,6 +160,23 @@ button.action {
     padding: 8px;
     background: rgba(0, 0, 0, 0.15);
     font-size: 13px;
+}
+
+.populationCounter{
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.populationIcon{
+    width: 32px;
+    height: 32px;
+    margin-right: 4px;
+}
+
+.population{
+    color:white;
+    font-size: 14px;
 }
 
 .footer {

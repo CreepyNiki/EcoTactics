@@ -6,7 +6,7 @@
       "desc": "Investiere in Solaranlagen (langfristig gut).",
       "effects": {
         "environment": 12,
-        "money": -20,
+        "money": -20000,
         "happiness": 4
       },
       "cost": 20
@@ -17,8 +17,9 @@
       "desc": "Verbessere Recycling-Infrastruktur.",
       "effects": {
         "environment": 8,
-        "money": -10,
+        "money": -10000,
         "happiness": 3
+
       },
       "cost": 10
     },
@@ -28,7 +29,7 @@
       "desc": "Öffentliche Verkehrsmittel attraktiver machen.",
       "effects": {
         "environment": 6,
-        "money": -15,
+        "money": -15000,
         "happiness": 6
       },
       "cost": 15
@@ -39,7 +40,7 @@
       "desc": "Schnell günstig, aber umweltbelastend.",
       "effects": {
         "environment": -18,
-        "money": 30,
+        "money": 30000,
         "happiness": -6
       },
       "cost": 0
@@ -50,7 +51,7 @@
       "desc": "Erhöht Einnahmen, senkt Zufriedenheit.",
       "effects": {
         "environment": 5,
-        "money": 20,
+        "money": 20000,
         "happiness": -8
       },
       "cost": 0
@@ -61,7 +62,7 @@
       "desc": "Kurzfristige Zufriedenheit, kostet Geld.",
       "effects": {
         "environment": -2,
-        "money": -12,
+        "money": -12000,
         "happiness": 18
       },
       "cost": 12
