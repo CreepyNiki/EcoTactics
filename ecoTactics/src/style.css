@@ -1,14 +1,21 @@
 body {
-    min-height: 100vh;
+    max-height: 100vh;
     color: #e6eef6;
-    background: #161a21;
+    padding-top: 10vh;
 }
+
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 180px;
-    position: relative;
+    width: 100vw;
+    height: 8vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    margin-bottom: 0;
+    z-index: 20;
+    background: rgba(30,30,30,1);
 }
 
 .logo {
@@ -36,14 +43,53 @@ header {
 .population{
     color:white;
     font-size: 14px;
+    margin-right: 30px;
+}
+
+.canvas{
+    position: absolute;
+    top: 8vh;
+    left: 0;
+    width: 100vw;
+    height: 70vh;
+    z-index: -10;
+}
+
+.backgroundImage {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.logButton{
+    position: absolute;
+    bottom: 86vh;
+    left: 3vh;
+    height: 3vh;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.logDropdown {
+    position: absolute;
+    font-size: 14px;
+    right: 157vh;
+    top: 14vh;
+    width: 320px;
+    max-height: 250px;
+    overflow-y: auto;
+    background: rgba(30,30,30,0.95);
+    z-index: 10;
+    padding: 16px;
 }
 
 .statusCard {
     position: absolute;
     top: 10vh;
-    right: 0;
-    width: 160px;
-    margin-bottom: 12px;
+    right: 3vh;
+    width: 220px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -51,8 +97,7 @@ header {
 
 .stat {
     flex-grow: 1;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 5px;
 }
 
 .barHeader {
@@ -70,40 +115,104 @@ header {
   position: relative;
 }
 
-.realEnvBar {
-  height: 100%;
-  border-radius: 8px;
-  transition: width 0.3s;
+.envBar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    border-radius: 8px;
+    z-index: 1;
+    transition: width 0.3s;
   background: linear-gradient(90deg, #34d399, #10b981);
 }
 
-.realMoneybar {
-  height: 100%;
-  border-radius: 8px;
-  transition: width 0.3s;
-  background: linear-gradient(90deg, #f97316, #f59e0b);
+.moneyBar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    border-radius: 8px;
+    z-index: 1;
+    transition: width 0.3s;
+    background: linear-gradient(90deg, #f97316, #f59e0b);
 }
 
-.realHappinessBar {
-  height: 100%;
-  border-radius: 8px;
-  transition: width 0.3s;
+.happinessBar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    border-radius: 8px;
+    z-index: 1;
+    transition: width 0.3s;
   background: linear-gradient(90deg, #60a5fa, #3b82f6);
 }
 
 .envCounter {
-    margin-top: 8px;
-    font-size: 13px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+    left: 20vh;
+    bottom: 2px;
+    z-index: 2;
 }
 
 .moneyCounter {
-    margin-top: 8px;
-    font-size: 13px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+    left: 17vh;
+    bottom: 2px;
+    z-index: 2;
 }
 
 .happinessCounter {
-    margin-top: 8px;
-    font-size: 13px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+    left: 20vh;
+    bottom: 2px;
+    z-index: 2;
+}
+
+.envIcon {
+    position: relative;
+    height: 5.5vh;
+    left: 22vh;
+    bottom: 3.5vh;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.moneyIcon {
+    position: relative;
+    height: 5.5vh;
+    left: 22.5vh;
+    bottom: 4vh;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.happinessIcon {
+    position: relative;
+    height: 5vh;
+    left: 23vh;
+    bottom: 3.5vh;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.selection {
+    position: fixed;
+    left: 0;
+    bottom: 8vh;
+    width: 100vw;
+    height: 16vh;
+    background: rgba(30,30,30,1);
+    padding: 7px;
 }
 
 .selectHeader {
@@ -126,7 +235,6 @@ header {
 .actionDesc {
     font-size: 13px;
     margin-bottom: 12px;
-
 }
 
 .actionEffects {
@@ -140,20 +248,11 @@ button.action {
     border: 1px solid rgba(255, 255, 255, 0.03);
     color: white;
     padding: 12px;
-    border-radius: 8px;
     cursor: pointer;
 }
 
-.controls {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 100px;
-    align-items: center;
-    margin-top: 12px;
-}
-
 .resetButton {
+    position: absolute;
     font-size: 13px;
     padding: 8px 10px;
     background: rgba(255, 255, 255, 0.02);
@@ -167,16 +266,6 @@ button.action {
   padding: 10px;
 }
 
-.log {
-    max-height: 140px;
-    overflow: auto;
-    margin-top: 8px;
-    border-radius: 8px;
-    padding: 8px;
-    background: rgba(0, 0, 0, 0.15);
-    font-size: 13px;
-}
-
 .footer {
     margin-top: 30px;
     padding: 8px;
@@ -186,6 +275,13 @@ button.action {
     gap: 32px;
     background-color: #25995c;
     color: white;
+    width: 100vw;
+    height: 6vh;
+    left: 0;
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 0;
+    z-index: 20;
 }
 
 .footerText {

@@ -8,6 +8,11 @@
     <script src="src/main.js" defer></script>
 </head>
 <body>
+
+<div class="logDropdown">
+    <div class="log" id="log"></div>
+</div>
+
     <header>
         <img class="logo" src="assets/logo_green.png" alt="EcoTactics Logo"/>
         <div class="day"></div>
@@ -17,39 +22,45 @@
         </div>
     </header>
 
+    <div class="canvas">
+        <img class="backgroundImage" src="assets/background_image.png" alt="backgroundImage"/>
+    </div>
+
+    <input type="image" src="assets/log.png" class="logButton" alt="logButton"/>
+
     <div class="statusCard">
         <div class="stat">
-            <label class="barHeader">Geld</label>
             <div class="bar">
-                <div class="realMoneybar"></div>
+                <div class="moneyCounter"></div>
+                <div class="moneyBar"></div>
             </div>
-            <div class="moneyCounter"></div>
+            <img class="moneyIcon" src="assets/money.png" alt="moneyIcon"/>
         </div>
         <div class="stat">
-            <label class="barHeader">Zufriedenheit</label>
             <div class="bar">
-                <div class="realHappinessBar"></div>
+                <div class="happinessCounter"></div>
+                <div class="happinessBar"></div>
             </div>
-            <div class="happinessCounter"></div>
+            <img class="happinessIcon" src="assets/happiness.png" alt="happinessIcon"/>
         </div>
         <div class="stat">
-            <label class="barHeader">Umwelt</label>
             <div class="bar">
-                <div class="realEnvBar"></div>
+                <div class="envCounter"></div>
+                <div class="envBar"></div>
             </div>
-            <div class="envCounter"></div>
+            <img class="envIcon" src="assets/env.png" alt="envIcon"/>
         </div>
     </div>
 
+    <div class="selection">
+        <div class="upperSelectionRow">
         <div class="selectHeader"> Wähle eine Aktion:</div>
-
-        <div class="actions"></div>
-
-        <div class="controls">
-            <button class="resetButton">Neustart</button>
-            <div class="goal">Ziel: Halte Umwelt, Geld & Zufriedenheit über 0</div>
+        <button class="resetButton">Neustart</button>
         </div>
-        <div class="log" id="log"></div>
+        <div class="actions">
+        </div>
+
+    </div>
     <footer>
         <div class="footer">
             <p class="footerText">EcoTactics von Senem und Niklas</p>

@@ -72,9 +72,9 @@ function updateUI() {
     document.querySelector('.moneyCounter').textContent = state.money;
     document.querySelector('.happinessCounter').textContent = state.happiness;
     document.querySelector('.day').textContent = "Tag " + state.day;
-    document.querySelector('.realEnvBar').style.width = state.environment + '%';
-    document.querySelector('.realMoneybar').style.width = state.money / 1000 + '%';
-    document.querySelector('.realHappinessBar').style.width = state.happiness + '%';
+    document.querySelector('.envBar').style.width = state.environment + '%';
+    document.querySelector('.moneyBar').style.width = state.money / 1000 + '%';
+    document.querySelector('.happinessBar').style.width = state.happiness + '%';
     document.querySelector('.population').textContent = state.population;
 }
 
@@ -127,3 +127,11 @@ function resetGame() {
 
 const resetButton = document.querySelector('.resetButton');
 resetButton.addEventListener('click', resetGame);
+
+document.querySelector('.logButton').addEventListener('mouseover', () => {
+    document.querySelector('.logDropdown').style.display = 'block';
+});
+
+document.querySelector('.logDropdown').addEventListener('mouseleave', () => {
+    document.querySelector('.logDropdown').style.display = 'none';
+});
