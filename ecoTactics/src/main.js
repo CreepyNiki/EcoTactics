@@ -178,6 +178,127 @@ document.querySelector('.envBar').addEventListener('mouseleave', () => {
     envDropdown.style.display = 'none';
 });
 
+let buildings = [];
+
+fetch('src/data/buildings.json')
+    .then(response => response.json())
+    .then(data => {
+        buildings = data.buildings;
+    });
+
+
 document.querySelector('.shop').addEventListener('click', () => {
-    alert('Der Shop ist derzeit nicht verfügbar. Bitte versuche es später erneut.');
+    openShop();
 });
+
+
+document.getElementById('shopCloseBtn').addEventListener('click', () => {
+    closeShop();
+});
+
+
+document.getElementById('shopModal').addEventListener('click', (e) => {
+    if (e.target.id === 'shopModal') {
+        closeShop();
+    }
+});
+
+function openShop() {
+    const shopModal = document.getElementById('shopModal');
+    shopModal.classList.add('active');
+    renderShopBuildings();
+    updateShopResources();
+}
+
+function closeShop() {
+    const shopModal = document.getElementById('shopModal');
+    shopModal.classList.remove('active');
+}
+
+function renderShopBuildings() {
+    const shopContent = document.getElementById('shopContent');
+    shopContent.innerHTML = '';
+    
+    buildings.forEach(building => {
+        const card = createBuildingCard(building);
+        shopContent.appendChild(card);
+    });
+}
+
+function createBuildingCard(building) {
+    const card = document.createElement('div');
+    card.className = 'building-card';
+
+    const avgEnvChange = Array.isArray(building.effects.environment) 
+        ? building.effects.environment.reduce((a, b) => a + b, 0) / building.effects.environment.length
+        : building.effects.environment;
+
+    const imageHTML = building.image 
+        ? `<div class="building-image-placeholder" style="background: none; padding: 0;">
+               <img src="${building.image}" alt="${building.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+           </div>`
+        : `<div class="building-image-placeholder"></div>`;
+    
+    card.innerHTML = `
+        ${imageHTML}
+        <div class="building-name">${building.name}</div>
+        <div class="building-desc">${building.desc}</div>
+        <div class="building-costs">
+            <div class="building-cost-title">Kosten & Effekte:</div>
+            <div class="building-cost-item">
+                <span>Geld:</span>
+                <span class="${building.effects.money >= 0 ? 'cost-positive' : 'cost-negative'}">
+                    ${building.effects.money >= 0 ? '+' : ''}${building.effects.money}
+                </span>
+            </div>
+            <div class="building-cost-item">
+                <span>Zufriedenheit:</span>
+                <span class="${building.effects.happiness >= 0 ? 'cost-positive' : 'cost-negative'}">
+                    ${building.effects.happiness >= 0 ? '+' : ''}${building.effects.happiness}
+                </span>
+            </div>
+            <div class="building-cost-item">
+                <span>Umwelt:</span>
+                <span class="${avgEnvChange >= 0 ? 'cost-positive' : 'cost-negative'}">
+                    ${avgEnvChange >= 0 ? '+' : ''}${avgEnvChange.toFixed(1)}
+                </span>
+            </div>
+        </div>
+    `;
+    
+    card.addEventListener('click', () => {
+        purchaseBuilding(building);
+    });
+    
+    return card;
+}
+
+function purchaseBuilding(building) {
+    if (building.effects.money < 0 && state.money < Math.abs(building.effects.money)) {
+        alert(`Nicht genug Geld! Du benötigst ${Math.abs(building.effects.money)} Geld, hast aber nur ${state.money}.`);
+        return;
+    }
+
+    for (let i = 0; i < state.environment.length; i++) {
+        state.environment[i] = clamp(
+            state.environment[i] + (Array.isArray(building.effects.environment) ? building.effects.environment[i] || 0 : building.effects.environment || 0),
+            MIN_VALUE,
+            MAX_ENVIRONMENT
+        );
+    }
+    state.money = clamp(state.money + building.effects.money, MIN_VALUE, MAX_MONEY);
+    state.happiness = clamp(state.happiness + building.effects.happiness, MIN_VALUE, MAX_HAPPINESS);
+    
+    log(`Tag ${state.day}: Gebäude "${building.name}" gekauft! Kosten: ${building.effects.money} Geld`);
+    
+    updateUI();
+    updateShopResources();
+    checkGameOver();
+}
+
+function updateShopResources() {
+    const avgEnv = state.environment.reduce((a, b) => a + b, 0) / state.environment.length;
+    document.getElementById('shopMoneyValue').textContent = state.money;
+    document.getElementById('shopHappinessValue').textContent = state.happiness;
+    document.getElementById('shopEnvValue').textContent = avgEnv.toFixed(0);
+}

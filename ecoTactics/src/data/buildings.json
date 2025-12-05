@@ -2,8 +2,9 @@
   "buildings": [
     {
       "id": "solar",
-      "name": "Solarenergie fördern",
+      "name": "Solaranlage",
       "desc": "Investiere in Solaranlagen",
+      "image": "assets/buildings/solar.png",
       "effects": {
         "environment": [10, 15, 10 , 5],
         "money": -20000,
@@ -12,8 +13,9 @@
     },
     {
       "id": "recycle",
-      "name": "Mülltrennung ausbauen",
+      "name": "Recyclingzentrum",
       "desc": "Verbessere Recycling-Infrastruktur.",
+      "image": "assets/buildings/recycle.png",
       "effects": {
         "environment": [10, 15, 10 , 5],
         "money": -10000,
@@ -23,8 +25,9 @@
     },
     {
       "id": "public",
-      "name": "ÖPNV stärken",
+      "name": "Unterirdische Straßenbahn",
       "desc": "Öffentliche Verkehrsmittel attraktiver machen.",
+      "image": "assets/buildings/public.png",
       "effects": {
         "environment": [10, 15, 10 , 5],
         "money": -15000,
