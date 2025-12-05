@@ -17,7 +17,7 @@ let state = {
 let gameOver = false;
 let actions = [];
 
-fetch('actions.json')
+fetch('src/data/actions.json')
     .then(response => response.json())
     .then(data => {
         actions = data.actions;
@@ -58,7 +58,11 @@ function clamp(value, min, max) {
 
 function applyAction(action) {
     for (let i = 0; i < state.environment.length; i++) {
-        state.environment[i] = clamp(state.environment[i] + action.effects.environment, MIN_VALUE, MAX_ENVIRONMENT);
+        state.environment[i] = clamp(
+            state.environment[i] + (Array.isArray(action.effects.environment) ? action.effects.environment[i] || 0 : action.effects.environment || 0),
+            MIN_VALUE,
+            MAX_ENVIRONMENT
+        );
     }
     state.money = clamp(state.money + action.effects.money, MIN_VALUE, MAX_MONEY);
     state.happiness = clamp(state.happiness + action.effects.happiness, MIN_VALUE, MAX_HAPPINESS);
