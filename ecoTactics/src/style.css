@@ -73,9 +73,10 @@ header {
 }
 
 .logDropdown {
+    display: none;
     position: absolute;
     font-size: 14px;
-    right: 157vh;
+    right: 170vh;
     top: 14vh;
     width: 320px;
     max-height: 250px;
@@ -153,7 +154,7 @@ header {
     font-size: 16px;
     font-weight: bold;
     position: relative;
-    left: 20vh;
+    left: 86%;
     bottom: 2px;
     z-index: 2;
 }
@@ -163,7 +164,7 @@ header {
     font-size: 16px;
     font-weight: bold;
     position: relative;
-    left: 17vh;
+    left: 73%;
     bottom: 2px;
     z-index: 2;
 }
@@ -173,36 +174,44 @@ header {
     font-size: 16px;
     font-weight: bold;
     position: relative;
-    left: 20vh;
+    left: 86%;
     bottom: 2px;
     z-index: 2;
 }
 
-.envIcon {
+.envDropdown {
+    display: none;
+    position: absolute;
+    background: #222;
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    padding: 12px 18px;
+    z-index: 100;
+    font-size: 1rem;
+    min-width: 180px;
+    pointer-events: none;
+}
+
+.envIcon, .moneyIcon, .happinessIcon {
     position: relative;
     height: 5.5vh;
-    left: 22vh;
     bottom: 3.5vh;
     border-radius: 8px;
     z-index: 1;
 }
 
-.moneyIcon {
-    position: relative;
-    height: 5.5vh;
-    left: 22.5vh;
-    bottom: 4vh;
-    border-radius: 8px;
-    z-index: 1;
+.envIcon{
+    left: 92%;
 }
 
-.happinessIcon {
-    position: relative;
-    height: 5vh;
-    left: 23vh;
-    bottom: 3.5vh;
-    border-radius: 8px;
-    z-index: 1;
+.moneyIcon{
+    left: 92%;
+}
+
+.happinessIcon{
+    left: 94.5%;
+    height: 4.9vh;
 }
 
 .selection {

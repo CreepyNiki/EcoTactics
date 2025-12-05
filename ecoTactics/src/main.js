@@ -3,14 +3,14 @@ const MAX_MONEY = 100000;
 const MAX_HAPPINESS = 100;
 const MIN_VALUE = 0;
 
-const defaultValues = [50, 50000, 50, 1, 10000]; // Umwelt, Geld, Zufriedenheit, Tag
+const defaultValues = [50, 50, 50, 50, 50000, 50, 1, 10000]; // Umwelt, Geld, Zufriedenheit, Tag
 
 let state = {
-    environment: defaultValues[0],
-    money: defaultValues[1],
-    happiness: defaultValues[2],
-    day: defaultValues[3],
-    population: defaultValues[4],
+    environment: [defaultValues[0], defaultValues[1], defaultValues[2], defaultValues[3]],
+    money: defaultValues[4],
+    happiness: defaultValues[5],
+    day: defaultValues[6],
+    population: defaultValues[7],
     history: []
 };
 
@@ -57,8 +57,9 @@ function clamp(value, min, max) {
 }
 
 function applyAction(action) {
-
-    state.environment = clamp(state.environment + action.effects.environment, MIN_VALUE, MAX_ENVIRONMENT);
+    for (let i = 0; i < state.environment.length; i++) {
+        state.environment[i] = clamp(state.environment[i] + action.effects.environment, MIN_VALUE, MAX_ENVIRONMENT);
+    }
     state.money = clamp(state.money + action.effects.money, MIN_VALUE, MAX_MONEY);
     state.happiness = clamp(state.happiness + action.effects.happiness, MIN_VALUE, MAX_HAPPINESS);
     log(`Tag ${state.day}: Aktion "${action.name}" ausgeführt. Effekte - Umwelt: ${action.effects.environment}, Geld: ${action.effects.money}, Zufriedenheit: ${action.effects.happiness}`);
@@ -68,11 +69,12 @@ function applyAction(action) {
 }
 
 function updateUI() {
-    document.querySelector('.envCounter').textContent = state.environment;
+    const avgEnv = state.environment.reduce((a, b) => a + b, 0) / state.environment.length;
+    document.querySelector('.envCounter').textContent = avgEnv.toFixed(0);
     document.querySelector('.moneyCounter').textContent = state.money;
     document.querySelector('.happinessCounter').textContent = state.happiness;
     document.querySelector('.day').textContent = "Tag " + state.day;
-    document.querySelector('.envBar').style.width = state.environment + '%';
+    document.querySelector('.envBar').style.width = avgEnv + '%';
     document.querySelector('.moneyBar').style.width = state.money / 1000 + '%';
     document.querySelector('.happinessBar').style.width = state.happiness + '%';
     document.querySelector('.population').textContent = state.population;
@@ -95,7 +97,9 @@ function nextDay() {
 
     const rnd = Math.random();
     if (rnd < 0.15) {
-        state.environment = clamp(state.environment - 8, MIN_VALUE, MAX_ENVIRONMENT);
+        for (let i = 0; i < state.environment.length; i++) {
+            state.environment[i] = clamp(state.environment[i] - 8, MIN_VALUE, MAX_ENVIRONMENT);
+        }
         log(`Tag ${state.day - 1}: Regensturm beschädigt Infrastruktur (-8 Umwelt)`);
     } else if (rnd < 0.30) {
         state.money = clamp(state.money + 10, MIN_VALUE, MAX_MONEY);
@@ -114,14 +118,15 @@ function endGame(message) {
 function resetGame() {
     document.getElementById('log').innerHTML = '';
     state = {
-        environment: defaultValues[0],
-        money: defaultValues[1],
-        happiness: defaultValues[2],
-        day: defaultValues[3],
-        population: defaultValues[4],
+        environment: [defaultValues[0], defaultValues[1], defaultValues[2], defaultValues[3]],
+        money: defaultValues[4],
+        happiness: defaultValues[5],
+        day: defaultValues[6],
+        population: defaultValues[7],
+        history: []
     };
     gameOver = false;
-    renderActions(actions)
+    renderActions(actions);
     updateUI();
 }
 
@@ -134,4 +139,29 @@ document.querySelector('.logButton').addEventListener('mouseover', () => {
 
 document.querySelector('.logDropdown').addEventListener('mouseleave', () => {
     document.querySelector('.logDropdown').style.display = 'none';
+});
+
+const envDropdown = document.createElement('div');
+envDropdown.className = 'envDropdown';
+document.body.appendChild(envDropdown);
+
+function updateEnvDropdown() {
+    envDropdown.innerHTML = `
+        <strong>Umwelt-Zusammensetzung:</strong><br>
+        Meeresspiegelanstieg: ${state.environment[0]}<br>
+        Temperatur: ${state.environment[1]}<br>
+        Wetterextreme: ${state.environment[2]}<br>
+        Wasserverfügbarkeit: ${state.environment[3]}
+    `;
+}
+
+document.querySelector('.envBar').addEventListener('mouseover', (e) => {
+    updateEnvDropdown();
+    const rect = e.target.getBoundingClientRect();
+    envDropdown.style.left = rect.left + 'px';
+    envDropdown.style.top = (rect.bottom + 5) + 'px';
+    envDropdown.style.display = 'block';
+});
+document.querySelector('.envBar').addEventListener('mouseleave', () => {
+    envDropdown.style.display = 'none';
 });
