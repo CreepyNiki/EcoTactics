@@ -5,7 +5,7 @@
       "name": "Solarenergie fördern",
       "desc": "Investiere in Solaranlagen.",
       "effects": {
-        "environment": [10, 15, 10 , 5],
+        "environment": [10, 15, 0 , 0],
         "money": -20000,
         "happiness": 4
       }
@@ -15,7 +15,7 @@
       "name": "Mülltrennung ausbauen",
       "desc": "Verbessere Recycling-Infrastruktur.",
       "effects": {
-        "environment": [10, 15, 10 , 5],
+        "environment": [0, 0, 10 , 0],
         "money": -10000,
         "happiness": 3
 
@@ -26,7 +26,7 @@
       "name": "ÖPNV stärken",
       "desc": "Öffentliche Verkehrsmittel attraktiver machen.",
       "effects": {
-        "environment": [10, 15, 10 , 5],
+        "environment": [0, 20, 0 , 0],
         "money": -15000,
         "happiness": 6
       }
@@ -36,7 +36,7 @@
       "name": "Billigstrom importieren",
       "desc": "Schnell günstig, aber umweltbelastend.",
       "effects": {
-        "environment": [10, 15, 10 , 5],
+        "environment": [-10, -15, 0 , 0],
         "money": 30000,
         "happiness": -6
       }
@@ -46,7 +46,7 @@
       "name": "Umweltsteuer erhöhen",
       "desc": "Erhöht Einnahmen, senkt Zufriedenheit.",
       "effects": {
-        "environment": [10, 15, 10 , 5],
+        "environment": [0, 5, 0 , 15],
         "money": 20000,
         "happiness": -8
       }
@@ -56,7 +56,7 @@
       "name": "Stadtfest veranstalten",
       "desc": "Kurzfristige Zufriedenheit, kostet Geld.",
       "effects": {
-        "environment": [10, 15, 10 , 5],
+        "environment": [0, -5, 0 , -5],
         "money": -12000,
         "happiness": 18
       }

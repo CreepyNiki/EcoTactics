@@ -261,6 +261,39 @@ button.action {
     cursor: pointer;
 }
 
+.shop {
+    position: fixed;
+    width: 110px;
+    height: 110px;
+    right: 3vw;
+    bottom: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+    padding: 8px;
+    background: #dddddd;
+    cursor: pointer;
+}
+
+.shopIcon {
+    position: absolute;
+    top: 5px;
+    left: 18px;
+    height: 90px;
+    width: 90px;
+}
+
+.shopParagraph {
+    position: absolute;
+    top: 80px;
+    color: black;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
 .resetButton {
     position: absolute;
     font-size: 13px;

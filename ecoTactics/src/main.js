@@ -173,6 +173,11 @@ document.querySelector('.envBar').addEventListener('mouseover', (e) => {
     envDropdown.style.top = (rect.bottom + 5) + 'px';
     envDropdown.style.display = 'block';
 });
+
 document.querySelector('.envBar').addEventListener('mouseleave', () => {
     envDropdown.style.display = 'none';
+});
+
+document.querySelector('.shop').addEventListener('click', () => {
+    alert('Der Shop ist derzeit nicht verfügbar. Bitte versuche es später erneut.');
 });
