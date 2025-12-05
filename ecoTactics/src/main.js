@@ -3,7 +3,7 @@ const MAX_MONEY = 100000;
 const MAX_HAPPINESS = 100;
 const MIN_VALUE = 0;
 
-const defaultValues = [50, 50, 50, 50, 50000, 50, 1, 10000]; // Umwelt, Geld, Zufriedenheit, Tag
+const defaultValues = [50, 50, 50, 50, 50000, 50, 1, 10000];
 
 let state = {
     environment: [defaultValues[0], defaultValues[1], defaultValues[2], defaultValues[3]],
@@ -13,6 +13,13 @@ let state = {
     population: defaultValues[7],
     history: []
 };
+
+fetch('src/data/residents.json')
+    .then(response => response.json())
+    .then(data => {
+        const wholePopulation = data.residents.length;
+    });
+
 
 let gameOver = false;
 let actions = [];
