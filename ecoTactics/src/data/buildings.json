@@ -1,0 +1,35 @@
+{
+  "buildings": [
+    {
+      "id": "solar",
+      "name": "Solarenergie fördern",
+      "desc": "Investiere in Solaranlagen",
+      "effects": {
+        "environment": [10, 15, 10 , 5],
+        "money": -20000,
+        "happiness": 4
+      }
+    },
+    {
+      "id": "recycle",
+      "name": "Mülltrennung ausbauen",
+      "desc": "Verbessere Recycling-Infrastruktur.",
+      "effects": {
+        "environment": [10, 15, 10 , 5],
+        "money": -10000,
+        "happiness": 3
+
+      }
+    },
+    {
+      "id": "public",
+      "name": "ÖPNV stärken",
+      "desc": "Öffentliche Verkehrsmittel attraktiver machen.",
+      "effects": {
+        "environment": [10, 15, 10 , 5],
+        "money": -15000,
+        "happiness": 6
+      }
+    }
+  ]
+}
