@@ -1,64 +1,513 @@
 {
   "actions": [
     {
-      "id": "solar",
-      "name": "Solarenergie fördern",
-      "desc": "Investiere in Solaranlagen.",
+      "id": "recycle_program",
+      "name": "Recycling-Programm starten",
+      "desc": "Führe stadtweites Recycling-System ein.",
       "effects": {
-        "environment": [10, 15, 0 , 0],
-        "money": -20000,
+        "environment": [2, 1, 0, 3],
+        "money": -8000,
         "happiness": 4
       }
     },
     {
-      "id": "recycle",
-      "name": "Mülltrennung ausbauen",
-      "desc": "Verbessere Recycling-Infrastruktur.",
+      "id": "public_transport",
+      "name": "ÖPNV ausbauen",
+      "desc": "Erweitere das Netz öffentlicher Verkehrsmittel.",
       "effects": {
-        "environment": [0, 0, 10 , 0],
-        "money": -10000,
-        "happiness": 3
-
+        "environment": [4, 12, 2, 0],
+        "money": -18000,
+        "happiness": 8
       }
     },
     {
-      "id": "public",
-      "name": "ÖPNV stärken",
-      "desc": "Öffentliche Verkehrsmittel attraktiver machen.",
+      "id": "tree_planting",
+      "name": "Aufforstungsprojekt",
+      "desc": "Pflanze 1000 neue Bäume im Stadtgebiet.",
       "effects": {
-        "environment": [0, 20, 0 , 0],
-        "money": -15000,
+        "environment": [6, 10, 3, 5],
+        "money": -12000,
+        "happiness": 7
+      }
+    },
+    {
+      "id": "eco_tax",
+      "name": "CO2-Steuer einführen",
+      "desc": "Besteuere umweltschädliche Aktivitäten.",
+      "effects": {
+        "environment": [5, 7, 2, 1],
+        "money": 25000,
+        "happiness": -12
+      }
+    },
+    {
+      "id": "green_roofs",
+      "name": "Gründächer fördern",
+      "desc": "Subventioniere begrünte Dächer für besseres Mikroklima.",
+      "effects": {
+        "environment": [2, 6, 4, 4],
+        "money": -10000,
         "happiness": 6
       }
     },
     {
-      "id": "cheap",
-      "name": "Billigstrom importieren",
-      "desc": "Schnell günstig, aber umweltbelastend.",
+      "id": "water_saving",
+      "name": "Wasserspar-Kampagne",
+      "desc": "Sensibilisiere Bürger für bewussten Wasserverbrauch.",
       "effects": {
-        "environment": [-10, -15, 0 , 0],
-        "money": 30000,
-        "happiness": -6
+        "environment": [1, 0, 0, 12],
+        "money": -5000,
+        "happiness": -5
       }
     },
     {
-      "id": "tax",
-      "name": "Umweltsteuer erhöhen",
-      "desc": "Erhöht Einnahmen, senkt Zufriedenheit.",
+      "id": "bike_lanes",
+      "name": "Fahrradwege ausbauen",
+      "desc": "Schaffe sichere Infrastruktur für Radfahrer.",
       "effects": {
-        "environment": [0, 5, 0 , 15],
-        "money": 20000,
+        "environment": [3, 8, 1, 0],
+        "money": -7000,
+        "happiness": 9
+      }
+    },
+    {
+      "id": "led_lights",
+      "name": "LED-Straßenbeleuchtung",
+      "desc": "Ersetze alte Lampen durch energiesparende LEDs.",
+      "effects": {
+        "environment": [1, 4, 0, 0],
+        "money": -6000,
+        "happiness": 1
+      }
+    },
+    {
+      "id": "plastic_ban",
+      "name": "Plastikverbot umsetzen",
+      "desc": "Verbiete Einwegplastik in der ganzen Stadt.",
+      "effects": {
+        "environment": [8, 2, 1, 6],
+        "money": -3000,
+        "happiness": -5
+      }
+    },
+    {
+      "id": "insulation_subsidy",
+      "name": "Gebäudedämmung fördern",
+      "desc": "Bezuschuss Isolierung von Altbauten.",
+      "effects": {
+        "environment": [2, 9, 1, 0],
+        "money": -14000,
+        "happiness": 5
+      }
+    },
+    {
+      "id": "rainwater_collection",
+      "name": "Regenwassernutzung",
+      "desc": "Installiere Auffangsysteme für Regenwasser.",
+      "effects": {
+        "environment": [4, 1, 2, 10],
+        "money": -8000,
+        "happiness": 3
+      }
+    },
+    {
+      "id": "organic_farms",
+      "name": "Bio-Landwirtschaft fördern",
+      "desc": "Unterstütze lokale Bio-Bauern.",
+      "effects": {
+        "environment": [3, 5, 1, 7],
+        "money": -11000,
+        "happiness": 8
+      }
+    },
+    {
+      "id": "industrial_subsidy",
+      "name": "Industrie subventionieren",
+      "desc": "Fördere Unternehmen ohne Umweltauflagen.",
+      "effects": {
+        "environment": [-10, -12, -4, -6],
+        "money": 40000,
+        "happiness": 5
+      }
+    },
+    {
+      "id": "electric_cars",
+      "name": "E-Auto-Prämie einführen",
+      "desc": "Gib finanzielle Anreize für Elektrofahrzeuge.",
+      "effects": {
+        "environment": [5, 11, 2, 0],
+        "money": -16000,
+        "happiness": 7
+      }
+    },
+    {
+      "id": "wetland_restoration",
+      "name": "Feuchtgebiete renaturieren",
+      "desc": "Stelle natürliche Überschwemmungsgebiete wieder her.",
+      "effects": {
+        "environment": [10, 4, 8, 9],
+        "money": -13000,
+        "happiness": 4
+      }
+    },
+    {
+      "id": "composting",
+      "name": "Kompostier-Initiative",
+      "desc": "Verteile Kompostbehälter an alle Haushalte.",
+      "effects": {
+        "environment": [1, 3, 0, 2],
+        "money": -4000,
+        "happiness": 3
+      }
+    },
+    {
+      "id": "desalination",
+      "name": "Meerwasser-Entsalzung",
+      "desc": "Baue Anlage zur Trinkwassergewinnung.",
+      "effects": {
+        "environment": [2, -5, 0, 15],
+        "money": -40000,
+        "happiness": 4
+      }
+    },
+    {
+      "id": "car_free_day",
+      "name": "Autofreier Sonntag",
+      "desc": "Verbiete Autos für einen Tag pro Woche.",
+      "effects": {
+        "environment": [2, 6, 1, 0],
+        "money": 0,
         "happiness": -8
       }
     },
     {
-      "id": "festival",
-      "name": "Stadtfest veranstalten",
-      "desc": "Kurzfristige Zufriedenheit, kostet Geld.",
+      "id": "urban_gardening",
+      "name": "Urban Gardening fördern",
+      "desc": "Schaffe Gemeinschaftsgärten in der Stadt.",
       "effects": {
-        "environment": [0, -5, 0 , -5],
+        "environment": [2, 4, 1, 3],
+        "money": -6000,
+        "happiness": 12
+      }
+    },
+    {
+      "id": "meat_tax",
+      "name": "Fleischsteuer erhöhen",
+      "desc": "Verteure Fleischkonsum für Klimaschutz.",
+      "effects": {
+        "environment": [4, 9, 1, 5],
+        "money": 18000,
+        "happiness": -15
+      }
+    },
+    {
+      "id": "air_quality",
+      "name": "Luftqualitäts-Monitoring",
+      "desc": "Installiere Sensoren zur Überwachung der Luftqualität.",
+      "effects": {
+        "environment": [1, 2, 1, 0],
+        "money": -7000,
+        "happiness": 5
+      }
+    },
+    {
+      "id": "education_climate",
+      "name": "Klimabildung in Schulen",
+      "desc": "Integriere Umweltthemen in den Lehrplan.",
+      "effects": {
+        "environment": [2, 3, 1, 2],
+        "money": -5000,
+        "happiness": 9
+      }
+    },
+    {
+      "id": "night_flight_ban",
+      "name": "Nachtflugverbot",
+      "desc": "Reduziere Lärmbelastung und Emissionen.",
+      "effects": {
+        "environment": [2, 5, 0, 0],
+        "money": -8000,
+        "happiness": 6
+      }
+    },
+    {
+      "id": "beach_cleanup",
+      "name": "Stadt-Säuberungsaktion",
+      "desc": "Organisiere Freiwillige zum Müllsammeln.",
+      "effects": {
+        "environment": [5, 0, 0, 4],
+        "money": -3000,
+        "happiness": 11
+      }
+    },
+    {
+      "id": "fossil_phase_out",
+      "name": "Fossilausstieg beschleunigen",
+      "desc": "Schließe alte Kohle- und Gaskraftwerke.",
+      "effects": {
+        "environment": [8, 15, 3, 0],
+        "money": -24000,
+        "happiness": -6
+      }
+    },
+    {
+      "id": "cheap_gas",
+      "name": "Billiges Gas importieren",
+      "desc": "Kurzfristig günstig, langfristig schädlich.",
+      "effects": {
+        "environment": [-8, -14, -3, -2],
+        "money": 38000,
+        "happiness": 8
+      }
+    },
+    {
+      "id": "climate_insurance",
+      "name": "Klimaversicherung",
+      "desc": "Schütze Bürger vor Wetterextremen.",
+      "effects": {
+        "environment": [0, 0, 8, 0],
+        "money": -11000,
+        "happiness": 14
+      }
+    },
+    {
+      "id": "solar_roads",
+      "name": "Solar-Straßen bauen",
+      "desc": "Integriere Solarzellen in Fahrbahnbelag.",
+      "effects": {
+        "environment": [4, 11, 1, 0],
+        "money": -32000,
+        "happiness": 3
+      }
+    },
+    {
+      "id": "food_waste",
+      "name": "Lebensmittelrettung",
+      "desc": "Verteile überschüssige Nahrung an Bedürftige.",
+      "effects": {
+        "environment": [2, 4, 0, 2],
+        "money": -8000,
+        "happiness": 17
+      }
+    },
+    {
+      "id": "micro_plastic_filter",
+      "name": "Mikroplastik-Filter",
+      "desc": "Installiere Filter in Kläranlagen.",
+      "effects": {
+        "environment": [6, 1, 0, 8],
+        "money": -13000,
+        "happiness": 4
+      }
+    },
+    {
+      "id": "cruise_ban",
+      "name": "Kreuzfahrtschiffe verbieten",
+      "desc": "Schütze die Küste vor Verschmutzung.",
+      "effects": {
+        "environment": [8, 10, 1, 5],
+        "money": -18000,
+        "happiness": -11
+      }
+    },
+    {
+      "id": "wildlife_corridors",
+      "name": "Tierkorridore schaffen",
+      "desc": "Verbinde Lebensräume für Wildtiere.",
+      "effects": {
+        "environment": [4, 3, 2, 6],
+        "money": -9000,
+        "happiness": 7
+      }
+    },
+    {
+      "id": "deforestation",
+      "name": "Wald abholzen",
+      "desc": "Gewinne Bauland durch Rodung.",
+      "effects": {
+        "environment": [-12, -18, -6, -10],
+        "money": 42000,
+        "happiness": -8
+      }
+    },
+    {
+      "id": "urban_cooling",
+      "name": "Städtische Kühlung",
+      "desc": "Pflanze Bäume und installiere Wasserspiele.",
+      "effects": {
+        "environment": [2, 10, 4, 4],
         "money": -12000,
-        "happiness": 18
+        "happiness": 11
+      }
+    },
+    {
+      "id": "pesticide_ban",
+      "name": "Pestizidverbot",
+      "desc": "Verbiete chemische Pflanzenschutzmittel.",
+      "effects": {
+        "environment": [5, 3, 1, 9],
+        "money": -7000,
+        "happiness": -4
+      }
+    },
+    {
+      "id": "nuclear_restart",
+      "name": "Atomkraft reaktivieren",
+      "desc": "Nutze bestehende Reaktoren wieder.",
+      "effects": {
+        "environment": [4, 8, -2, -1],
+        "money": 22000,
+        "happiness": -13
+      }
+    },
+    {
+      "id": "drone_delivery",
+      "name": "Drohnen-Lieferdienst",
+      "desc": "Reduziere Verkehr durch Lufttransport.",
+      "effects": {
+        "environment": [1, 4, 0, 0],
+        "money": -15000,
+        "happiness": -7
+      }
+    },
+    {
+      "id": "highway_expansion",
+      "name": "Autobahn ausbauen",
+      "desc": "Erweitere Straßen für mehr Verkehr.",
+      "effects": {
+        "environment": [-9, -15, -3, -4],
+        "money": 35000,
+        "happiness": 12
+      }
+    },
+    {
+      "id": "cheap_imports",
+      "name": "Billig-Importe fördern",
+      "desc": "Verzichte auf Umweltstandards bei Importen.",
+      "effects": {
+        "environment": [-7, -10, -2, -5],
+        "money": 32000,
+        "happiness": 9
+      }
+    },
+    {
+      "id": "festival_mega",
+      "name": "Mega-Festival veranstalten",
+      "desc": "Großes Event mit viel Müll und Lärm.",
+      "effects": {
+        "environment": [-6, -4, -5, -3],
+        "money": -20000,
+        "happiness": 25
+      }
+    },
+    {
+      "id": "mining_operation",
+      "name": "Bergbau erlauben",
+      "desc": "Öffne Schutzgebiete für Rohstoffabbau.",
+      "effects": {
+        "environment": [-14, -8, -7, -12],
+        "money": 48000,
+        "happiness": -5
+      }
+    },
+    {
+      "id": "luxury_tourism",
+      "name": "Luxus-Tourismus fördern",
+      "desc": "Locke wohlhabende Touristen mit hohem Fußabdruck.",
+      "effects": {
+        "environment": [-5, -9, -2, -6],
+        "money": 40000,
+        "happiness": 6
+      }
+    },
+    {
+      "id": "landfill_expansion",
+      "name": "Mülldeponien erweitern",
+      "desc": "Einfachste Lösung für Abfallprobleme.",
+      "effects": {
+        "environment": [-8, -3, -1, -9],
+        "money": 15000,
+        "happiness": -3
+      }
+    },
+    {
+      "id": "pesticide_subsidy",
+      "name": "Pestizide subventionieren",
+      "desc": "Fördere konventionelle Landwirtschaft.",
+      "effects": {
+        "environment": [-6, -4, -2, -11],
+        "money": 25000,
+        "happiness": 4
+      }
+    },
+    {
+      "id": "offshore_drilling",
+      "name": "Öl- und Gasbohrungen erlauben",
+      "desc": "Gewinne Öl und Gas aus dem Meer.",
+      "effects": {
+        "environment": [-13, -16, -5, -7],
+        "money": 50000,
+        "happiness": -2
+      }
+    },
+    {
+      "id": "parking_lots",
+      "name": "Parkplätze freigeben",
+      "desc": "Versiegle mehr Flächen für Autos.",
+      "effects": {
+        "environment": [-4, -7, -4, -5],
+        "money": 18000,
+        "happiness": 11
+      }
+    },
+    {
+      "id": "fast_food_district",
+      "name": "Fast-Food-Zone einrichten",
+      "desc": "Locke Ketten mit billigem Essen an.",
+      "effects": {
+        "environment": [-5, -6, -2, -4],
+        "money": 28000,
+        "happiness": 14
+      }
+    },
+    {
+      "id": "aircon_subsidy",
+      "name": "Klimaanlagen fördern",
+      "desc": "Subventioniere energieintensive Kühlung.",
+      "effects": {
+        "environment": [-3, -12, -1, 0],
+        "money": 12000,
+        "happiness": 16
+      }
+    },
+    {
+      "id": "wetland_drainage",
+      "name": "Feuchtgebiete trockenlegen",
+      "desc": "Gewinne Bauland aus Sumpfgebieten.",
+      "effects": {
+        "environment": [-11, -5, -10, -8],
+        "money": 36000,
+        "happiness": 2
+      }
+    },
+    {
+      "id": "fishing_quotas_ignore",
+      "name": "Fangquoten ignorieren",
+      "desc": "Erlaube Überfischung für Wirtschaftswachstum.",
+      "effects": {
+        "environment": [-9, -2, -1, -6],
+        "money": 26000,
+        "happiness": 3
+      }
+    },
+    {
+      "id": "industrial_park",
+      "name": "Industriepark ohne Auflagen",
+      "desc": "Locke Industrie ohne Umweltschutz an.",
+      "effects": {
+        "environment": [-12, -14, -5, -8],
+        "money": 45000,
+        "happiness": 4
       }
     }
   ]

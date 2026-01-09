@@ -94,7 +94,7 @@ function updateUI() {
 function checkGameOver() {
     if (state.money <= 0) {
         endGame('Bankrott! Dein Budget ist erschöpft. Spiel vorbei.');
-    } else if (state.environment <= 0) {
+    } else if (state.environment.some(v => v <= 0)) {
         endGame('Ökologische Katastrophe! Die Umweltwerte sind zu niedrig. Spiel vorbei.');
     } else if (state.happiness <= 0) {
         endGame('Soziale Unruhe! Zufriedenheit zu niedrig. Spiel vorbei.');
@@ -124,6 +124,7 @@ function nextDay() {
 function endGame(message) {
     gameOver = true;
     alert(message);
+    resetGame()
 }
 
 function resetGame() {
