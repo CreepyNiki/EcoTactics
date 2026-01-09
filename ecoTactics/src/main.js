@@ -166,7 +166,7 @@ function updateEnvDropdown() {
     `;
 }
 
-document.querySelector('.envBar').addEventListener('mouseover', (e) => {
+document.querySelector('.bar.env').addEventListener('mouseover', (e) => {
     updateEnvDropdown();
     const rect = e.target.getBoundingClientRect();
     envDropdown.style.left = rect.left + 'px';
@@ -174,7 +174,7 @@ document.querySelector('.envBar').addEventListener('mouseover', (e) => {
     envDropdown.style.display = 'block';
 });
 
-document.querySelector('.envBar').addEventListener('mouseleave', () => {
+document.querySelector('.bar.env').addEventListener('mouseleave', () => {
     envDropdown.style.display = 'none';
 });
 
