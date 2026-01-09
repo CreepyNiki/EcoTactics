@@ -14,6 +14,10 @@ let state = {
     history: []
 };
 
+function getMeanEnvironment(environment) {
+    return environment.reduce((a, b) => a + b, 0) / environment.length;
+}
+
 fetch('src/data/residents.json')
     .then(response => response.json())
     .then(data => {
@@ -41,13 +45,27 @@ function renderActions(actions) {
         const button = document.createElement('button');
         button.className = 'action';
         button.innerHTML = `<div class="actionName">${action.name}</div><div class="actionDesc">${action.desc}</div>
-        <div class="actionEffects">Effekt: Umwelt ${action.effects.environment > 0 ? '+' : ''}${action.effects.environment}, Geld ${action.effects.money > 0 ? '+' : ''}${action.effects.money}, Zufriedenheit ${action.effects.happiness > 0 ? '+' : ''}${action.effects.happiness}</div>`;
+        <div class="actionEffects">Effekt: Umwelt ${getMeanEnvironment(action.effects.environment) > 0 ? '+' : ''}${getMeanEnvironment(action.effects.environment).toFixed(1)}, Geld ${action.effects.money > 0 ? '+' : ''}${action.effects.money}, Zufriedenheit ${action.effects.happiness > 0 ? '+' : ''}${action.effects.happiness}</div>`;
         button.addEventListener('click', () => {
             if (!gameOver) {
                 applyAction(action);
                 renderActions(actions);
             }
         });
+
+        const actionEffectsElem = button.querySelector('.actionEffects');
+        actionEffectsElem.addEventListener('mouseover', (e) => {
+            updateEnvDropdownForAction(action.effects.environment);
+            const rect = e.target.getBoundingClientRect();
+            envDropdown.style.left = rect.left + 'px';
+            envDropdown.style.top = (rect.bottom + 5) + 'px';
+            envDropdown.style.display = 'block';
+        });
+        
+        actionEffectsElem.addEventListener('mouseleave', () => {
+            envDropdown.style.display = 'none';
+        });
+        
         actionsContainer.appendChild(button);
     });
 }
@@ -112,9 +130,11 @@ function nextDay() {
             state.environment[i] = clamp(state.environment[i] - 8, MIN_VALUE, MAX_ENVIRONMENT);
         }
         log(`Tag ${state.day - 1}: Regensturm beschädigt Infrastruktur (-8 Umwelt)`);
+        alert(`Tag ${state.day - 1}: Regensturm beschädigt Infrastruktur (-8 Umwelt)`)
     } else if (rnd < 0.30) {
         state.money = clamp(state.money + 10, MIN_VALUE, MAX_MONEY);
         log(`Tag ${state.day - 1}: Wirtschaftswachstum bringt Einnahmen (+10 Geld)`);
+        alert(`Tag ${state.day - 1}: Regensturm beschädigt Infrastruktur (-8 Umwelt)`)
     } else {
     }
     checkGameOver();
@@ -164,6 +184,17 @@ function updateEnvDropdown() {
         Temperatur: ${state.environment[1]}<br>
         Wetterextreme: ${state.environment[2]}<br>
         Wasserverfügbarkeit: ${state.environment[3]}
+    `;
+}
+
+function updateEnvDropdownForAction(environmentEffects) {
+    const effectsArray = Array.isArray(environmentEffects) ? environmentEffects : [environmentEffects, environmentEffects, environmentEffects, environmentEffects];
+    envDropdown.innerHTML = `
+        <strong>Umwelt-Effekte:</strong><br>
+        Meeresspiegelanstieg: ${effectsArray[0] > 0 ? '+' : ''}${effectsArray[0]}<br>
+        Temperatur: ${effectsArray[1] > 0 ? '+' : ''}${effectsArray[1]}<br>
+        Wetterextreme: ${effectsArray[2] > 0 ? '+' : ''}${effectsArray[2]}<br>
+        Wasserverfügbarkeit: ${effectsArray[3] > 0 ? '+' : ''}${effectsArray[3]}
     `;
 }
 
@@ -260,7 +291,7 @@ function createBuildingCard(building) {
             </div>
             <div class="building-cost-item">
                 <span>Umwelt:</span>
-                <span class="${avgEnvChange >= 0 ? 'cost-positive' : 'cost-negative'}">
+                <span class="${avgEnvChange >= 0 ? 'cost-positive env' : 'cost-negative env'}">
                     ${avgEnvChange >= 0 ? '+' : ''}${avgEnvChange.toFixed(1)}
                 </span>
             </div>
@@ -270,6 +301,21 @@ function createBuildingCard(building) {
     card.addEventListener('click', () => {
         purchaseBuilding(building);
     });
+
+    const envSpan = card.querySelector('.env');
+    if (envSpan) {
+        envSpan.addEventListener('mouseover', (e) => {
+            updateEnvDropdownForAction(building.effects.environment);
+            const rect = e.target.getBoundingClientRect();
+            envDropdown.style.left = rect.left + 'px';
+            envDropdown.style.top = (rect.bottom + 5) + 'px';
+            envDropdown.style.display = 'block';
+        });
+        
+        envSpan.addEventListener('mouseleave', () => {
+            envDropdown.style.display = 'none';
+        });
+    }
     
     return card;
 }
@@ -298,8 +344,8 @@ function purchaseBuilding(building) {
 }
 
 function updateShopResources() {
-    const avgEnv = state.environment.reduce((a, b) => a + b, 0) / state.environment.length;
     document.getElementById('shopMoneyValue').textContent = state.money;
     document.getElementById('shopHappinessValue').textContent = state.happiness;
-    document.getElementById('shopEnvValue').textContent = avgEnv.toFixed(0);
+    document.getElementById('shopEnvValue').textContent = getMeanEnvironment(state.environment).toFixed(0);
 }
+

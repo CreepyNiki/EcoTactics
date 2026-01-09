@@ -187,7 +187,7 @@ header {
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     padding: 12px 18px;
-    z-index: 100;
+    z-index: 1000;
     font-size: 1rem;
     min-width: 180px;
     pointer-events: none;
@@ -250,6 +250,7 @@ header {
 .actionEffects {
     font-size: 13px;
     color: #a0aec0;
+    cursor: help;
 }
 
 button.action {
@@ -453,6 +454,7 @@ button.action {
     border-radius: 8px;
     padding: 12px;
     margin-top: 10px;
+    cursor: default;
 }
 
 .building-cost-title {
@@ -474,6 +476,14 @@ button.action {
 
 .cost-positive {
     color: #68d391;
+}
+
+.cost-positive.env {
+    cursor: help;
+}
+
+.cost-negative.env {
+    cursor: help;
 }
 
 .cost-negative {
