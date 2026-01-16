@@ -41,7 +41,7 @@
       "effects": {
         "environment": [-15, -20, -5, -8],
         "money": 35000,
-        "happiness": -10
+        "happiness": -20
       }
     },
     {
@@ -63,7 +63,7 @@
       "effects": {
         "environment": [4, 10, 4, 5],
         "money": -35000,
-        "happiness": 14
+        "happiness": 2
       }
     },
     {
@@ -74,7 +74,7 @@
       "effects": {
         "environment": [3, 6, 2, 6],
         "money": -15000,
-        "happiness": 18
+        "happiness": 8
       }
     },
     {
@@ -96,7 +96,7 @@
       "effects": {
         "environment": [3, 5, 2, 3],
         "money": -16000,
-        "happiness": 16
+        "happiness": 4
       }
     },
     {
@@ -184,7 +184,7 @@
       "effects": {
         "environment": [-6, -9, -2, -10],
         "money": 34000,
-        "happiness": 11
+        "happiness": -11
       }
     },
     {
@@ -195,7 +195,7 @@
       "effects": {
         "environment": [-8, -12, -3, -9],
         "money": 40000,
-        "happiness": 16
+        "happiness": -16
       }
     },
     {
@@ -217,7 +217,7 @@
       "effects": {
         "environment": [-7, -14, -3, -2],
         "money": 30000,
-        "happiness": 1
+        "happiness": -10
       }
     },
     {
@@ -228,7 +228,7 @@
       "effects": {
         "environment": [-9, -5, -4, -10],
         "money": -30000,
-        "happiness": 5
+        "happiness": -5
         }
     },
     {

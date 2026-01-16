@@ -123,26 +123,96 @@ function checkGameOver() {
 }
 
 function nextDay() {
-    state.day += 1;
-    // Bevölkerung wächst oder schrumpft basierend auf Zufriedenheit -> über 50 wächst, unter 50 schrumpft
-    state.population = clamp(state.population + Math.floor(state.population * (state.happiness - 50) / 100), MIN_VALUE, 1000000);
+    let newsLog = null;
 
+    state.day += 1;
+
+    // Bevölkerung wächst/ schrumpft basierend auf Zufriedenheit -> höher als 50 = Wachstum, niedriger als 50 = Schrumpfung
+    const growthRate = (state.happiness - 50) / 100;
+    const deltaPopulation = Math.round(state.population * growthRate);
+    state.population = clamp(state.population + deltaPopulation, MIN_VALUE, 1000000);
+
+    if(state.day > 1){
+        document.querySelector(".newsTicker").style.display = "none";
+    }
+
+    const rareEvents = [
+        { environment: -69, message: 'Nukleare Verseuchung. Die Bürger der Stadt sind in größter Gefahr (-69 Umwelt)' },
+        { environment: -56, message: 'Ein Hurricane schockt die Stadt. (-56 Umwelt)' },
+        { money: -46000, message: 'Weltwirtschaftskrise! Die Wirtschaft kollabiert. (-46000 Geld)' },
+        { happiness: -50, message: 'Eine Pandemie bricht aus. Die Bevölkerung vereinsamt und verarmt. (-50 Zufriedenheit)' },
+    ];
+    const uncommonEvents = [
+        { happiness: 15, message: 'Es gibt so viele Bildungsplätze, wie nie zuvor in der Stadt. (+15 Zufriedenheit)' },
+        { environment: -15, message: 'Ein Rekordhitzesommer erschüttert die Tier- und Pflanzenwelt.  (-15 Umwelt)' },
+        { money: 21000, message: 'Ein Investor sieht Potential in der Stadt und investiert viel Geld in diese. (+21000 Geld)' },
+        { happiness: -24, message: 'Saurer Regen sorgt für erhebliche gesundheitliche Probleme. (-24 Zufriedenheit)' },
+        { environment: 19, message: 'Ein neue KI-Technologie gegen den Klimawandel wurde erforscht. (+19 Umwelt)' },
+        { environment: -23, message: 'Ein Hagelsturm verwüstet die Infrastruktur. (-23 Umwelt)' },
+        { money: -29000, message: 'Aufgrund größerer Hochwassergefahr muss ein neuer Damm gebaut werden. (-29000 Geld)' },
+        { happiness: -15, message: 'Aufgrund Probleme anderer Regionen bleiben die Supermarktregale leer. (-15 Zufriedenheit)' }
+    ];
+    const commonEvents = [
+        { happiness: 5, message: 'Positive Stimmung in der Stadt. (+5 Zufriedenheit)' },
+        { environment: -10, message: 'Starkregen sorgt für Beschädigungen. (-10 Umwelt)' },
+        { money: 8000, message: 'Die Industrie hat einen besonders guten Monat .(+8000 Geld)' },
+        { happiness: -7, message: 'Proteste gegen der/die Bürgermeister*in. (-7 Zufriedenheit)' },
+        { environment: 4, message: 'Eine lang ausgestorbene Art wurde wiederentdeckt! (+4 Umwelt)' },
+        { environment: -10, message: 'Eine Dürreperiode lässt die Umwelt leiden. (-10 Umwelt)' },
+        { money: -9000, message: 'Die Stadt muss für Straßenschäden aufkommen. (-9000 Geld)' },
+        { happiness: -8, message: 'Nachrichten über den Klimawandel beunruhigen die Bevölkerung. (-8 Zufriedenheit)' }
+    ];
 
     const rnd = Math.random();
-    if (rnd < 0.15) {
-        for (let i = 0; i < state.environment.length; i++) {
-            state.environment[i] = clamp(state.environment[i] - 8, MIN_VALUE, MAX_ENVIRONMENT);
-        }
-        log(`Tag ${state.day - 1}: Regensturm beschädigt Infrastruktur (-8 Umwelt)`);
-        alert(`Tag ${state.day - 1}: Regensturm beschädigt Infrastruktur (-8 Umwelt)`)
-    } else if (rnd < 0.30) {
-        state.money = clamp(state.money + 10, MIN_VALUE, MAX_MONEY);
-        log(`Tag ${state.day - 1}: Wirtschaftswachstum bringt Einnahmen (+10 Geld)`);
-        alert(`Tag ${state.day - 1}: Wirtschaftswachstum bringt Einnahmen (+10 Geld)`)
-    } else {
+
+    let pool = null;
+    if (rnd <= 0.04) {
+        pool = rareEvents;
+    } else if (rnd <= 0.20) {
+        pool = uncommonEvents;
+    } else if (rnd <= 0.40) {
+        pool = commonEvents;
     }
+
+    if (pool) {
+        const event = pool[Math.floor(Math.random() * pool.length)];
+
+        if (typeof event.happiness === 'number') {
+            state.happiness = clamp(state.happiness + event.happiness, MIN_VALUE, MAX_HAPPINESS);
+        }
+        if (typeof event.environment === 'number') {
+            for (let i = 0; i < state.environment.length; i++) {
+                state.environment[i] = clamp(state.environment[i] + event.environment, MIN_VALUE, MAX_ENVIRONMENT);
+            }
+        }
+        if (typeof event.money === 'number') {
+            state.money = clamp(state.money + event.money, MIN_VALUE, MAX_MONEY);
+        }
+
+        log(`Tag ${state.day - 1}: ${event.message}`);
+        newsLog = event.message;
+        console.log(event.message);
+        newsTicker(newsLog);
+    }
+
     checkGameOver();
     updateUI();
+}
+
+function newsTicker(newsLog) {
+    const wrapper = document.querySelector('.newsTicker');
+    const ticker = wrapper?.querySelector('.newsText') || document.querySelector('.newsText');
+    if (!wrapper || !ticker) return;
+
+    wrapper.style.display = 'block';
+
+    ticker.textContent = 'Nachrichten: ' + newsLog;
+    ticker.classList.add('active');
+
+    setTimeout(() => {
+        ticker.classList.remove('active');
+        wrapper.style.display = 'none';
+    }, 10000);
 }
 
 function endGame(message) {

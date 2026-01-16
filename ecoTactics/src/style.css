@@ -284,6 +284,17 @@ button.action {
     cursor: pointer;
 }
 
+.newsTicker{
+    position: fixed;
+    bottom: 22vh;
+    width: 100vw;
+    background: black;
+    color: white;
+    padding: 8px 0;
+    font-size: 14px;
+    z-index: 15;
+}
+
 .shopIcon {
     position: absolute;
     top: 5px;
