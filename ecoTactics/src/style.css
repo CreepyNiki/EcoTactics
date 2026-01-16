@@ -11,7 +11,7 @@ header {
     align-items: center;
     justify-content: space-between;
     width: 100vw;
-    height: 8vh;
+    height: 7vh;
     left: 0;
     position: fixed;
     top: 0;
@@ -225,9 +225,9 @@ nicht verzerrt ist */
 .selection {
     position: fixed;
     left: 0;
-    bottom: 8vh;
+    bottom: 5vh;
     width: 100vw;
-    height: 16vh;
+    height: 14vh;
     background: rgba(30,30,30,1);
     padding: 7px;
 }
@@ -271,10 +271,10 @@ button.action {
 
 .shop {
     position: fixed;
-    width: 110px;
-    height: 110px;
+    width: 95px;
+    height: 95px;
     right: 3vw;
-    bottom: 10vh;
+    bottom: 8vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -288,13 +288,13 @@ button.action {
     position: absolute;
     top: 5px;
     left: 18px;
-    height: 90px;
-    width: 90px;
+    height: 80px;
+    width: 80px;
 }
 
 .shopParagraph {
     position: absolute;
-    top: 80px;
+    top: 70px;
     color: black;
     font-size: 20px;
     font-family: Arial, sans-serif;
@@ -327,7 +327,7 @@ button.action {
     background-color: #25995c;
     color: white;
     width: 100vw;
-    height: 6vh;
+    height: 4vh;
     left: 0;
     position: fixed;
     bottom: 0;
