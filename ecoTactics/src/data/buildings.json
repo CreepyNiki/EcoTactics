@@ -79,7 +79,7 @@
     },
     {
       "id": "bike_hub",
-      "name": "Fahrrad-Hub",
+      "name": "Fahrrad-Station",
       "desc": "Zentrale Station mit Verleih, Reparatur und sicheren Stellplätzen",
       "image": "assets/buildings/bike.png",
       "effects": {
@@ -167,24 +167,13 @@
     },
     {
       "id": "airport_expansion",
-      "name": "Flughafen-Erweiterung",
+      "name": "Flughafen",
       "desc": "Mehr Flugverkehr bedeutet mehr Emissionen.",
       "image": "assets/buildings/airport.png",
       "effects": {
         "environment": [-12, -18, -5, -4],
         "money": 48000,
         "happiness": 12
-      }
-    },
-    {
-      "id": "chemical_plant",
-      "name": "Chemiewerk",
-      "desc": "Produktion von Industriechemikalien mit Risiken.",
-      "image": "assets/buildings/chemical.png",
-      "effects": {
-        "environment": [-14, -13, -8, -11],
-        "money": 46000,
-        "happiness": -5
       }
     },
     {
