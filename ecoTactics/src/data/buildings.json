@@ -221,6 +221,17 @@
       }
     },
     {
+      "id": "data_center",
+      "name": "Rechenzentrum",
+      "desc": "Hoher Energieverbrauch für Cloud-Dienste.",
+      "image": "assets/buildings/datacenter.png",
+      "effects": {
+        "environment": [-9, -5, -4, -10],
+        "money": -30000,
+        "happiness": 5
+        }
+    },
+    {
       "id": "water_park",
       "name": "Wasserpark",
       "desc": "Spaßbad mit enormem Wasserverbrauch.",

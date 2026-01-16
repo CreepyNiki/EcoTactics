@@ -1,3 +1,4 @@
+// Vollbild aktivieren für das volle Spielerlebnis
 const MAX_ENVIRONMENT = 100;
 const MAX_MONEY = 100000;
 const MAX_HAPPINESS = 100;
@@ -123,6 +124,9 @@ function checkGameOver() {
 
 function nextDay() {
     state.day += 1;
+    // Bevölkerung wächst oder schrumpft basierend auf Zufriedenheit -> über 50 wächst, unter 50 schrumpft
+    state.population = clamp(state.population + Math.floor(state.population * (state.happiness - 50) / 100), MIN_VALUE, 1000000);
+
 
     const rnd = Math.random();
     if (rnd < 0.15) {
@@ -134,7 +138,7 @@ function nextDay() {
     } else if (rnd < 0.30) {
         state.money = clamp(state.money + 10, MIN_VALUE, MAX_MONEY);
         log(`Tag ${state.day - 1}: Wirtschaftswachstum bringt Einnahmen (+10 Geld)`);
-        alert(`Tag ${state.day - 1}: Regensturm beschädigt Infrastruktur (-8 Umwelt)`)
+        alert(`Tag ${state.day - 1}: Wirtschaftswachstum bringt Einnahmen (+10 Geld)`)
     } else {
     }
     checkGameOver();
