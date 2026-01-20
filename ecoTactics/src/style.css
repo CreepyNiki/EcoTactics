@@ -48,18 +48,19 @@ header {
     margin-right: 30px;
 }
 
-/* TO-DO: Position des Bildes anpassen, damit es 
-nicht verzerrt ist */
 .canvas{
-   position: absolute;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.mapContainer {
     width: 100%;
     height: 100%;
-    z-index: -10;
-   object-position: center;
-  background-size: cover; 
-   top: 0;
-   left: 0;
-   
+    position: relative;
 }
 
 .backgroundImage {
@@ -68,6 +69,8 @@ nicht verzerrt ist */
     position: absolute;
     top: 0;
     left: 0;
+    object-fit: cover;
+    pointer-events: none;
 }
 
 .logButton{
@@ -585,4 +588,44 @@ button.action {
 
 .shop:hover {
     animation: pulse 0.6s ease-in-out;
+}
+
+.ghost-building {
+    position: absolute;
+    pointer-events: none;
+    z-index: 100;
+    height: 256px;
+    width: 256px;
+}
+
+.building_image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.ghost-building img {
+    opacity: 0.7;
+}
+
+.ghost-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 255, 0, 0.35);
+    border: 2px solid lime;
+}
+
+.map-building {
+    position: absolute;
+    z-index: 50;
+    height: 256px;
+    width: 256px;
+}
+
+.placed-building-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }

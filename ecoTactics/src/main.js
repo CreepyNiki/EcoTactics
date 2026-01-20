@@ -232,6 +232,15 @@ function resetGame() {
         history: []
     };
     gameOver = false;
+
+    const map = document.querySelector('.mapContainer');
+    if (map) {
+        const buildings = map.querySelectorAll('.map-building');
+        buildings.forEach(building => building.remove());
+    }
+
+    occupiedTiles.clear();
+    
     renderActions(actions);
     updateUI();
 }
@@ -394,32 +403,174 @@ function createBuildingCard(building) {
     return card;
 }
 
+
+const TILE_SIZE = 256;
+let placementMode = false;
+let selectedBuilding = null;
+let ghostBuilding = null;
+// speichert belegte Building-Tiles
+let occupiedTiles = new Set();
+
 function purchaseBuilding(building) {
     if (building.effects.money < 0 && state.money < Math.abs(building.effects.money)) {
         alert(`Nicht genug Geld! Du benötigst ${Math.abs(building.effects.money)} Geld, hast aber nur ${state.money}.`);
         return;
     }
 
+    selectedBuilding = building;
+    placementMode = true;
+
+    closeShop();
+    createGhostBuilding(building);
+}
+
+function createGhostBuilding(building) {
+    if (ghostBuilding) {
+        ghostBuilding.remove();
+        ghostBuilding = null;
+    }
+
+    const map = document.querySelector('.mapContainer');
+    if (!map) {
+        console.error('Map container not found!');
+        return;
+    }
+
+    ghostBuilding = document.createElement('div');
+    ghostBuilding.className = 'ghost-building';
+    ghostBuilding.style.position = 'absolute';
+    ghostBuilding.style.pointerEvents = 'none';
+
+    const img = document.createElement('img');
+    img.src = building.image;
+    img.className = `building_image`;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'ghost-overlay';
+
+    ghostBuilding.appendChild(img);
+    ghostBuilding.appendChild(overlay);
+    map.appendChild(ghostBuilding);
+}
+
+
+function checkTileOccupation() {
+    const mapElem = document.querySelector('.mapContainer');
+
+    mapElem.addEventListener('mousemove', (e) => {
+        
+        if (!placementMode || !ghostBuilding) {
+            return;
+        }
+
+        const rect = mapElem.getBoundingClientRect();
+        // Berechne Grid-Position basierend auf Mausposition -> Code teilweise übernommen von ChatGPT
+        const gridX = Math.floor((e.clientX - rect.left) / TILE_SIZE);
+        const gridY = Math.floor((e.clientY - rect.top) / TILE_SIZE);
+
+        ghostBuilding.style.left = gridX * TILE_SIZE + 'px';
+        ghostBuilding.style.top = gridY * TILE_SIZE + 'px';
+
+        // Koordinaten werden gespeichert als "x,y"
+        const tileKey = `${gridX},${gridY}`;
+        const overlay = ghostBuilding.querySelector('.ghost-overlay');
+        
+        if (occupiedTiles.has(tileKey)) {
+            overlay.style.background = 'rgba(255,0,0,0.45)';
+            overlay.style.borderColor = 'red';
+        } else {
+            overlay.style.background = 'rgba(0,255,0,0.35)';
+            overlay.style.borderColor = 'lime';
+        }
+    });
+
+    mapElem.addEventListener('click', (e) => {
+        if (!placementMode) return;
+
+        const rect = mapElem.getBoundingClientRect();
+        const gridX = Math.floor((e.clientX - rect.left) / TILE_SIZE);
+        const gridY = Math.floor((e.clientY - rect.top) / TILE_SIZE);
+
+        const tileKey = `${gridX},${gridY}`;
+
+        if (occupiedTiles.has(tileKey)) {
+            alert('Dieser Platz ist bereits belegt! Wähle eine andere Position.');
+            return;
+        }
+
+        placeBuildingOnMap(selectedBuilding, gridX, gridY);
+        finalizePurchase(selectedBuilding);
+        cleanupPlacement();
+    });
+}
+
+checkTileOccupation();
+
+function placeBuildingOnMap(building, gridX, gridY) {
+    const map = document.querySelector('.mapContainer');
+
+    const tileKey = `${gridX},${gridY}`;
+    
+    // Tile zum Set hinzugefügt
+    occupiedTiles.add(tileKey);
+
+    const buildingElem = document.createElement('div');
+    buildingElem.className = 'map-building';
+    buildingElem.style.left = gridX * TILE_SIZE + 'px';
+    buildingElem.style.top = gridY * TILE_SIZE + 'px';
+    buildingElem.dataset.tileX = gridX;
+    buildingElem.dataset.tileY = gridY;
+
+    const img = document.createElement('img');
+    img.src = building.image;
+    img.className = 'placed-building-image';
+
+    buildingElem.appendChild(img);
+    map.appendChild(buildingElem);
+}
+
+function finalizePurchase(building) {
     for (let i = 0; i < state.environment.length; i++) {
         state.environment[i] = clamp(
-            state.environment[i] + (Array.isArray(building.effects.environment) ? building.effects.environment[i] || 0 : building.effects.environment || 0),
+            state.environment[i] +
+            (Array.isArray(building.effects.environment)
+                ? building.effects.environment[i] || 0
+                : building.effects.environment || 0),
             MIN_VALUE,
             MAX_ENVIRONMENT
         );
     }
+
     state.money = clamp(state.money + building.effects.money, MIN_VALUE, MAX_MONEY);
     state.happiness = clamp(state.happiness + building.effects.happiness, MIN_VALUE, MAX_HAPPINESS);
-    
-    log(`Tag ${state.day}: Gebäude "${building.name}" gekauft! Kosten: ${building.effects.money} Geld`);
-    
+
+    log(`Tag ${state.day}: Gebäude "${building.name}" gebaut.`);
+
     updateUI();
     updateShopResources();
     checkGameOver();
 }
+
+
+function cleanupPlacement() {
+    placementMode = false;
+    selectedBuilding = null;
+
+    if (ghostBuilding) {
+        ghostBuilding.remove();
+        ghostBuilding = null;
+    }
+}
+
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && placementMode) {
+        cleanupPlacement();
+    }
+});
 
 function updateShopResources() {
     document.getElementById('shopMoneyValue').textContent = state.money;
     document.getElementById('shopHappinessValue').textContent = state.happiness;
     document.getElementById('shopEnvValue').textContent = getMeanEnvironment(state.environment).toFixed(0);
 }
-
