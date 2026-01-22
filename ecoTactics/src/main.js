@@ -82,6 +82,7 @@ function clamp(value, min, max) {
     return Math.max(min, Math.min(max, value));
 }
 
+// Methode zum Anwenden einer ausgewählten Aktion
 function applyAction(action) {
     for (let i = 0; i < state.environment.length; i++) {
         state.environment[i] = clamp(
