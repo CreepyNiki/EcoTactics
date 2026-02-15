@@ -4,7 +4,7 @@
       "id": "solar_park",
       "name": "Solarpark",
       "desc": "Großflächige Solaranlage zur nachhaltigen Stromerzeugung",
-      "image": "assets/buildings/solar.png",
+      "image": "assets/buildings/Solarpark.PNG",
       "effects": {
         "environment": [5, 12, 3, 0],
         "money": -25000,
@@ -26,7 +26,7 @@
       "id": "recycling_center",
       "name": "Recyclingzentrum",
       "desc": "Hochmoderne Anlage zur Müllverwertung und Wiederverwertung",
-      "image": "assets/buildings/recycle.png",
+      "image": "assets/buildings/Recyclingcenter.PNG",
       "effects": {
         "environment": [6, 3, 1, 8],
         "money": -18000,
@@ -158,7 +158,7 @@
       "id": "mega_mall",
       "name": "Mega-Einkaufszentrum",
       "desc": "Riesiges Shopping-Center mit massivem Energieverbrauch.",
-      "image": "assets/buildings/mall.png",
+      "image": "assets/buildings/Mall.PNG",
       "effects": {
         "environment": [-10, -14, -4, -6],
         "money": 42000,
@@ -191,7 +191,7 @@
       "id": "luxury_hotel",
       "name": "Luxus-Hotel",
       "desc": "Fünf-Sterne-Resort mit hohem Wasser- und Energieverbrauch.",
-      "image": "assets/buildings/hotel.png",
+      "image": "assets/buildings/hotel.PNG",
       "effects": {
         "environment": [-8, -12, -3, -9],
         "money": 40000,
@@ -213,7 +213,7 @@
       "id": "incinerator",
       "name": "Müllverbrennungsanlage",
       "desc": "Verbrenne Abfall statt Recycling.",
-        "image": "assets/buildings/incinerator.png",
+        "image": "assets/buildings/WastePlant.PNG",
       "effects": {
         "environment": [-7, -14, -3, -2],
         "money": 30000,
@@ -224,7 +224,7 @@
       "id": "data_center",
       "name": "Rechenzentrum",
       "desc": "Hoher Energieverbrauch für Cloud-Dienste.",
-      "image": "assets/buildings/datacenter.png",
+      "image": "assets/buildings/DataCenter.PNG",
       "effects": {
         "environment": [-9, -5, -4, -10],
         "money": -30000,
