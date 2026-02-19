@@ -383,6 +383,10 @@ function createBuildingCard(building) {
     `;
     
     card.addEventListener('click', () => {
+        card.classList.remove('selected');
+        void card.offsetWidth;
+        card.classList.add('selected');
+        setTimeout(() => card.classList.remove('selected'), 500);
         purchaseBuilding(building);
     });
 

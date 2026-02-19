@@ -1,3 +1,16 @@
+/* ===== ANIMATIONEN ===== */
+@keyframes pulse {
+    0%   { transform: scale(1);    box-shadow: 0 0 0 0   rgba(99, 179, 237, 0.5); }
+    50%  { transform: scale(1.04); box-shadow: 0 0 0 10px rgba(99, 179, 237, 0.15); }
+    100% { transform: scale(1);    box-shadow: 0 0 0 0   rgba(99, 179, 237, 0); }
+}
+
+@keyframes lift {
+    0%   { transform: translateY(0)    scale(1); }
+    50%  { transform: translateY(-6px) scale(1.08); }
+    100% { transform: translateY(0)    scale(1); }
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -247,11 +260,19 @@ header {
     bottom: calc(4vh + 9vh - clamp(30px, 3.5vw, 44px));
     font-size: clamp(11px, 1.3vw, 13px);
     background: #dddddd;
-    color: white;
+    color: #333;
     cursor: pointer;
     border-radius: 8px;
     white-space: nowrap;
     z-index: 25;
+    border: none;
+    font-weight: bold;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.resetButton:hover {
+    transform: translateY(-5px) scale(1.07);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
 }
 
 .actions {
@@ -307,6 +328,12 @@ button.action {
     cursor: pointer;
     border-radius: 8px;
     gap: 2px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.shop:hover {
+    transform: translateY(-5px) scale(1.07);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
 }
 
 .shopIcon {
@@ -441,9 +468,20 @@ button.action {
     border: 2px solid #5a6c7d;
     border-radius: 12px;
     padding: clamp(10px, 1.5vw, 20px);
-    transition: all 0.3s;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     cursor: pointer;
     position: relative;
+}
+
+.building-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    border-color: #7a9cbd;
+}
+
+.building-card.selected {
+    animation: pulse 0.5s ease-out;
+    border-color: #63b3ed;
 }
 
 .building-image-placeholder {
