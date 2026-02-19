@@ -263,7 +263,7 @@ document.body.appendChild(envDropdown);
 
 function updateEnvDropdown() {
     envDropdown.innerHTML = `
-        <strong>Umwelt-Zusammensetzung:</strong><br>
+        <strong>Umwelt-Effekte:</strong><br>
         Meeresspiegelanstieg: ${state.environment[0]}<br>
         Temperatur: ${state.environment[1]}<br>
         Wetterextreme: ${state.environment[2]}<br>

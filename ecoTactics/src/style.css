@@ -192,9 +192,7 @@ header {
     position: fixed;
     background: #222;
     color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-    padding: 12px 18px;
+    padding: 8px 12px;
     z-index: 1000;
     font-size: clamp(12px, 1.3vw, 1rem);
     min-width: 160px;
@@ -277,7 +275,6 @@ header {
 
 .actions {
     display: flex;
-    align-items: stretch;
     justify-content: center;
     gap: clamp(8px, 1.2vw, 16px);
     flex-wrap: nowrap;
