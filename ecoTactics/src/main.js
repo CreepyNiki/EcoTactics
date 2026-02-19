@@ -218,7 +218,7 @@ function newsTicker(newsLog) {
 
 function endGame(message) {
     gameOver = true;
-    alert(message);
+    ErrorBox(message);
     resetGame()
 }
 
@@ -414,7 +414,7 @@ let occupiedTiles = new Set();
 
 function purchaseBuilding(building) {
     if (building.effects.money < 0 && state.money < Math.abs(building.effects.money)) {
-        alert(`Nicht genug Geld! Du benötigst ${Math.abs(building.effects.money)} Geld, hast aber nur ${state.money}.`);
+        ErrorBox(`Nicht genug Geld! Du benötigst ${Math.abs(building.effects.money)} Geld, hast aber nur ${state.money}.`);
         return;
     }
 
@@ -495,7 +495,7 @@ function checkTileOccupation() {
         const tileKey = `${gridX},${gridY}`;
 
         if (occupiedTiles.has(tileKey)) {
-            alert('Dieser Platz ist bereits belegt! Wähle eine andere Position.');
+            ErrorBox('Dieser Platz ist bereits belegt! Wähle eine andere Position.');
             return;
         }
 
@@ -574,4 +574,29 @@ function updateShopResources() {
     document.getElementById('shopMoneyValue').textContent = state.money;
     document.getElementById('shopHappinessValue').textContent = state.happiness;
     document.getElementById('shopEnvValue').textContent = getMeanEnvironment(state.environment).toFixed(0);
+}
+
+function ErrorBox(message) {
+
+    const existing = document.querySelector('.errorBox');
+    if (existing){
+        existing.remove();
+    }
+
+    const errorBox = document.createElement('div');
+    const errorBoxPicture = document.createElement('img');
+    const errorBoxText = document.createElement('p');
+    errorBoxPicture.src = 'assets/warning.png';
+    errorBoxPicture.className = 'errorBoxImage';
+    errorBoxText.textContent = message;
+    errorBoxText.className = 'errorBoxText';
+    errorBox.appendChild(errorBoxText);
+    errorBox.appendChild(errorBoxPicture);
+    errorBox.className = 'errorBox';
+
+    document.body.appendChild(errorBox);
+
+    setTimeout(() => {
+        if (errorBox && errorBox.parentElement) errorBox.remove();
+    }, 5000);
 }
