@@ -418,6 +418,14 @@ function purchaseBuilding(building) {
         return;
     }
 
+    console.log(state.history)
+    if(state.history.includes(building.name)){
+        if(state.history.filter(name => name === building.name).length >= building.limit){
+        ErrorBox(`Du hast die maximale mögliche Anzahl der Gebäude bereits überschritten.`);
+        return;
+        }
+    }
+
     selectedBuilding = building;
     placementMode = true;
 
@@ -544,6 +552,8 @@ function finalizePurchase(building) {
 
     state.money = clamp(state.money + building.effects.money, MIN_VALUE, MAX_MONEY);
     state.happiness = clamp(state.happiness + building.effects.happiness, MIN_VALUE, MAX_HAPPINESS);
+
+    state.history.push(building.name);
 
     log(`Tag ${state.day}: Gebäude "${building.name}" gebaut.`);
 
