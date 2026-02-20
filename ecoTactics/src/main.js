@@ -192,11 +192,12 @@ function nextDay() {
 
         log(`Tag ${state.day - 1}: ${event.message}`);
         newsLog = event.message;
-        console.log(event.message);
         newsTicker(newsLog);
     }
-
     checkGameOver();
+    if(!gameOver){
+        checkValueAvatarRequirements();
+    }
     updateUI();
 }
 
@@ -214,6 +215,182 @@ function newsTicker(newsLog) {
         ticker.classList.remove('active');
         wrapper.style.display = 'none';
     }, 10000);
+}
+
+function checkValueAvatarRequirements() {
+
+    if (document.querySelector('.avatarContainer')) return;
+
+    if(state.money < 10000){
+        showRandomAvatar('Die Stadt steht kurz vor dem Bankrott! Kannst du eigentlich überhaupt mit Geld umgehen?');
+    }
+    if(state.happiness < 10){
+        showRandomAvatar('Das geht nicht so weiter! Ich möchte ausziehen!');
+    }
+    if(state.environment[0] < 10){
+        showRandomAvatar('Unsere Keller laufen voll! Tun sie endlich was!');
+    }
+    if(state.environment[1] < 10){
+        showRandomAvatar('Es ist viel zu heiß in der Stadt! Das hält doch niemand aus!');
+    }
+    if(state.environment[2] < 10){
+        showRandomAvatar('Schon wieder ein Sturm? Die Stadt ist doch nicht mehr bewohnbar!');
+    }
+    if(state.environment[3] < 10){
+        showRandomAvatar('Es kommt kein Wasser mehr aus dem Hahn! Wie soll das weitergehen?');
+    }
+}
+
+function checkBuildingAvatarRequirements(building) {
+
+    if (document.querySelector('.avatarContainer')) return;
+
+    let rnd;
+
+    if(building.name === "Windpark"){
+        rnd = Math.random();
+        if (rnd < 0.5) {
+            showRandomAvatar(`Endlich nutzen wir die Kraft des Windes! Das ist ein großer Schritt in Richtung Nachhaltigkeit!`);
+        }
+    }
+
+    if(building.name === "Solarpark"){
+        rnd = Math.random();
+        if (rnd < 0.5) {
+            showRandomAvatar(`Die Sonne als Stromquelle! Das ist nicht nur nachhaltig, sondern auch genial!`);
+        }
+    }
+
+    if(building.name === "Recyclingzentrum"){
+        rnd = Math.random();
+        if (rnd < 0.5) {
+            showRandomAvatar(`Es gibt doch nichts schöneres, als aus Alt Neu zu machen! Unser Recyclingzentrum ist ein echter Gewinn für die Umwelt!`);
+        }
+    }
+
+    if(building.name === "Kohlekraftwerk"){
+        rnd = Math.random();
+        if (rnd < 0.5) {
+            showRandomAvatar(`Warum bauen wir so ein umweltschädliches Kraftwerk? Wollen wir genauso weiter machen wie bisher? Das ist doch nicht mehr zeitgemäß!`);
+        }
+    }
+
+    if(building.name === "Stadtwald"){
+        rnd = Math.random();
+        if (rnd < 0.5) {
+            showRandomAvatar(`Ich liebe es im Wald spazieren zu gehen! Unser neuer Stadtwald ist dafür bestens geeignet!`);
+        }
+    }
+
+    if(building.name === "Öko-Wohnkomplex"){
+        rnd = Math.random();
+        if (rnd < 0.5) {
+            showRandomAvatar(`Ich möchte unbedingt in den neuen Öko-Wohnkomplex ziehen! Endlich umweltfreundlich und modern wohnen!`);
+        }
+    }
+
+    if(building.name === "Botanischer Garten"){
+        rnd = Math.random();
+        if (rnd < 0.5) {
+            showRandomAvatar(`Der neue Botanische Garten ist so schön geworden! Es ist toll, dass wir jetzt so viel mehr Grünflächen in der Stadt haben!`);
+        }
+    }
+
+    if(building.name === "Fahrrad-Station"){
+        rnd = Math.random();
+        if (rnd < 0.5) {
+            showRandomAvatar(`Mit der Eröffnung der neuen Fahrrad-Station werde ich auch einmal mit dem Fahrrad zur Arbeit fahren!`);
+        }
+    }
+
+    if(building.name === "Umwelt-Bildungszentrum"){
+        rnd = Math.random();
+        if (rnd < 0.5) {
+            showRandomAvatar(`Die Veranstaltungen des neuen Umwelt-Bildungszentrums sind so spannend! Ich konnte so viel über unsere Natur lernen!`);
+        }
+    }
+
+    if(building.name === "Straßenbahn-Netz"){
+        rnd = Math.random();
+        if (rnd < 0.5) {
+            showRandomAvatar(`Wow! Endlich haben wir eine neue Straßenbahn! Die stellt die KVB sowas von in den Schatten!`);
+        }
+    }
+
+    if(building.name === "Umweltmuseum"){
+        rnd = Math.random();
+        if (rnd < 0.5) {
+            showRandomAvatar(`Ich war gestern im neuen Umweltmuseum und es war so beeindruckend! Ich werde jetzt zum Superhelden für die Umwelt!`);
+        }
+    }
+
+    if(building.name === "Repair-Cafés"){
+        rnd = Math.random();
+        if (rnd < 0.5) {
+            showRandomAvatar(`Sachen zu reparieren macht doch viel mehr Spaß, als sie wegzuwerfen! Das neue Repair-Café ist eine tolle Idee!`);
+        }
+    }
+
+    if(building.name === "Ölraffinerie"){
+        rnd = Math.random();
+        if (rnd < 0.5) {
+            showRandomAvatar(`Warum fördern wir denn jetzt auch noch Öl? Das ist doch total rückständig und umweltschädlich!`);
+        }
+    }
+
+    if(building.name === "Mega-Einkaufszentrum"){
+        rnd = Math.random();
+        if (rnd < 0.5) {
+            showRandomAvatar(`Ich liebe es shoppen zu gehen! Da ist mir die Umwelt doch egal!`);
+        }
+    }
+
+    if(building.name === "Flughafen"){
+        rnd = Math.random();
+        if (rnd < 0.5) {
+            showRandomAvatar(`Ich fliege jetzt auf Malle! Jedes Wochenende! Saufen statt Umweltschutz!`);
+        }
+    }
+
+    if(building.name === "Fast-Fashion-Fabrik"){
+        rnd = Math.random();
+        if (rnd < 0.5) {
+            showRandomAvatar(`Die armen Leute, die in der neuen Fast-Fashion-Fabrik arbeiten müssen! Aber Hauptsache wir können billig einkaufen!`);
+        }
+    }
+
+    if(building.name === "Luxus-Hotel"){
+        rnd = Math.random();
+        if (rnd < 0.5) {
+            showRandomAvatar(`Brauchen wir denn wirklich ein Luxushotel? Diese nervigen Touristen, die dann hier rumlaufen? Das ist doch total überflüssig!`);
+        }
+    }
+
+    if(building.name === "Golf-Resort"){
+        rnd = Math.random();
+        if (rnd < 0.5) {
+            showRandomAvatar(`Ich habe gestern mein Handicap verbessert! Das neue Golf-Resort ist echt super! Wir haben doch genug Wasser!`);
+        }
+    }
+
+    if(building.name === "Müllverbrennungsanlage"){
+        rnd = Math.random();
+        if (rnd < 0.5) {
+            showRandomAvatar(`Müll verbrennen? Das klingt doch total umweltschädlich! Warum können wir den Müll nicht einfach recyceln oder so?`);
+        }
+    }
+    if(building.name === "Rechenzentrum"){
+        rnd = Math.random();
+        if (rnd < 0.5) {
+            showRandomAvatar(`Der KI wird die Zukunft gehören! Unser neues Rechenzentrum ist da genau das Richtige, um für die Zukunft gerüstet zu sein! Aber woher kommen denn die neuen Stromausfälle?`);
+        }
+    }
+    if(building.name === "Wasserpark"){
+        rnd = Math.random();
+        if (rnd < 0.5) {
+            showRandomAvatar(`Platsch Platsch! Der neue Wasserpark ist so toll! Eine tolle Abkühlung bei den immer wärmeren Sommern!`);
+        }
+    }
 }
 
 function endGame(message) {
@@ -473,7 +650,6 @@ function purchaseBuilding(building) {
         return;
     }
 
-    console.log(state.history)
     if(state.history.includes(building.name)){
         if(state.history.filter(name => name === building.name).length >= building.limit){
         ErrorBox(`Du hast die maximale mögliche Anzahl der Gebäude bereits überschritten.`);
@@ -495,10 +671,6 @@ function createGhostBuilding(building) {
     }
 
     const map = document.querySelector('.mapContainer');
-    if (!map) {
-        console.error('Map container not found!');
-        return;
-    }
 
     ghostBuilding = document.createElement('div');
     ghostBuilding.className = 'ghost-building';
@@ -522,7 +694,7 @@ function checkTileOccupation() {
     const mapElem = document.querySelector('.mapContainer');
 
     mapElem.addEventListener('mousemove', (e) => {
-        
+
         if (!placementMode || !ghostBuilding) {
             return;
         }
@@ -620,6 +792,10 @@ function finalizePurchase(building) {
     updateUI();
     updateShopResources();
     checkGameOver();
+    if(!gameOver){
+        checkValueAvatarRequirements()
+        checkBuildingAvatarRequirements(building)
+    }
 }
 
 
@@ -675,7 +851,6 @@ function showRandomAvatar(message) {
     const avatarContainer = document.createElement('div');
     avatarContainer.className = 'avatarContainer';
     document.body.appendChild(avatarContainer);
-    console.log("hallo");
     const avatarPictures = [
         'assets/Avatars/AchimNovak.png',
         'assets/Avatars/AndreasBruno.png',
@@ -704,6 +879,6 @@ function showRandomAvatar(message) {
 
     setTimeout(() => {
         if (avatarContainer && avatarContainer.parentElement) avatarContainer.remove();
-    }, 10000);
+    }, 7000);
 }
 
