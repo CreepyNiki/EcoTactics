@@ -46,7 +46,7 @@ function renderActions(actions) {
         const button = document.createElement('button');
         button.className = 'action';
         button.innerHTML = `<div class="actionName">${action.name}</div><div class="actionDesc">${action.desc}</div>
-        <div class="actionEffects">Effekt: Umwelt ${getMeanEnvironment(action.effects.environment) > 0 ? '+' : ''}${getMeanEnvironment(action.effects.environment).toFixed(1)}, Geld ${action.effects.money > 0 ? '+' : ''}${action.effects.money}, Zufriedenheit ${action.effects.happiness > 0 ? '+' : ''}${action.effects.happiness}</div>`;
+        <div class="actionEffects">Effekt: Geld ${action.effects.money > 0 ? '+' : ''}${action.effects.money}, Zufriedenheit ${action.effects.happiness > 0 ? '+' : ''}${action.effects.happiness}, Umwelt ${getMeanEnvironment(action.effects.environment) > 0 ? '+' : ''}${getMeanEnvironment(action.effects.environment).toFixed(1)},</div>`;
         button.addEventListener('click', () => {
             if (!gameOver) {
                 applyAction(action);
@@ -294,6 +294,57 @@ document.querySelector('.bar.env').addEventListener('mouseleave', () => {
     envDropdown.style.display = 'none';
 });
 
+const offscreen = document.createElement('canvas');
+const dimension = offscreen.getContext('2d');
+const realCanvas = document.querySelector('.backgroundImage');
+
+function initRiverDetection() {
+    // Werte von echtem Bild auf Offscreen-Canvas übertragen
+    offscreen.width = realCanvas.naturalWidth;
+    offscreen.height = realCanvas.naturalHeight;
+    dimension.drawImage(realCanvas, 0, 0);
+}
+
+if (realCanvas.complete) {
+    initRiverDetection();
+}
+
+function isTileRiver(gridX, gridY) {
+    if (offscreen.width === 0) return false;
+    const imgRect = realCanvas.getBoundingClientRect();
+
+    // Skalierungsfaktor berechnen, da Bild auf unterschiedlichen Bildschirmgrößen unterschiedlich skaliert wird
+    const scaleX = realCanvas.naturalWidth  / imgRect.width;
+    const scaleY = realCanvas.naturalHeight / imgRect.height;
+
+    // Mittelpunkt des Tiles -> auf echte Bildkoordinaten skalieren -> mit Claude generiert
+    const tileCenterX = (gridX * TILE_SIZE + TILE_SIZE / 2) * scaleX;
+    const tileCenterY = (gridY * TILE_SIZE + TILE_SIZE / 2) * scaleY;
+
+    // Mehrere Punkte rund um Bildmitte gesammelt
+    const samples = [
+        [tileCenterX, tileCenterY],
+        [tileCenterX - TILE_SIZE * scaleX * 0.25, tileCenterY],
+        [tileCenterX + TILE_SIZE * scaleX * 0.25, tileCenterY],
+        [tileCenterX, tileCenterY - TILE_SIZE * scaleY * 0.25],
+        [tileCenterX, tileCenterY + TILE_SIZE * scaleY * 0.25],
+    ];
+
+    let riverCount = 0;
+    for (const [sampleX, sampleY] of samples) {
+        // abrunden auf ganze Pixelkoordinaten
+        const x = Math.floor(sampleX);
+        const y = Math.floor(sampleY);
+        // wenn Pixel außerhalb des Bildes liegt, ignorieren
+        if (x < 0 || y < 0 || x >= offscreen.width || y >= offscreen.height) continue;
+        const [r, g, b] = dimension.getImageData(x, y, 1, 1).data;
+        // Flusswasser: blau als dominante Farbe
+        if (b > 120 && r < 120 && g < 160) riverCount++;
+    }
+    // Mindestens 1 von 5 Samples müssen Wasser sein
+    return riverCount >= 2;
+}
+
 let buildings = [];
 
 fetch('src/data/buildings.json')
@@ -487,8 +538,9 @@ function checkTileOccupation() {
         // Koordinaten werden gespeichert als "x,y"
         const tileKey = `${gridX},${gridY}`;
         const overlay = ghostBuilding.querySelector('.ghost-overlay');
-        
-        if (occupiedTiles.has(tileKey)) {
+        const river = isTileRiver(gridX, gridY);
+
+        if (occupiedTiles.has(tileKey) || river) {
             overlay.style.background = 'rgba(255,0,0,0.45)';
             overlay.style.borderColor = 'red';
         } else {
@@ -508,6 +560,10 @@ function checkTileOccupation() {
 
         if (occupiedTiles.has(tileKey)) {
             ErrorBox('Dieser Platz ist bereits belegt! Wähle eine andere Position.');
+            return;
+        }
+        if (isTileRiver(gridX, gridY)) {
+            ErrorBox('Hier fließt ein Fluss! Gebäude können nicht auf Wasser gebaut werden.');
             return;
         }
 

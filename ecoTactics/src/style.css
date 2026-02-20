@@ -246,8 +246,9 @@ header {
 }
 
 .selectHeader {
-    font-size: clamp(12px, 1.4vw, 15px);
+    font-size: clamp(15px, 1.4vw, 20px);
     text-align: center;
+    font-weight: bold;
 }
 
 .resetButton {
