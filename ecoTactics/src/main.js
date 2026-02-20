@@ -22,7 +22,7 @@ function getMeanEnvironment(environment) {
 fetch('src/data/residents.json')
     .then(response => response.json())
     .then(data => {
-        const wholePopulation = data.residents.length;
+        const residents = data.residents;
     });
 
 
@@ -677,13 +677,15 @@ function showRandomAvatar(message) {
     document.body.appendChild(avatarContainer);
     console.log("hallo");
     const avatarPictures = [
-        'assets/Avatars/AchimNovakYoungMan.png',
-        'assets/Avatars/AndreasBrunoMan.png',
-        'assets/Avatars/EmilyPhamGrandma.png',
-        'assets/Avatars/TuanaFrankeGirl.png',
+        'assets/Avatars/AchimNovak.png',
+        'assets/Avatars/AndreasBruno.png',
+        'assets/Avatars/EmilyPham.png',
+        'assets/Avatars/TuanaFranke.png',
     ];
     const randomAvatar = avatarPictures[Math.floor(Math.random() * avatarPictures.length)];
     const img = document.createElement('img');
+    // RegEx von Copilot
+    const avatarName = randomAvatar.match(/\/([^\/]+)\.png$/)[1].replace(/([A-Z])/g, ' $1').trim();
     img.src = randomAvatar;
     img.className = 'avatarImage';
     avatarContainer.appendChild(img);
@@ -694,14 +696,14 @@ function showRandomAvatar(message) {
     speechBubble.src = 'assets/speechBubble.png';
     speechBubble.className = 'speechBubble';
     const bubbleText = document.createElement('p');
-    bubbleText.textContent = message;
+    bubbleText.innerHTML = `<span class="bubbleName">${avatarName}:</span><br>${message}`
     bubbleText.className = 'bubbleText';
     speechBubbleWrapper.appendChild(speechBubble);
     speechBubbleWrapper.appendChild(bubbleText);
     avatarContainer.appendChild(speechBubbleWrapper);
 
-    // setTimeout(() => {
-    //     if (avatarContainer && avatarContainer.parentElement) avatarContainer.remove();
-    // }, 10000);
+    setTimeout(() => {
+        if (avatarContainer && avatarContainer.parentElement) avatarContainer.remove();
+    }, 10000);
 }
 

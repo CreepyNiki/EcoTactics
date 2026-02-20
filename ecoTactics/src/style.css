@@ -757,6 +757,10 @@ button.action {
     z-index: 5;
 }
 
+.bubbleName{
+    color: orange;
+}
+
 @media (max-width: 768px) {
     .avatarContainer {
         right: 4px;
