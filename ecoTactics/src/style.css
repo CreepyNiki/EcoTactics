@@ -706,43 +706,79 @@ button.action {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.avatarContainer{
-    position: absolute;
-    left: 89%;
-    top: 58%;
-    transform: translate(-50%, -50%);
+
+.avatarContainer {
+    position: fixed;
+    right: 0;
+    bottom: calc(6vh + 18vh);
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+    z-index: 160;
+    pointer-events: none;
 }
 
 .avatarImage {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
+    width: clamp(160px, 18vw, 300px);
+    height: clamp(160px, 18vw, 300px);
     z-index: 150;
-}
-
-.speechBubble{
-    position: absolute;
-    left: 50%;
-    top: 20%;
-    transform: translate(-50%, -50%);
-    padding: 10px 14px;
-    border-radius: 12px;
-    text-align: center;
-    max-width: 300px;
-    z-index: 200;
+    flex-shrink: 0;
     pointer-events: auto;
 }
 
-.bubbleText{
+.speechBubbleWrapper {
     position: relative;
-    left: 0;
-    top: 0;
-    transform: none;
-    font-size: clamp(120px, 1.3vw, 160px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: clamp(90px, 11vw, 185px);
+    flex-shrink: 0;
+    pointer-events: auto;
+}
+
+.speechBubble {
+    position: relative;
+    width: clamp(150px, 18vw, 300px);
+    height: auto;
+    display: block;
+}
+
+.bubbleText {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    font-size: clamp(11px, 1.1vw, 16px);
     color: #111;
     font-weight: bold;
+    text-align: center;
+    line-height: 1.2;
+    z-index: 5;
+}
+
+@media (max-width: 768px) {
+    .avatarContainer {
+        right: 4px;
+        bottom: calc(4vh + 18vh + 4px);
+    }
+
+    .avatarImage {
+        width: clamp(90px, 22vw, 140px);
+        height: clamp(90px, 22vw, 140px);
+    }
+
+    .speechBubble {
+        width: clamp(100px, 26vw, 170px);
+    }
+
+    .bubbleText {
+        font-size: clamp(9px, 2.2vw, 12px);
+    }
+
+    .speechBubbleWrapper {
+        margin-bottom: clamp(52px, 13vw, 86px);
+    }
 }
 
 /* größere Bildschirme (24 Zoll) */
@@ -824,6 +860,23 @@ button.action {
 
     .canvas {
         bottom: calc(22vh + 4vh);
+    }
+
+    .avatarImage {
+        width: 340px;
+        height: 340px;
+    }
+
+    .speechBubble {
+        width: 320px;
+    }
+
+    .bubbleText {
+        font-size: 15px;
+    }
+
+    .speechBubbleWrapper {
+        margin-bottom: 210px;
     }
 }
 
@@ -910,6 +963,23 @@ button.action {
 
     .canvas {
         bottom: calc(20vh + 4vh);
+    }
+
+    .avatarImage {
+        width: 400px;
+        height: 400px;
+    }
+
+    .speechBubble {
+        width: 380px;
+    }
+
+    .bubbleText {
+        font-size: 18px;
+    }
+
+    .speechBubbleWrapper {
+        margin-bottom: 250px;
     }
 
     .footer {

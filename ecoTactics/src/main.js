@@ -688,14 +688,17 @@ function showRandomAvatar(message) {
     img.className = 'avatarImage';
     avatarContainer.appendChild(img);
 
+    const speechBubbleWrapper = document.createElement('div');
+    speechBubbleWrapper.className = 'speechBubbleWrapper';
     const speechBubble = document.createElement('img');
     speechBubble.src = 'assets/speechBubble.png';
     speechBubble.className = 'speechBubble';
     const bubbleText = document.createElement('p');
     bubbleText.textContent = message;
     bubbleText.className = 'bubbleText';
-    speechBubble.appendChild(bubbleText);
-    avatarContainer.appendChild(speechBubble);
+    speechBubbleWrapper.appendChild(speechBubble);
+    speechBubbleWrapper.appendChild(bubbleText);
+    avatarContainer.appendChild(speechBubbleWrapper);
 
     // setTimeout(() => {
     //     if (avatarContainer && avatarContainer.parentElement) avatarContainer.remove();
