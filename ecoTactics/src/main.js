@@ -214,7 +214,7 @@ function newsTicker(newsLog) {
     setTimeout(() => {
         ticker.classList.remove('active');
         wrapper.style.display = 'none';
-    }, 10000);
+    }, 20000);
 }
 
 function checkValueAvatarRequirements() {
