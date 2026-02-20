@@ -670,3 +670,35 @@ function ErrorBox(message) {
         if (errorBox && errorBox.parentElement) errorBox.remove();
     }, 5000);
 }
+
+function showRandomAvatar(message) {
+    const avatarContainer = document.createElement('div');
+    avatarContainer.className = 'avatarContainer';
+    document.body.appendChild(avatarContainer);
+    console.log("hallo");
+    const avatarPictures = [
+        'assets/Avatars/AchimNovakYoungMan.png',
+        'assets/Avatars/AndreasBrunoMan.png',
+        'assets/Avatars/EmilyPhamGrandma.png',
+        'assets/Avatars/TuanaFrankeGirl.png',
+    ];
+    const randomAvatar = avatarPictures[Math.floor(Math.random() * avatarPictures.length)];
+    const img = document.createElement('img');
+    img.src = randomAvatar;
+    img.className = 'avatarImage';
+    avatarContainer.appendChild(img);
+
+    const speechBubble = document.createElement('img');
+    speechBubble.src = 'assets/speechBubble.png';
+    speechBubble.className = 'speechBubble';
+    const bubbleText = document.createElement('p');
+    bubbleText.textContent = message;
+    bubbleText.className = 'bubbleText';
+    speechBubble.appendChild(bubbleText);
+    avatarContainer.appendChild(speechBubble);
+
+    // setTimeout(() => {
+    //     if (avatarContainer && avatarContainer.parentElement) avatarContainer.remove();
+    // }, 10000);
+}
+
