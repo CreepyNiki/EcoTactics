@@ -738,17 +738,19 @@ button.action {
 
 .Sprechblase {
     position: relative;
-    width: clamp(150px, 18vw, 300px);
+    width: clamp(500px, 18vw, 300px);
     height: auto;
     display: block;
+    top: 100px; 
+    left: 100px; 
 }
 
 .bubbleText {
     position: absolute;
-    top: 30%;
-    left: 50%;
+    top: 70%;
+    left: 70%;
     transform: translate(-50%, -50%);
-    width: 80%;
+    width: 50%;
     font-size: clamp(11px, 1.1vw, 16px);
     color: #111;
     font-weight: bold;

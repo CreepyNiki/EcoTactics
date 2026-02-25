@@ -235,9 +235,9 @@
       "image": "assets/buildings/wassertank.png",
       "limit": 2,
       "effects": {
-        "environment": [-4, -8, -2, -13],
-        "money": 30000,
-        "happiness": 22
+        "environment": [3, 6, 1, 8],
+        "money": -10000,
+        "happiness": 15
       }
     }
   ]
