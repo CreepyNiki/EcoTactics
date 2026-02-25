@@ -726,7 +726,7 @@ button.action {
     pointer-events: auto;
 }
 
-.speechBubbleWrapper {
+.SprechblaseWrapper {
     position: relative;
     display: flex;
     align-items: center;
@@ -736,7 +736,7 @@ button.action {
     pointer-events: auto;
 }
 
-.speechBubble {
+.Sprechblase {
     position: relative;
     width: clamp(150px, 18vw, 300px);
     height: auto;
@@ -772,7 +772,7 @@ button.action {
         height: clamp(90px, 22vw, 140px);
     }
 
-    .speechBubble {
+    .Sprechblase {
         width: clamp(100px, 26vw, 170px);
     }
 
@@ -780,7 +780,7 @@ button.action {
         font-size: clamp(9px, 2.2vw, 12px);
     }
 
-    .speechBubbleWrapper {
+    .SprechblaseWrapper {
         margin-bottom: clamp(52px, 13vw, 86px);
     }
 }
@@ -871,7 +871,7 @@ button.action {
         height: 340px;
     }
 
-    .speechBubble {
+    .Sprechblase {
         width: 320px;
     }
 
@@ -879,7 +879,7 @@ button.action {
         font-size: 15px;
     }
 
-    .speechBubbleWrapper {
+    .SprechblaseWrapper {
         margin-bottom: 210px;
     }
 }
@@ -974,16 +974,16 @@ button.action {
         height: 400px;
     }
 
-    .speechBubble {
-        width: 380px;
+    .Sprechblase {
+        width: 500px;
     }
 
     .bubbleText {
         font-size: 18px;
     }
 
-    .speechBubbleWrapper {
-        margin-bottom: 250px;
+    .SprechblaseWrapper {
+        margin-bottom: 440px;
     }
 
     .footer {

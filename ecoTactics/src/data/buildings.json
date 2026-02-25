@@ -109,10 +109,10 @@
       }
     },
     {
-      "id": "tram_network",
-      "name": "Straßenbahn-Netz",
-      "desc": "Elektrisches Stadtbahn-System für die Innenstadt",
-      "image": "assets/buildings/tram.png",
+      "id": "bus_stop",
+      "name": "Bushaltestelle",
+      "desc": "Bushaltestelle für alle Bewohner der Stadt",
+      "image": "assets/buildings/busstop.png",
       "limit": 1,
       "effects": {
         "environment": [5, 14, 2, 0],
@@ -203,18 +203,7 @@
         "happiness": -16
       }
     },
-    {
-      "id": "golf_course",
-      "name": "Golf-Resort",
-      "desc": "Gepflegte Rasenflächen benötigen Unmengen an Wasser.",
-      "image": "assets/buildings/golf.png",
-      "limit": 1,
-      "effects": {
-        "environment": [-5, -7, -2, -15],
-        "money": 35000,
-        "happiness": 13
-      }
-    },
+    
     {
       "id": "incinerator",
       "name": "Müllverbrennungsanlage",
@@ -240,10 +229,10 @@
         }
     },
     {
-      "id": "water_park",
-      "name": "Wasserpark",
-      "desc": "Spaßbad mit enormem Wasserverbrauch.",
-      "image": "assets/buildings/waterpark.png",
+      "id": "water_tank",
+      "name": "Wassertank",
+      "desc": "Wassertank, welches die Bewohner der Stadt mit sauberem Wasser versorgt.",
+      "image": "assets/buildings/wassertank.png",
       "limit": 2,
       "effects": {
         "environment": [-4, -8, -2, -13],
