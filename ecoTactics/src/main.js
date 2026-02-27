@@ -129,11 +129,13 @@ function nextDay() {
 
     state.day += 1;
 
-    const passiveCosts = 4000 + (state.population * 0.5);
+    const passiveCosts = Math.round(4000 + state.population * 0.1);
     state.money = clamp(state.money - passiveCosts, MIN_VALUE, MAX_MONEY);
 
-    // Bevölkerung wächst/ schrumpft basierend auf Zufriedenheit -> höher als 50 = Wachstum, niedriger als 50 = Schrumpfung
-    const growthRate = (state.happiness - 50) / 100;
+    // Bevölkerung wächst/ schrumpft basierend auf Zufriedenheit -> höher als 30 = Wachstum, niedriger als 30 = Schrumpfung
+    let growthRate = (state.happiness - 30) / 100;
+    growthRate = clamp(growthRate, -0.5, 0.5);
+
     const deltaPopulation = Math.round(state.population * growthRate);
     state.population = clamp(state.population + deltaPopulation, MIN_VALUE, 1000000);
 
