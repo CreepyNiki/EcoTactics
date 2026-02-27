@@ -124,7 +124,7 @@ function checkGameOver() {
         endGame('Ökologische Katastrophe! Die Umweltwerte sind zu niedrig. Spiel vorbei.');
     } else if (state.happiness <= 0) {
         endGame('Soziale Unruhe! Zufriedenheit zu niedrig. Spiel vorbei.');
-    } else if (state.day >= 30) {
+    } else if (state.day > 30) {
         endGame('Glückwunsch! 30 Tage überstanden — du hast gezeigt, dass Nachhaltigkeit möglich ist.');
     }
 }
@@ -180,7 +180,7 @@ function nextDay() {
     const rnd = Math.random();
 
     let pool = null;
-    if (rnd <= 0.03) {
+    if (rnd <= 0.02) {
         pool = rareEvents;
     } else if (rnd <= 0.10) {
         pool = uncommonEvents;
