@@ -37,6 +37,13 @@ header {
     padding: 0 12px;
 }
 
+.headerRight {
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 2vw, 28px);
+    flex-shrink: 0;
+}
+
 .logo {
     width: clamp(90px, 12vw, 160px);
     height: clamp(45px, 6vw, 80px);
@@ -47,6 +54,9 @@ header {
 .day {
     font-size: clamp(12px, 1.5vw, 16px);
     white-space: nowrap;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .populationCounter {
@@ -54,6 +64,25 @@ header {
     align-items: center;
     gap: 4px;
     flex-shrink: 0;
+}
+
+.passiveCostsDisplay {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.passiveCostsLabel {
+    color: #a0aec0;
+    font-size: clamp(10px, 1.1vw, 13px);
+}
+
+.passiveCostsCounter {
+    color: #fc8181;
+    font-size: clamp(10px, 1.2vw, 14px);
+    font-weight: bold;
 }
 
 .populationIcon {

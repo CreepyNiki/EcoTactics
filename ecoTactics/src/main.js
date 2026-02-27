@@ -19,6 +19,10 @@ function getMeanEnvironment(environment) {
     return environment.reduce((a, b) => a + b, 0) / environment.length;
 }
 
+function getNextPassiveCosts() {
+    return Math.round(4000 + state.population * 0.1);
+}
+
 fetch('src/data/residents.json')
     .then(response => response.json())
     .then(data => {
@@ -110,6 +114,7 @@ function updateUI() {
     document.querySelector('.moneyBar').style.width = state.money / 1000 + '%';
     document.querySelector('.happinessBar').style.width = state.happiness + '%';
     document.querySelector('.population').textContent = state.population;
+    document.querySelector('.passiveCostsCounter').textContent = '-' + getNextPassiveCosts().toLocaleString('de-DE');
 }
 
 function checkGameOver() {
