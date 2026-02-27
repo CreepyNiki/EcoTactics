@@ -180,11 +180,11 @@ function nextDay() {
     const rnd = Math.random();
 
     let pool = null;
-    if (rnd <= 0.02) {
+    if (rnd <= 0.03) {
         pool = rareEvents;
-    } else if (rnd <= 0.20) {
+    } else if (rnd <= 0.15) {
         pool = uncommonEvents;
-    } else if (rnd <= 0.40) {
+    } else if (rnd <= 0.30) {
         pool = commonEvents;
     }
 

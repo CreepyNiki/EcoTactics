@@ -7,9 +7,9 @@
       "image": "assets/buildings/garden.png",
       "limit": 3,
       "effects": {
-        "environment": [2, 4, 1, 4],
+        "environment": [3, 6, 2, 6],
         "money": -19000,
-        "happiness": 6
+        "happiness": 9
       }
     },
     {
@@ -19,9 +19,9 @@
       "image": "assets/buildings/busstop.png",
       "limit": 1,
       "effects": {
-        "environment": [3, 10, 1, 0],
+        "environment": [4, 13, 2, 0],
         "money": -34000,
-        "happiness": 10
+        "happiness": 14
       }
     },
     {
@@ -31,9 +31,9 @@
       "image": "assets/buildings/bike.png",
       "limit": 3,
       "effects": {
-        "environment": [2, 7, 1, 0],
+        "environment": [3, 9, 2, 0],
         "money": -15000,
-        "happiness": 8
+        "happiness": 11
       }
     },
     {
@@ -115,9 +115,9 @@
       "image": "assets/buildings/housing.png",
       "limit": 4,
       "effects": {
-        "environment": [3, 7, 3, 4],
+        "environment": [4, 9, 4, 6],
         "money": -42000,
-        "happiness": 2
+        "happiness": 5
       }
     },
     {
@@ -151,9 +151,9 @@
       "image": "assets/buildings/Recyclingcenter.PNG",
       "limit": 2,
       "effects": {
-        "environment": [4, 2, 1, 6],
+        "environment": [5, 3, 2, 8],
         "money": -22000,
-        "happiness": 4
+        "happiness": 6
       }
     },
     {
@@ -163,9 +163,9 @@
       "image": "assets/buildings/repaircafe.png",
       "limit": 3,
       "effects": {
-        "environment": [1, 1, 0, 1],
+        "environment": [2, 2, 1, 2],
         "money": -4000,
-        "happiness": 6
+        "happiness": 8
       }
     },
     {
@@ -175,9 +175,9 @@
       "image": "assets/buildings/Solarpark.PNG",
       "limit": 2,
       "effects": {
-        "environment": [3, 9, 2, 0],
+        "environment": [4, 12, 3, 0],
         "money": -30000,
-        "happiness": 4
+        "happiness": 6
       }
     },
     {
@@ -187,9 +187,9 @@
       "image": "assets/buildings/forest.png",
       "limit": 4,
       "effects": {
-        "environment": [7, 10, 4, 9],
+        "environment": [9, 13, 5, 11],
         "money": -26000,
-        "happiness": 12
+        "happiness": 15
       }
     },
     {
@@ -199,9 +199,9 @@
       "image": "assets/buildings/education.png",
       "limit": 2,
       "effects": {
-        "environment": [2, 3, 1, 2],
+        "environment": [3, 4, 2, 3],
         "money": -20000,
-        "happiness": 3
+        "happiness": 6
       }
     },
     {
@@ -211,9 +211,9 @@
       "image": "assets/buildings/museum.png",
       "limit": 1,
       "effects": {
-        "environment": [1, 2, 1, 1],
+        "environment": [2, 3, 2, 2],
         "money": -18000,
-        "happiness": 13
+        "happiness": 16
       }
     },
     {
@@ -223,9 +223,9 @@
       "image": "assets/buildings/wassertank.png",
       "limit": 2,
       "effects": {
-        "environment": [2, 4, 1, 6],
+        "environment": [3, 5, 2, 8],
         "money": -13000,
-        "happiness": 12
+        "happiness": 14
       }
     },
     {
@@ -235,9 +235,9 @@
       "image": "assets/buildings/wind.png",
       "limit": 4,
       "effects": {
-        "environment": [5, 11, 1, 0],
+        "environment": [6, 14, 2, 0],
         "money": -36000,
-        "happiness": 3
+        "happiness": 5
       }
     }
   ]
