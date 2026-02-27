@@ -63,12 +63,12 @@ header {
 
 .passiveCostsLabel {
     color: #a0aec0;
-    font-size: clamp(12px, 1.1vw, 15px);
+    font-size: clamp(13px, 1.1vw, 16px);
 }
 
 .passiveCostsCounter {
     color: #fc8181;
-    font-size: clamp(10px, 1.2vw, 14px);
+    font-size: clamp(13px, 1.2vw, 16px);
     font-weight: bold;
 }
 
@@ -91,17 +91,6 @@ header {
     position: relative;
     bottom: calc(clamp(2px, 0.3vw, 4px));
     flex-shrink: 0;
-}
-
-.passiveCosts {
-    font-size: clamp(11px, 1.3vw, 14px);
-    margin: 0;
-    white-space: nowrap;
-}
-
-.passiveCostsCounter{
-    color: red;
-    font-weight: bolder;
 }
 
 .canvas {
@@ -1064,12 +1053,8 @@ button.action {
         height: 40px;
     }
 
-    passiveCostsLabel {
-        font-size: 14px;
-    }
-
     .population {
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .passiveCosts {

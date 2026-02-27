@@ -114,7 +114,7 @@ function updateUI() {
     document.querySelector('.moneyBar').style.width = state.money / 1000 + '%';
     document.querySelector('.happinessBar').style.width = state.happiness + '%';
     document.querySelector('.population').textContent = state.population;
-    document.querySelector('.passiveCostsCounter').textContent = '-' + getNextPassiveCosts().toLocaleString('de-DE');
+    document.querySelector('.passiveCostsCounter').textContent = '-' + getNextPassiveCosts();
 }
 
 function checkGameOver() {
