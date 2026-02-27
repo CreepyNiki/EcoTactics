@@ -206,19 +206,33 @@ function nextDay() {
     updateUI();
 }
 
+let newsTickerTimeout = null;
+
 function newsTicker(newsLog) {
     const wrapper = document.querySelector('.newsTicker');
-    const ticker = wrapper?.querySelector('.newsText') || document.querySelector('.newsText');
-    if (!wrapper || !ticker) return;
+    if (!wrapper) return;
+
+    if (newsTickerTimeout) {
+        clearTimeout(newsTickerTimeout);
+        newsTickerTimeout = null;
+    }
+
+    const oldMarquee = wrapper.querySelector('.newsText');
+    if (oldMarquee) oldMarquee.remove();
+
+    const marquee = document.createElement('marquee');
+    marquee.className = 'newsText';
+    marquee.setAttribute('behavior', 'scroll');
+    marquee.setAttribute('direction', 'left');
+    marquee.setAttribute('scrollamount', '5');
+    marquee.textContent = 'Nachrichten: ' + newsLog;
+    wrapper.appendChild(marquee);
 
     wrapper.style.display = 'block';
 
-    ticker.textContent = 'Nachrichten: ' + newsLog;
-    ticker.classList.add('active');
-
-    setTimeout(() => {
-        ticker.classList.remove('active');
+    newsTickerTimeout = setTimeout(() => {
         wrapper.style.display = 'none';
+        newsTickerTimeout = null;
     }, 20000);
 }
 
