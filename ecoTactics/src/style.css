@@ -63,7 +63,7 @@ header {
 
 .passiveCostsLabel {
     color: #a0aec0;
-    font-size: clamp(10px, 1.1vw, 13px);
+    font-size: clamp(12px, 1.1vw, 15px);
 }
 
 .passiveCostsCounter {
@@ -919,6 +919,14 @@ button.action {
     .SprechblaseWrapper {
         margin-bottom: 210px;
     }
+
+    passiveCostsLabel {
+        font-size: 12px;
+    }
+
+     .population {
+        font-size: 16px;
+    }
 }
 
 /* große Bildschirme (27 Zoll) */
@@ -1054,6 +1062,10 @@ button.action {
     .passiveCostsIcon{
         width: 40px;
         height: 40px;
+    }
+
+    passiveCostsLabel {
+        font-size: 14px;
     }
 
     .population {
