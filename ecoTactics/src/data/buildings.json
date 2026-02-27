@@ -7,9 +7,9 @@
       "image": "assets/buildings/garden.png",
       "limit": 3,
       "effects": {
-        "environment": [3, 6, 2, 6],
-        "money": -15000,
-        "happiness": 8
+        "environment": [2, 4, 1, 4],
+        "money": -19000,
+        "happiness": 6
       }
     },
     {
@@ -19,9 +19,9 @@
       "image": "assets/buildings/busstop.png",
       "limit": 1,
       "effects": {
-        "environment": [5, 14, 2, 0],
-        "money": -28000,
-        "happiness": 13
+        "environment": [3, 10, 1, 0],
+        "money": -34000,
+        "happiness": 10
       }
     },
     {
@@ -31,21 +31,21 @@
       "image": "assets/buildings/bike.png",
       "limit": 3,
       "effects": {
-        "environment": [4, 10, 1, 0],
-        "money": -12000,
-        "happiness": 11
+        "environment": [2, 7, 1, 0],
+        "money": -15000,
+        "happiness": 8
       }
     },
     {
       "id": "airport_expansion",
       "name": "Flughafen",
-      "desc": "Mehr Flugverkehr bedeutet mehr Emissionen.",
+      "desc": "Eröffnung des Flughafens für mehr Passagiere und Touristen.",
       "image": "assets/buildings/airport.png",
       "limit": 1,
       "effects": {
-        "environment": [-12, -18, -5, -4],
-        "money": 48000,
-        "happiness": 12
+        "environment": [-14, -20, -6, -5],
+        "money": 40000,
+        "happiness": 10
       }
     },
     {
@@ -55,9 +55,9 @@
       "image": "assets/buildings/fashion.png",
       "limit": 2,
       "effects": {
-        "environment": [-6, -9, -2, -10],
-        "money": 34000,
-        "happiness": -11
+        "environment": [-8, -11, -3, -12],
+        "money": 27000,
+        "happiness": -14
       }
     },
     {
@@ -67,9 +67,9 @@
       "image": "assets/buildings/coal.png",
       "limit": 1,
       "effects": {
-        "environment": [-15, -20, -5, -8],
-        "money": 35000,
-        "happiness": -20
+        "environment": [-18, -24, -6, -10],
+        "money": 28000,
+        "happiness": -24
       }
     },
     {
@@ -77,10 +77,11 @@
       "name": "Luxus-Hotel",
       "desc": "Fünf-Sterne-Resort mit hohem Wasser- und Energieverbrauch.",
       "image": "assets/buildings/hotel.PNG",
+      "limit": 2,
       "effects": {
-        "environment": [-8, -12, -3, -9],
-        "money": 40000,
-        "happiness": -16
+        "environment": [-10, -14, -4, -11],
+        "money": 32000,
+        "happiness": -18
       }
     },
     {
@@ -90,9 +91,9 @@
       "image": "assets/buildings/Mall.PNG",
       "limit": 1,
       "effects": {
-        "environment": [-10, -14, -4, -6],
-        "money": 42000,
-        "happiness": 20
+        "environment": [-12, -16, -5, -8],
+        "money": 34000,
+        "happiness": 16
       }
     },
     {
@@ -102,9 +103,9 @@
       "image": "assets/buildings/WastePlant.PNG",
       "limit": 2,
       "effects": {
-        "environment": [-7, -14, -3, -2],
-        "money": 30000,
-        "happiness": -10
+        "environment": [-9, -16, -4, -3],
+        "money": 24000,
+        "happiness": -12
       }
     },
     {
@@ -114,8 +115,8 @@
       "image": "assets/buildings/housing.png",
       "limit": 4,
       "effects": {
-        "environment": [4, 10, 4, 5],
-        "money": -35000,
+        "environment": [3, 7, 3, 4],
+        "money": -42000,
         "happiness": 2
       }
     },
@@ -126,9 +127,9 @@
       "image": "assets/buildings/refinery.png",
       "limit": 1,
       "effects": {
-        "environment": [-18, -22, -6, -10],
-        "money": 55000,
-        "happiness": -8
+        "environment": [-20, -25, -7, -12],
+        "money": 46000,
+        "happiness": -10
       }
     },
     {
@@ -138,9 +139,9 @@
       "image": "assets/buildings/DataCenter.PNG",
       "limit": 2,
       "effects": {
-        "environment": [-9, -5, -4, -10],
-        "money": 20000,
-        "happiness": -5
+        "environment": [-11, -7, -5, -12],
+        "money": 16000,
+        "happiness": -6
       }
     },
     {
@@ -150,9 +151,9 @@
       "image": "assets/buildings/Recyclingcenter.PNG",
       "limit": 2,
       "effects": {
-        "environment": [6, 3, 1, 8],
-        "money": -18000,
-        "happiness": 5
+        "environment": [4, 2, 1, 6],
+        "money": -22000,
+        "happiness": 4
       }
     },
     {
@@ -162,9 +163,9 @@
       "image": "assets/buildings/repaircafe.png",
       "limit": 3,
       "effects": {
-        "environment": [1, 2, 0, 1],
-        "money": -2000,
-        "happiness": 8
+        "environment": [1, 1, 0, 1],
+        "money": -4000,
+        "happiness": 6
       }
     },
     {
@@ -174,9 +175,9 @@
       "image": "assets/buildings/Solarpark.PNG",
       "limit": 2,
       "effects": {
-        "environment": [5, 12, 3, 0],
-        "money": -25000,
-        "happiness": 6
+        "environment": [3, 9, 2, 0],
+        "money": -30000,
+        "happiness": 4
       }
     },
     {
@@ -186,9 +187,9 @@
       "image": "assets/buildings/forest.png",
       "limit": 4,
       "effects": {
-        "environment": [10, 14, 6, 12],
-        "money": -20000,
-        "happiness": 15
+        "environment": [7, 10, 4, 9],
+        "money": -26000,
+        "happiness": 12
       }
     },
     {
@@ -198,9 +199,9 @@
       "image": "assets/buildings/education.png",
       "limit": 2,
       "effects": {
-        "environment": [3, 5, 2, 3],
-        "money": -16000,
-        "happiness": 4
+        "environment": [2, 3, 1, 2],
+        "money": -20000,
+        "happiness": 3
       }
     },
     {
@@ -210,21 +211,21 @@
       "image": "assets/buildings/museum.png",
       "limit": 1,
       "effects": {
-        "environment": [2, 3, 1, 2],
-        "money": -14000,
-        "happiness": 17
+        "environment": [1, 2, 1, 1],
+        "money": -18000,
+        "happiness": 13
       }
     },
     {
       "id": "water_tank",
       "name": "Wassertank",
-      "desc": "Wassertank, welches die Bewohner der Stadt mit sauberem Wasser versorgt.",
+      "desc": "Versorgt die Bewohner der Stadt mit sauberem Wasser.",
       "image": "assets/buildings/wassertank.png",
       "limit": 2,
       "effects": {
-        "environment": [3, 6, 1, 8],
-        "money": -10000,
-        "happiness": 15
+        "environment": [2, 4, 1, 6],
+        "money": -13000,
+        "happiness": 12
       }
     },
     {
@@ -234,9 +235,9 @@
       "image": "assets/buildings/wind.png",
       "limit": 4,
       "effects": {
-        "environment": [8, 15, 2, 0],
-        "money": -30000,
-        "happiness": 4
+        "environment": [5, 11, 1, 0],
+        "money": -36000,
+        "happiness": 3
       }
     }
   ]

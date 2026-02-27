@@ -105,7 +105,7 @@ function updateUI() {
     document.querySelector('.envCounter').textContent = avgEnv.toFixed(0);
     document.querySelector('.moneyCounter').textContent = state.money;
     document.querySelector('.happinessCounter').textContent = state.happiness;
-    document.querySelector('.day').textContent = "Tag " + state.day;
+    document.querySelector('.day').textContent = "Tag " + state.day + " / 30";
     document.querySelector('.envBar').style.width = avgEnv + '%';
     document.querySelector('.moneyBar').style.width = state.money / 1000 + '%';
     document.querySelector('.happinessBar').style.width = state.happiness + '%';
@@ -128,6 +128,9 @@ function nextDay() {
     let newsLog = null;
 
     state.day += 1;
+
+    const passiveCosts = 2000 + Math.floor(state.population / 500) * 200;
+    state.money = clamp(state.money - passiveCosts, MIN_VALUE, MAX_MONEY);
 
     // Bevölkerung wächst/ schrumpft basierend auf Zufriedenheit -> höher als 50 = Wachstum, niedriger als 50 = Schrumpfung
     const growthRate = (state.happiness - 50) / 100;
