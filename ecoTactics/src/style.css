@@ -69,6 +69,25 @@ header {
     white-space: nowrap;
 }
 
+.passiveCostsIcon{
+    width: clamp(20px, 2.5vw, 32px);
+    height: clamp(20px, 2.5vw, 32px);
+    position: relative;
+    bottom: calc(clamp(2px, 0.3vw, 4px));
+    flex-shrink: 0;
+}
+
+.passiveCosts {
+    font-size: clamp(11px, 1.3vw, 14px);
+    margin: 0;
+    white-space: nowrap;
+}
+
+.passiveCostsCounter{
+    color: red;
+    font-weight: bolder;
+}
+
 .canvas {
     position: fixed;
     width: 100vw;
@@ -1016,7 +1035,16 @@ button.action {
         height: 40px;
     }
 
+    .passiveCostsIcon{
+        width: 40px;
+        height: 40px;
+    }
+
     .population {
+        font-size: 18px;
+    }
+
+    .passiveCosts {
         font-size: 18px;
     }
 }

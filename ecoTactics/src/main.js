@@ -131,6 +131,8 @@ function nextDay() {
 
     const passiveCosts = Math.round(4000 + state.population * 0.1);
     state.money = clamp(state.money - passiveCosts, MIN_VALUE, MAX_MONEY);
+    const passiveCostCounter = document.querySelector('.passiveCostsCounter');
+    passiveCostCounter.textContent = `- ${passiveCosts}`;
 
     // Bevölkerung wächst/ schrumpft basierend auf Zufriedenheit -> höher als 30 = Wachstum, niedriger als 30 = Schrumpfung
     let growthRate = (state.happiness - 30) / 100;
