@@ -182,7 +182,7 @@ function nextDay() {
     let pool = null;
     if (rnd <= 0.03) {
         pool = rareEvents;
-    } else if (rnd <= 0.15) {
+    } else if (rnd <= 0.10) {
         pool = uncommonEvents;
     } else if (rnd <= 0.30) {
         pool = commonEvents;
