@@ -1,78 +1,6 @@
 {
   "buildings": [
     {
-      "id": "solar_park",
-      "name": "Solarpark",
-      "desc": "Großflächige Solaranlage zur nachhaltigen Stromerzeugung",
-      "image": "assets/buildings/Solarpark.PNG",
-      "limit": 2,
-      "effects": {
-        "environment": [5, 12, 3, 0],
-        "money": -25000,
-        "happiness": 6
-      }
-    },
-    {
-      "id": "wind_farm",
-      "name": "Windpark",
-      "desc": "Moderne Windkraftanlagen für saubere Energie",
-      "image": "assets/buildings/wind.png",
-      "limit": 4,
-      "effects": {
-        "environment": [8, 15, 2, 0],
-        "money": -30000,
-        "happiness": 4
-      }
-    },
-    {
-      "id": "recycling_center",
-      "name": "Recyclingzentrum",
-      "desc": "Hochmoderne Anlage zur Müllverwertung und Wiederverwertung",
-      "image": "assets/buildings/Recyclingcenter.PNG",
-      "limit": 2,
-      "effects": {
-        "environment": [6, 3, 1, 8],
-        "money": -18000,
-        "happiness": 5
-      }
-    },
-    {
-      "id": "coal_plant",
-      "name": "Kohlekraftwerk",
-      "desc": "Günstige Energie, aber umweltschädlich.",
-      "image": "assets/buildings/coal.png",
-      "limit": 1,
-      "effects": {
-        "environment": [-15, -20, -5, -8],
-        "money": 35000,
-        "happiness": -20
-      }
-    },
-    {
-      "id": "city_forest",
-      "name": "Stadtwald",
-      "desc": "Großes Waldgebiet zur Verbesserung des Stadtklimas",
-      "image": "assets/buildings/forest.png",
-      "limit": 4,
-      "effects": {
-        "environment": [10, 14, 6, 12],
-        "money": -20000,
-        "happiness": 15
-      }
-    },
-    {
-      "id": "green_housing",
-      "name": "Öko-Wohnkomplex",
-      "desc": "Energieeffiziente Wohngebäude mit Gründächern",
-      "image": "assets/buildings/housing.png",
-      "limit": 4,
-      "effects": {
-        "environment": [4, 10, 4, 5],
-        "money": -35000,
-        "happiness": 2
-      }
-    },
-    {
       "id": "botanical_garden",
       "name": "Botanischer Garten",
       "desc": "Bildungs- und Erholungsstätte mit vielfältiger Flora",
@@ -82,30 +10,6 @@
         "environment": [3, 6, 2, 6],
         "money": -15000,
         "happiness": 8
-      }
-    },
-    {
-      "id": "bike_hub",
-      "name": "Fahrrad-Station",
-      "desc": "Zentrale Station mit Verleih, Reparatur und sicheren Stellplätzen",
-      "image": "assets/buildings/bike.png",
-      "limit": 3,
-      "effects": {
-        "environment": [4, 10, 1, 0],
-        "money": -12000,
-        "happiness": 11
-      }
-    },
-    {
-      "id": "education_center",
-      "name": "Umwelt-Bildungszentrum",
-      "desc": "Lehranstalt für nachhaltige Entwicklung und Klimaschutz",
-      "image": "assets/buildings/education.png",
-      "limit": 2,
-      "effects": {
-        "environment": [3, 5, 2, 3],
-        "money": -16000,
-        "happiness": 4
       }
     },
     {
@@ -121,51 +25,15 @@
       }
     },
     {
-      "id": "eco_museum",
-      "name": "Umweltmuseum",
-      "desc": "Interaktives Museum über Klimawandel und Nachhaltigkeit",
-      "image": "assets/buildings/museum.png",
-      "limit": 1,
-      "effects": {
-        "environment": [2, 3, 1, 2],
-        "money": -14000,
-        "happiness": 17
-      }
-    },
-    {
-      "id": "repair_cafe",
-      "name": "Repair-Cafés",
-      "desc": "Fördere Reparatur statt Neukauf.",
-      "image": "assets/buildings/repaircafe.png",
+      "id": "bike_hub",
+      "name": "Fahrrad-Station",
+      "desc": "Zentrale Station mit Verleih, Reparatur und sicheren Stellplätzen",
+      "image": "assets/buildings/bike.png",
       "limit": 3,
       "effects": {
-        "environment": [1, 2, 0, 1],
-        "money": -2000,
-        "happiness": 8
-      }
-    },
-    {
-      "id": "oil_refinery",
-      "name": "Ölraffinerie",
-      "desc": "Verarbeite fossile Brennstoffe zu hohen Gewinnen.",
-      "image": "assets/buildings/refinery.png",
-      "limit": 1,
-      "effects": {
-        "environment": [-18, -22, -6, -10],
-        "money": 55000,
-        "happiness": -8
-      }
-    },
-    {
-      "id": "mega_mall",
-      "name": "Mega-Einkaufszentrum",
-      "desc": "Riesiges Shopping-Center mit massivem Energieverbrauch.",
-      "image": "assets/buildings/Mall.PNG",
-      "limit": 1,
-      "effects": {
-        "environment": [-10, -14, -4, -6],
-        "money": 42000,
-        "happiness": 20
+        "environment": [4, 10, 1, 0],
+        "money": -12000,
+        "happiness": 11
       }
     },
     {
@@ -193,6 +61,18 @@
       }
     },
     {
+      "id": "coal_plant",
+      "name": "Kohlekraftwerk",
+      "desc": "Günstige Energie, aber umweltschädlich.",
+      "image": "assets/buildings/coal.png",
+      "limit": 1,
+      "effects": {
+        "environment": [-15, -20, -5, -8],
+        "money": 35000,
+        "happiness": -20
+      }
+    },
+    {
       "id": "luxury_hotel",
       "name": "Luxus-Hotel",
       "desc": "Fünf-Sterne-Resort mit hohem Wasser- und Energieverbrauch.",
@@ -203,7 +83,18 @@
         "happiness": -16
       }
     },
-    
+    {
+      "id": "mega_mall",
+      "name": "Mega-Einkaufszentrum",
+      "desc": "Riesiges Shopping-Center mit massivem Energieverbrauch.",
+      "image": "assets/buildings/Mall.PNG",
+      "limit": 1,
+      "effects": {
+        "environment": [-10, -14, -4, -6],
+        "money": 42000,
+        "happiness": 20
+      }
+    },
     {
       "id": "incinerator",
       "name": "Müllverbrennungsanlage",
@@ -217,6 +108,30 @@
       }
     },
     {
+      "id": "green_housing",
+      "name": "Öko-Wohnkomplex",
+      "desc": "Energieeffiziente Wohngebäude mit Gründächern",
+      "image": "assets/buildings/housing.png",
+      "limit": 4,
+      "effects": {
+        "environment": [4, 10, 4, 5],
+        "money": -35000,
+        "happiness": 2
+      }
+    },
+    {
+      "id": "oil_refinery",
+      "name": "Ölraffinerie",
+      "desc": "Verarbeite fossile Brennstoffe zu hohen Gewinnen.",
+      "image": "assets/buildings/refinery.png",
+      "limit": 1,
+      "effects": {
+        "environment": [-18, -22, -6, -10],
+        "money": 55000,
+        "happiness": -8
+      }
+    },
+    {
       "id": "data_center",
       "name": "Rechenzentrum",
       "desc": "Hoher Energieverbrauch für Cloud-Dienste.",
@@ -224,9 +139,81 @@
       "limit": 2,
       "effects": {
         "environment": [-9, -5, -4, -10],
-        "money": -30000,
+        "money": 20000,
         "happiness": -5
-        }
+      }
+    },
+    {
+      "id": "recycling_center",
+      "name": "Recyclingzentrum",
+      "desc": "Hochmoderne Anlage zur Müllverwertung und Wiederverwertung",
+      "image": "assets/buildings/Recyclingcenter.PNG",
+      "limit": 2,
+      "effects": {
+        "environment": [6, 3, 1, 8],
+        "money": -18000,
+        "happiness": 5
+      }
+    },
+    {
+      "id": "repair_cafe",
+      "name": "Repair-Cafés",
+      "desc": "Fördere Reparatur statt Neukauf.",
+      "image": "assets/buildings/repaircafe.png",
+      "limit": 3,
+      "effects": {
+        "environment": [1, 2, 0, 1],
+        "money": -2000,
+        "happiness": 8
+      }
+    },
+    {
+      "id": "solar_park",
+      "name": "Solarpark",
+      "desc": "Großflächige Solaranlage zur nachhaltigen Stromerzeugung",
+      "image": "assets/buildings/Solarpark.PNG",
+      "limit": 2,
+      "effects": {
+        "environment": [5, 12, 3, 0],
+        "money": -25000,
+        "happiness": 6
+      }
+    },
+    {
+      "id": "city_forest",
+      "name": "Stadtwald",
+      "desc": "Großes Waldgebiet zur Verbesserung des Stadtklimas",
+      "image": "assets/buildings/forest.png",
+      "limit": 4,
+      "effects": {
+        "environment": [10, 14, 6, 12],
+        "money": -20000,
+        "happiness": 15
+      }
+    },
+    {
+      "id": "education_center",
+      "name": "Umwelt-Bildungszentrum",
+      "desc": "Lehranstalt für nachhaltige Entwicklung und Klimaschutz",
+      "image": "assets/buildings/education.png",
+      "limit": 2,
+      "effects": {
+        "environment": [3, 5, 2, 3],
+        "money": -16000,
+        "happiness": 4
+      }
+    },
+    {
+      "id": "eco_museum",
+      "name": "Umweltmuseum",
+      "desc": "Interaktives Museum über Klimawandel und Nachhaltigkeit",
+      "image": "assets/buildings/museum.png",
+      "limit": 1,
+      "effects": {
+        "environment": [2, 3, 1, 2],
+        "money": -14000,
+        "happiness": 17
+      }
     },
     {
       "id": "water_tank",
@@ -238,6 +225,18 @@
         "environment": [3, 6, 1, 8],
         "money": -10000,
         "happiness": 15
+      }
+    },
+    {
+      "id": "wind_farm",
+      "name": "Windpark",
+      "desc": "Moderne Windkraftanlagen für saubere Energie",
+      "image": "assets/buildings/wind.png",
+      "limit": 4,
+      "effects": {
+        "environment": [8, 15, 2, 0],
+        "money": -30000,
+        "happiness": 4
       }
     }
   ]
