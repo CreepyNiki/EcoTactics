@@ -224,7 +224,7 @@ function newsTicker(newsLog) {
     marquee.className = 'newsText';
     marquee.setAttribute('behavior', 'scroll');
     marquee.setAttribute('direction', 'left');
-    marquee.setAttribute('scrollamount', '5');
+    marquee.setAttribute('scrollamount', '10');
     marquee.textContent = 'Nachrichten: ' + newsLog;
     wrapper.appendChild(marquee);
 
