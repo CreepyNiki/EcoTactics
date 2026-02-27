@@ -129,7 +129,7 @@ function nextDay() {
 
     state.day += 1;
 
-    const passiveCosts = 2000 + Math.floor(state.population / 500) * 200;
+    const passiveCosts = 4000 + (state.population * 0.5);
     state.money = clamp(state.money - passiveCosts, MIN_VALUE, MAX_MONEY);
 
     // Bevölkerung wächst/ schrumpft basierend auf Zufriedenheit -> höher als 50 = Wachstum, niedriger als 50 = Schrumpfung
@@ -224,7 +224,7 @@ function newsTicker(newsLog) {
     marquee.className = 'newsText';
     marquee.setAttribute('behavior', 'scroll');
     marquee.setAttribute('direction', 'left');
-    marquee.setAttribute('scrollamount', '10');
+    marquee.setAttribute('scrollamount', '8');
     marquee.textContent = 'Nachrichten: ' + newsLog;
     wrapper.appendChild(marquee);
 
