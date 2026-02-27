@@ -28,6 +28,7 @@ fetch('src/data/residents.json')
 
 let gameOver = false;
 let actions = [];
+let buildingsPerRound = 0;
 
 fetch('src/data/actions.json')
     .then(response => response.json())
@@ -193,6 +194,7 @@ function nextDay() {
         log(`Tag ${state.day - 1}: ${event.message}`);
         newsLog = event.message;
         newsTicker(newsLog);
+        buildingsPerRound = 0;
     }
     checkGameOver();
     if(!gameOver){
@@ -645,6 +647,12 @@ let ghostBuilding = null;
 let occupiedTiles = new Set();
 
 function purchaseBuilding(building) {
+
+    if(buildingsPerRound >= 1){
+        ErrorBox(`Du kannst pro Tag nur ein Gebäude bauen! Bitte klicke auf "Nächster Tag", um weitere Gebäude bauen zu können.`);
+        return;
+    }
+
     if (building.effects.money < 0 && state.money < Math.abs(building.effects.money)) {
         ErrorBox(`Nicht genug Geld! Du benötigst ${Math.abs(building.effects.money)} Geld, hast aber nur ${state.money}.`);
         return;
@@ -788,6 +796,8 @@ function finalizePurchase(building) {
     state.history.push(building.name);
 
     log(`Tag ${state.day}: Gebäude "${building.name}" gebaut.`);
+
+    buildingsPerRound++;
 
     updateUI();
     updateShopResources();
