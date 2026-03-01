@@ -31,9 +31,9 @@ nav {
     justify-content: space-between;
     padding: 0 5vw;
     height: 72px;
-    background: #0d1a10b3;
+    background: rgba(13, 26, 16, .7);
     backdrop-filter: blur(18px);
-    border-bottom: 1px solid #2e9e5726;
+    border-bottom: 1px solid rgba(46, 158, 87, .15);
     transition: box-shadow .3s;
 }
 
@@ -75,6 +75,15 @@ nav.scrolled {
     transition: width .3s;
 }
 
+-nav-links a:hover {
+    opacity: 1;
+    color: lightgreen;
+}
+
+-nav-links a:hover::after {
+    width: 100% 
+}
+
 .nav-cta {
     background: green;
     color: white; 
@@ -85,6 +94,7 @@ nav.scrolled {
     font-size: .85rem;
     letter-spacing: .08em;
     text-transform: uppercase;
+    cursor: none;
     transition: transform .15s;
 }
 
@@ -97,7 +107,7 @@ nav.scrolled {
 /* HERO */ 
 #hero {
     position: relative;
-    min-height: 100vh;
+    min-height: 50vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -105,6 +115,7 @@ nav.scrolled {
     text-align: center;
     padding: 100px 5vw 60px;
     z-index: 1;
+  padding-top: 22vh;
 }
 
 .hero-eyebrow {
@@ -129,7 +140,7 @@ nav.scrolled {
 
 .hero-sub {
     font-size: clamp(.96rem, 1.5vw, 1.2rem);
-    color: #f4f0e699;
+    color: rgba (244,240,230,.6);
     max-width: 560px;
     line-height: 1.7;
     margin-bottom: 3rem;
@@ -146,59 +157,27 @@ nav.scrolled {
     background: green;
     color: white;
     border: none;
-    padding: 1rem 2.4rem;
+    padding: 1rem 0.8rem;
     border-radius: 4px;
     font-family: sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: .06rem;
+    font-size: 17px;
     position: relative;
     overflow: hidden;
+    display: inline-block; 
+    width: auto; 
+    text-decoration: none; 
+
 }
 
-.btn-primary::before {
-    content: '';
-    position: absolute; 
-    inset: 0;
-    background: linear-gradient(120def, transparent 30%), #ffffff26 50%, transparent 70%;
-    transform: translateX(-100%);
-    transition: transform .5s;
-}
 
-.btn-primary:hover::before {
-    transform: translateX(100%)
-}
-
-.btn-primary:hover {
-    background: darkgreen;
-    transform: translateY(-2px);
-}
-
-.btn-secondary {
-    background: transparent;
-    color: beige;
-    border: 1px solid #f4f0e64d;
-    padding: 1rem 2.4rem;
-    border-radius: 4px;
-    font-family: sans-serif;
-    font-size: 1rem;
-    letter-spacing: .06rem;
-    transition: border-color .2s, color .2s, transform .15s; 
-}
-
-.btn-secondary:hover {
-    border-color: lightgreen;
-    color: lightgreen;
-    transform: translateY(-2px)
-}
 
 
 /* Statisitk bar */
 #stats-bar {
     position: relative;
     z-index: 1;
-    background: #142818cc;
-    border-top: 1px solid #2e9e5726;
+    background: rgba(20,40, 24, .8);
+    border-top: 1px solid rgba(46, 158, 87, .15);
     padding: 2.5rem 5vw;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -296,26 +275,68 @@ nav.scrolled {
 }
 
 .cta-inner {
-    max-width: 700px;
-    margin: 0 auto; 
-    background: linear-gradient(135deg, #1a66374d, #0d1a1099);
-    border: 1px solid #2e9e5740; 
-    border-radius: 8px;
     padding: 5rem 3rem;
-    backdrop-filter: blur(12px);
+    display: flex; 
+    justify-content: center;
 }
 
-.cta-inner h2 {
-    font-family: serif;
-    font-size: clamp(2rem, 4vw, 3rem); 
-    margin-bottom: 1rem; 
+
+/* Chapter */ 
+chapter {
+    display: grid; 
+    grid-template-columns: 140px 1fr; 
+    gap: 0 4rem; 
+    max-width: 1100px; 
+    margin: 0 auto; 
+    padding: 6rem 5vw; 
 }
 
-.cta-inner p {
-    opacity: .6;
-    margin-bottom: 2.5rem;
-    line-height: 1.7;
+/* chapter aside */ 
+.chapter-badge {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 0.2rem; 
+    border: 1px solid var(--border); 
+    border-radius: 6px; 
+    padding: 0.8rem 1rem; 
+    background: rbga(46,158,87,.04); 
 }
+
+.badge-label {
+  font-family: sans-serif; 
+    font-size: 20px; 
+    color: lightgreen; 
+    line-height: 1; 
+}
+
+/* chapter body */ 
+.chapter-body {
+    min-width: 0; 
+}
+
+.chapter-title {
+    font-family: sans-serif; 
+    font-size: 30px; 
+    font-weight: 700;
+    line-height: 1.12; 
+    margin-bottom: 1.2rem; 
+}
+
+/* Steps */ 
+.steps-list {
+    display: flex; 
+    flex-direction: column; 
+    gap: 0; 
+}
+
+.chapter-lead {
+    font-size: 1.05rem; 
+    opacity: .6; 
+    line-height: 1.7; 
+    margin-bottom: 4rem; 
+}
+
 
 /* Footer */
 footer {
@@ -333,12 +354,12 @@ footer {
     opacity: .45;
 }
 
-.footer-txt {
-    color: white;
-}
-
 footer img {
     height: 20px;
+}
+
+.footer-txt {
+    color: white;
 }
 
 .gitHubIcon {
