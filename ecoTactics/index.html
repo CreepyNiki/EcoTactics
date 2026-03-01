@@ -1,119 +1,80 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>EcoTactics</title>
-    <link rel="stylesheet" href="src/style.css"/>
-    <link rel="icon" href="assets/favicon.png"/>
-    <script src="src/main.js" defer></script>
-</head>
-<body>
-
-<div class="logDropdown">
-    <div class="log" id="log"></div>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Your Future Green</title>
+  <link rel="stylesheet" href="src/Startstyle.css">
+ </head>
+ <body>
+<nav id="navbar">
+    <a href="#hero" class="nav-logo">
+    <img src="assets/logo_green.png" alt="EcoTactics Logo">
+    </a>
+<ul class="nav-links" id="navLinks">
+    <li><a href="/Game.html">Spielprinzip</a></li>
+    <li><a href="#infothek">Infothek</a></li>
+</ul>
+</nav>
+     
+<section id="hero">
+    <p class="hero-eyebrow">Stradtmanagement<br> Strategie <br>Nachhaltigkeit</p>
+    <h1 class="hero-title">Form die grüne Zukunft<br/>deiner Stadt</h1>
+<p class="hero-sub">Du bist Stadtverwalter einer fiktiven Stadt und triffst Entscheidungen für die Bevölkerung. Jede deiner Entscheidung hat Gewicht. <br> Für Wachstum, Wohlstand und eine lebenswerte Welt musst du für Balance sorgen, indem du passende Aktionen abwägst und Gebäude errichtest. Kannst du es schaffen, eine Stadt zu verwalten, in der die Bewohner:innen glücklich und die Umwelt nachhaltig ist?</p>
+<div class="hero-buttons">
+  <a href="/Game.html"><button class="btn-primary">Spiel starten</button></a>
+    <button class="btn-secondary" onclick="scrollToSection('#how-to-play')">Wie funktioniert das Spiel?</button>
 </div>
+</section>
 
-    <header>
-        <img class="logo" src="assets/logo_green.png" alt="EcoTactics Logo"/>
-        <div class="day"></div>
-        <div class="headerRight">
-            <div class="populationCounter">
-                <img class="populationIcon" src="assets/population.png" alt="populationIcon"/>
-                <p class="population"></p>
-            </div>
-            <div class="passiveCostsDisplay">
-                <span class="passiveCostsLabel">vorrausichtliche Kosten/Tag:</span>
-                <span class="passiveCostsCounter"></span>
-            </div>
-        </div>
-    </header>
-
-    <div class="canvas">
-        <div class="newsTicker">
-            <marquee behavior="scroll" direction="left" scrollamount="8" class="newsText">
-                Willkommen zu EcoTactics! Baue deine Stadt nachhaltig und halte deine Bürger glücklich!
-            </marquee>
-        </div>
-        <div class="mapContainer">
-            <img class="backgroundImage" src="assets/map.png" alt="backgroundImage"/>
-        </div>
+<!-- Statistik Bar -->
+ <div id="stats-bar">
+    <div class="stat-item">
+        <span class="stat-value" data-target="12">+12</span>
+        <span class="stat-label">Gebäude</span>
     </div>
+        <div class="stat-item">
+        <span class="stat-value" data-target="48">+20</span>
+        <span class="stat-label">Entscheidungsszenarien</span>
+ </div>
+        <div class="stat-item">
+        <span class="stat-value" data-target="100">2</span>
+        <span class="stat-label">Alternative Enden</span>
+     </div>
+     </div>
 
-    <input type="image" src="assets/log.png" class="logButton" alt="logButton"/>
 
-    <div class="statusCard">
-        <div class="stat">
-            <div class="bar">
-                <div class="moneyCounter"></div>
-                <div class="moneyBar"></div>
+<!-- Features -->
+ <section id="features">
+    <p class="section-label">Was dich erwartet</p>
+    <h2 class="section-title">Strategisches Stadtmanagement</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3 class="feature-title">Entscheidungen</h3>
+                <p class="feature-desc">Wähle zwischen wirtschaftlichen Gewinnen und Nachhaltigkeit für deine Stadt.</p>
             </div>
-            <img class="moneyIcon" src="assets/money.png" alt="moneyIcon"/>
-        </div>
-        <div class="stat">
-            <div class="bar">
-                <div class="happinessCounter"></div>
-                <div class="happinessBar"></div>
+            <div class="feature-card">
+                <h3 class="feature-title">Werteskala</h3>
+                <p class="feature-desc">Wirtschaft, Umwelt, Zufriedenheit. Diese Werte formen deine Stadt und sind entscheident, um deinen Erfolg als Stadtverwalter zu messen.</p>
             </div>
-            <img class="happinessIcon" src="assets/happiness.png" alt="happinessIcon"/>
-        </div>
-        <div class="stat">
-            <div class="bar env">
-                <div class="envCounter"></div>
-                <div class="envBar"></div>
-                <div class="envDropdown"></div>
+             <div class="feature-card">
+                <h3 class="feature-title">Bevölkerungswachstum</h3>
+                <p class="feature-desc">Deine Stadt wächst oder schrumpft entsprechend deiner Entscheidungen. Bürger ziehen ein und bilden Familien, wenn deine Stadt nachhaltig ist. Bei Krisen und Katastrophen ziehen diese wieder weg. Hier ist Balance gefragt.</p>
             </div>
-            <img class="envIcon" src="assets/env.png" alt="envIcon"/>
-        </div>
-    </div>
-
-<img class="resetButton" src="assets/reset.png" alt="shopIcon"/>
-
-    <div class="selection">
-        <div class="upperSelectionRow">
-            <div class="selectHeader">Wähle eine Aktion:</div>
-        </div>
-        <div class="actions">
-        </div>
-        <div class="shop">
-            <img class="shopIcon" src="assets/shop.png" alt="shopIcon"/>
-            <p class="shopParagraph">Shop</p>
-        </div>
-
-    </div>
-
-    <div class="shop-modal" id="shopModal">
-        <div class="shop-container">
-            <div class="shop-header">
-                <h2 class="shop-title">Gebäude Shop</h2>
-                <button class="shop-close" id="shopCloseBtn">✕</button>
+            <div class="feature-card">
+                <h3 class="feature-title">Krisen & Ererignisse</h3>
+                <p class="feature-desc">Naturkatastrophen und Wirtschaftskrisen. Deine Entscheidungen können schwerwiegende Folgen für die Entwicklung deiner Stadt und für die Bevölkerungszahl haben. Wähle mit Gewissheit, um ein positives Ergebnis zu erzielen.</p>
             </div>
-            <div class="shop-content" id="shopContent">
+             <div class="feature-card">
+                <h3 class="feature-title">Stadtentwicklung</h3>
+                <p class="feature-desc">Erschließe neue Gebäude und kümmere dich um die Infrastruktur. Kleine Entscheidungen können große Auswirkungen haben.</p>
             </div>
-            <div class="shop-footer">
-                <div class="shop-resources">
-                    <div class="shop-resource">
-                        <img src="assets/money.png" alt="Geld" class="resource-icon">
-                        <span class="resource-value" id="shopMoneyValue"></span>
-                    </div>
-                    <div class="shop-resource">
-                        <img src="assets/happiness.png" alt="Zufriedenheit" class="resource-icon">
-                        <span class="resource-value" id="shopHappinessValue"></span>
-                    </div>
-                    <div class="shop-resource">
-                        <img src="assets/env.png" alt="Umwelt" class="resource-icon">
-                        <span class="resource-value" id="shopEnvValue"></span>
-                    </div>
-                </div>
             </div>
-        </div>
-    </div>
-
-    <footer>
-        <div class="footer">
-            <p class="footerText">EcoTactics von Senem und Niklas</p>
-            <a href="https://github.com/CreepyNiki/EcoTactics"><img class="gitHubIcon" src="assets/github-brands-solid.svg" alt="Link zum GithubRepo"></a>
-        </div>
-    </footer>
-</body>
-</html>
+ </section>
+<footer>
+<img src="EcoTactics_LeafLogo.png">
+<span>EcoTactics - Code your future green</span>
+<span>Spiel von Niklas und Senem</span>
+</footer>
+ </body>
+ </html>
