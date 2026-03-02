@@ -334,7 +334,7 @@ button.action {
     border-radius: 7px;
 }
 
-.shop {
+.shopButton {
     position: fixed;
     width: clamp(60px, 7vw, 88px);
     height: clamp(60px, 7vw, 88px);
@@ -353,7 +353,7 @@ button.action {
     transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.shop:hover {
+.shopButton:hover {
     transform: translateY(-5px) scale(1.07);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
 }
@@ -415,7 +415,7 @@ button.action {
     flex-shrink: 0;
 }
 
-.shop-modal {
+.shop {
     display: none;
     position: fixed;
     top: 0; left: 0;
@@ -427,7 +427,7 @@ button.action {
     align-items: center;
 }
 
-.shop-modal.active {
+.shop.active {
     display: flex;
 }
 
@@ -655,7 +655,7 @@ button.action {
     }
 }
 
-.shop:hover {
+.shopButton:hover {
     animation-name: pulse;
     animation-duration: 0.6s;
 }
@@ -847,7 +847,7 @@ button.action {
         font-size: 14px;
     }
 
-    .shop {
+    .shopButton {
         width: 110px;
         height: 110px;
         right: 24px;
@@ -953,7 +953,7 @@ button.action {
         font-size: 16px;
     }
 
-    .shop {
+    .shopButton {
         width: 130px;
         height: 130px;
         right: 32px;

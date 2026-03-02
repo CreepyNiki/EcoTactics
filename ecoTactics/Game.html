@@ -10,10 +10,12 @@
 </head>
 <body>
 
+<!-- Logs -->
 <div class="logDropdown">
-    <div class="log" id="log"></div>
+    <div class="log"></div>
 </div>
 
+<!-- Header -->
     <header>
        <a href="index.html"><img class="logo" src="assets/logo_green.png" alt="EcoTactics Logo"/></a>
         <div class="day"></div>
@@ -29,12 +31,15 @@
         </div>
     </header>
 
+<!-- Main Page -->
     <div class="canvas">
+        <!-- News Ticker -->
         <div class="newsTicker">
             <marquee behavior="scroll" direction="left" scrollamount="8" class="newsText">
                 Willkommen zu EcoTactics! Baue deine Stadt nachhaltig und halte deine Bürger glücklich!
             </marquee>
         </div>
+        <!-- Karte -->
         <div class="mapContainer">
             <img class="backgroundImage" src="assets/map.png" alt="backgroundImage"/>
         </div>
@@ -42,6 +47,7 @@
 
     <input type="image" src="assets/log.png" class="logButton" alt="logButton"/>
 
+    <!-- Ressourcenanzeige -->
     <div class="statusCard">
         <div class="stat">
             <div class="bar">
@@ -67,28 +73,33 @@
         </div>
     </div>
 
+<!-- Reset Button -->
 <img class="resetButton" src="assets/reset.png" alt="shopIcon"/>
 
+<!-- Aktionsauswahl -->
     <div class="selection">
         <div class="upperSelectionRow">
             <div class="selectHeader">Wähle eine Aktion:</div>
         </div>
         <div class="actions">
         </div>
-        <div class="shop">
+
+        <!-- Shop Button -->
+        <div class="shopButton">
             <img class="shopIcon" src="assets/shop.png" alt="shopIcon"/>
             <p class="shopParagraph">Shop</p>
         </div>
 
     </div>
 
-    <div class="shop-modal" id="shopModal">
+<!-- Shop -->
+    <div class="shop" id="shopModal">
         <div class="shop-container">
             <div class="shop-header">
                 <h2 class="shop-title">Gebäude Shop</h2>
-                <button class="shop-close" id="shopCloseBtn">✕</button>
+                <button class="shop-close">✕</button>
             </div>
-            <div class="shop-content" id="shopContent">
+            <div class="shop-content">
             </div>
             <div class="shop-footer">
                 <div class="shop-resources">
@@ -109,6 +120,7 @@
         </div>
     </div>
 
+<!-- Footer -->
     <footer>
         <div class="footer">
             <p class="footerText">EcoTactics von Senem und Niklas</p>

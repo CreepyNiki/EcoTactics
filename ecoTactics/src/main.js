@@ -1,11 +1,18 @@
 // Vollbild aktivieren für das volle Spielerlebnis
+
+// Wertebereiche
 const MAX_ENVIRONMENT = 100;
 const MAX_MONEY = 100000;
 const MAX_HAPPINESS = 100;
 const MIN_VALUE = 0;
 
+// Startwerte
 const defaultValues = [50, 50, 50, 50, 50000, 50, 1, 10000];
+let gameOver = false;
+let actions;
+let buildingsPerRound;
 
+// Liste mit verschiedenen Werten
 let state = {
     environment: [defaultValues[0], defaultValues[1], defaultValues[2], defaultValues[3]],
     money: defaultValues[4],
@@ -15,25 +22,14 @@ let state = {
     history: []
 };
 
-function getMeanEnvironment(environment) {
-    return environment.reduce((a, b) => a + b, 0) / environment.length;
-}
-
-function getNextPassiveCosts() {
-    return Math.round(4000 + state.population * 0.1);
-}
-
+// Einlesen der Einwohner aus JSON-File.
 fetch('src/data/residents.json')
     .then(response => response.json())
     .then(data => {
         const residents = data.residents;
     });
 
-
-let gameOver = false;
-let actions = [];
-let buildingsPerRound = 0;
-
+// Einlesen der Aktionen aus JSON-File.
 fetch('src/data/actions.json')
     .then(response => response.json())
     .then(data => {
@@ -42,16 +38,37 @@ fetch('src/data/actions.json')
         renderActions(actions);
     });
 
+// Hilfsfunktion, um Werte in bestimmten Bereichen zu halten.
+function clamp(value, min, max) {
+    return Math.max(min, Math.min(max, value));
+}
+
+// Hilfsfunktion, um den durchschnittlichen Umweltwert aus den verschiedenen Umweltkategorien zu berechnen.
+function getMeanEnvironment(environment) {
+    return environment.reduce((a, b) => a + b, 0) / environment.length;
+}
+
+// Hilfsfunktion, um die voraussichtlichen passiven Kosten für die nächste Runde zu predicten.
+function getNextPassiveCosts() {
+    return Math.round(4000 + state.population * 0.1);
+}
+
+
+// Methode mit der die Aktionen gerendert werden. Es werden immer 3 zufällige Aktionen aus der Liste angezeigt. Bei Klick auf eine Aktion wird diese angewendet und die Aktionsliste wird aktualisiert.
 function renderActions(actions) {
     const actionsContainer = document.querySelector('.actions');
     actionsContainer.innerHTML = '';
+    // random Reihenfolge der Aktionen
     const shuffledActions = actions.sort(() => Math.random() - 0.5);
+    // nur die ersten 3 Aktionen aus der randomisierten Liste nehmen
     const todaysActions = shuffledActions.slice(0, 3);
+    // für jede Aktion HTML Elemente gerendert
     todaysActions.forEach(action => {
         const button = document.createElement('button');
         button.className = 'action';
         button.innerHTML = `<div class="actionName">${action.name}</div><div class="actionDesc">${action.desc}</div>
         <div class="actionEffects">Effekt: Geld ${action.effects.money > 0 ? '+' : ''}${action.effects.money}, Zufriedenheit ${action.effects.happiness > 0 ? '+' : ''}${action.effects.happiness}, Umwelt ${getMeanEnvironment(action.effects.environment) > 0 ? '+' : ''}${getMeanEnvironment(action.effects.environment).toFixed(1)},</div>`;
+        // EventListener bei Klick auf Aktion hinzugefügt
         button.addEventListener('click', () => {
             if (!gameOver) {
                 applyAction(action);
@@ -60,14 +77,17 @@ function renderActions(actions) {
         });
 
         const actionEffectsElem = button.querySelector('.actionEffects');
+        // Bei Hover über die Effekte der Aktion wird die Aufteilung der Umwelteffekte angezeigt.
         actionEffectsElem.addEventListener('mouseover', (e) => {
+            // Methode mit der ein Dropdown für die Umwelteffekte aufgerufen wird.
             updateEnvDropdownForAction(action.effects.environment);
             const rect = e.target.getBoundingClientRect();
             envDropdown.style.left = rect.left + 'px';
             envDropdown.style.top = (rect.bottom + 5) + 'px';
             envDropdown.style.display = 'block';
         });
-        
+
+        // Entfernen des Dropdowns, wenn die Maus nicht mehr über die Effekte hovered.
         actionEffectsElem.addEventListener('mouseleave', () => {
             envDropdown.style.display = 'none';
         });
@@ -76,35 +96,42 @@ function renderActions(actions) {
     });
 }
 
+// Funktion, um Nachrichten im LogDropdown anzuzeigen.
 function log(message) {
-    const logContainer = document.getElementById('log');
+    const logContainer = document.querySelector('.log');
     const entry = document.createElement('div');
     entry.textContent = message;
-    logContainer.prepend(entry);
+    logContainer.appendChild(entry);
 }
 
-function clamp(value, min, max) {
-    return Math.max(min, Math.min(max, value));
-}
 
-// Methode zum Anwenden einer ausgewählten Aktion
+
+// Methode zum Anwenden einer ausgewählten Aktion.
 function applyAction(action) {
     for (let i = 0; i < state.environment.length; i++) {
         state.environment[i] = clamp(
+            // Umweltwerte werden einzeln aktualisiert und in Wertebereich einsortiert, da sie in 4 verschiedenen Kategorien unterteilt siind.
             state.environment[i] + (Array.isArray(action.effects.environment) ? action.effects.environment[i] || 0 : action.effects.environment || 0),
             MIN_VALUE,
             MAX_ENVIRONMENT
         );
     }
+    // Geld- und Zufriedenheitswerte werden aktualisiert und in Wertebereich einsortiert.
     state.money = clamp(state.money + action.effects.money, MIN_VALUE, MAX_MONEY);
     state.happiness = clamp(state.happiness + action.effects.happiness, MIN_VALUE, MAX_HAPPINESS);
+    // Log Message mit den Auswirkungen der Aktion auf die verschiedenen Werte.
     log(`Tag ${state.day}: Aktion "${action.name}" ausgeführt. Effekte - Umwelt: ${action.effects.environment}, Geld: ${action.effects.money}, Zufriedenheit: ${action.effects.happiness}`);
+    // Der nächste Tag wird gestartet.
     nextDay();
+    // Ein Game Over Check wird durchgeführt.
     checkGameOver();
+    // UI wird geupdated, um die aktuellen Werte anzuzeigen.
     updateUI();
 }
 
+// verschiedene UI Elemente werden nach einem Ereignis aktualisiert, um die aktuellen Werte anzuzeigen.
 function updateUI() {
+    // reduce-Logik von Copilot übernommen, um den durchschnittlichen Umweltwert aus den 4 Kategorien zu berechnen.
     const avgEnv = state.environment.reduce((a, b) => a + b, 0) / state.environment.length;
     document.querySelector('.envCounter').textContent = avgEnv.toFixed(0);
     document.querySelector('.moneyCounter').textContent = state.money;
@@ -117,6 +144,7 @@ function updateUI() {
     document.querySelector('.passiveCostsCounter').textContent = '-' + getNextPassiveCosts();
 }
 
+// verschiedene Game Over Bedingungen werden überprüft und je nach erfüllter Bedingung wird das Spiel mit einer entsprechenden Nachricht beendet.
 function checkGameOver() {
     if (state.money <= 0) {
         endGame('Bankrott! Dein Budget ist erschöpft. Spiel vorbei.');
@@ -129,27 +157,35 @@ function checkGameOver() {
     }
 }
 
+// Methode, die die Auswirkungen des Tageswechsels auf die verschiedenen Werte berechnet.
 function nextDay() {
     let newsLog = null;
 
+    // Tag wird um 1 erhöht.
     state.day += 1;
 
+    // passive Kosten werden berechnet und anschließend vom Geld abgezogen. Passive Kosten setzen sich zusammen aus einem Grundwert von 4000 und einem variablen Anteil, der von der Bevölkerungszahl abhängt.
     const passiveCosts = Math.round(4000 + state.population * 0.1);
     state.money = clamp(state.money - passiveCosts, MIN_VALUE, MAX_MONEY);
+    // passive Kosten werden im UI angezeigt.
     const passiveCostCounter = document.querySelector('.passiveCostsCounter');
     passiveCostCounter.textContent = `- ${passiveCosts}`;
 
     // Bevölkerung wächst/ schrumpft basierend auf Zufriedenheit -> höher als 40 = Wachstum, niedriger als 40 = Schrumpfung
     let growthRate = (state.happiness - 40) / 100;
+    // Bevölkerung kann sich in einer Runde nicht mehr als um 50% erhöhen oder verringern, um extreme Schwankungen zu vermeiden.
     growthRate = clamp(growthRate, -0.5, 0.5);
 
+    // Bevölkerungswachstum wird angewandt.
     const deltaPopulation = Math.round(state.population * growthRate);
     state.population = clamp(state.population + deltaPopulation, MIN_VALUE, 1000000);
 
+    // Basic Newstickernachricht wird nach dem ersten Tag ausgeblendet.
     if(state.day > 1){
         document.querySelector(".newsTicker").style.display = "none";
     }
 
+    // Zufällige Events -> unterteilt in common (30% Chance), uncommon (10% Chance) und rare (2% Chance). Je seltener das Event, desto größer sind die Auswirkungen auf die Werte. Es gibt sowohl positive als auch negative Events.
     const rareEvents = [
         { environment: -69, message: 'Nukleare Verseuchung. Die Bürger der Stadt sind in größter Gefahr (-69 Umwelt)' },
         { environment: -56, message: 'Ein Hurricane schockt die Stadt. (-56 Umwelt)' },
@@ -180,6 +216,8 @@ function nextDay() {
     const rnd = Math.random();
 
     let pool = null;
+
+    // Wahrscheinlichkeiten der verschiedenen Eventarten.
     if (rnd <= 0.02) {
         pool = rareEvents;
     } else if (rnd <= 0.10) {
@@ -188,9 +226,12 @@ function nextDay() {
         pool = commonEvents;
     }
 
+
     if (pool) {
+        // Zufälliges Event aus der entsprechenden Kategorie wird ausgewählt.
         const event = pool[Math.floor(Math.random() * pool.length)];
 
+        // Event wird auf die verschiedenen Werte angewandt.
         if (typeof event.happiness === 'number') {
             state.happiness = clamp(state.happiness + event.happiness, MIN_VALUE, MAX_HAPPINESS);
         }
@@ -203,13 +244,17 @@ function nextDay() {
             state.money = clamp(state.money + event.money, MIN_VALUE, MAX_MONEY);
         }
 
+        // Event-Nachricht wird im Log und im NewsTicker angezeigt.
         log(`Tag ${state.day - 1}: ${event.message}`);
         newsLog = event.message;
         newsTicker(newsLog);
+
+        // Building-Limit pro Tag wird resettet.
         buildingsPerRound = 0;
     }
     checkGameOver();
     if(!gameOver){
+        // Voraussetzungen für das Anzeigen von Avataren wird überprüft.
         checkValueAvatarRequirements();
     }
     updateUI();
@@ -217,18 +262,21 @@ function nextDay() {
 
 let newsTickerTimeout = null;
 
+// Funktion, die eine Nachricht im Newsticker anzeigt.
 function newsTicker(newsLog) {
     const wrapper = document.querySelector('.newsTicker');
-    if (!wrapper) return;
 
+    // Wenn bereits eine Nachricht angezeigt wird, wird der Timer zurückgesetzt und die alte Nachricht entfernt, um die neue Nachricht anzuzeigen.
     if (newsTickerTimeout) {
         clearTimeout(newsTickerTimeout);
         newsTickerTimeout = null;
     }
 
-    const oldMarquee = wrapper.querySelector('.newsText');
-    if (oldMarquee) oldMarquee.remove();
+    // Alte Nachricht wird entfernt, wenn vorhanden.
+    const oldNews = wrapper.querySelector('.newsText');
+    if (oldNews) oldNews.remove();
 
+    // Neuer Marquee-Tag wird erstellt, um die Nachricht anzuzeigen.
     const marquee = document.createElement('marquee');
     marquee.className = 'newsText';
     marquee.setAttribute('behavior', 'scroll');
@@ -239,12 +287,14 @@ function newsTicker(newsLog) {
 
     wrapper.style.display = 'block';
 
+    // Timeout von 20 Sekunden, nach dem die Nachricht automatisch ausgeblendet wird.
     newsTickerTimeout = setTimeout(() => {
         wrapper.style.display = 'none';
         newsTickerTimeout = null;
     }, 20000);
 }
 
+// Funktion, die Avatare mit Nachrichten anzeigt, falls bestimmte Wertkonstellationen eintreffen.
 function checkValueAvatarRequirements() {
 
     if (document.querySelector('.avatarContainer')) return;
@@ -269,6 +319,7 @@ function checkValueAvatarRequirements() {
     }
 }
 
+// Funktion, die Avatare mit Nachrichten anzeigt, falls bestimmte Gebäude platziert werden. -> immer 50% Chance bei Bau eines Gebäudes.
 function checkBuildingAvatarRequirements(building) {
 
     if (document.querySelector('.avatarContainer')) return;
@@ -421,14 +472,16 @@ function checkBuildingAvatarRequirements(building) {
     }
 }
 
+// Funktion, die das Spielende einleitet.
 function endGame(message) {
     gameOver = true;
     ErrorBox(message);
     resetGame()
 }
 
+// Funktion, die alle Werte und UI Elemente auf die Startwerte zurücksetzt, um ein neues Spiel zu starten.
 function resetGame() {
-    document.getElementById('log').innerHTML = '';
+    document.querySelector('.log').innerHTML = '';
     state = {
         environment: [defaultValues[0], defaultValues[1], defaultValues[2], defaultValues[3]],
         money: defaultValues[4],
@@ -439,54 +492,39 @@ function resetGame() {
     };
     gameOver = false;
 
+    // Alle Gebäude von der Karte entfernen.
     const map = document.querySelector('.mapContainer');
     if (map) {
         const buildings = map.querySelectorAll('.map-building');
         buildings.forEach(building => building.remove());
     }
 
+    // belegte Tiles werden zurückgesetzt.
     occupiedTiles.clear();
-    
     renderActions(actions);
     updateUI();
 }
 
+// Reset Button resettet das Spiel bei Klick.
 const resetButton = document.querySelector('.resetButton');
 resetButton.addEventListener('click', resetGame);
 
+// Log Button blendet Dropdown ein bei Hover.
 document.querySelector('.logButton').addEventListener('mouseover', () => {
     document.querySelector('.logDropdown').style.display = 'block';
 });
 
+// Dropdown wird ausgeblendet, wenn die Maus nicht mehr über das Dropdown hovered.
 document.querySelector('.logDropdown').addEventListener('mouseleave', () => {
     document.querySelector('.logDropdown').style.display = 'none';
 });
+
 
 const envDropdown = document.createElement('div');
 envDropdown.className = 'envDropdown';
 document.body.appendChild(envDropdown);
 
-function updateEnvDropdown() {
-    envDropdown.innerHTML = `
-        <strong>Umwelt-Effekte:</strong><br>
-        Meeresspiegelanstieg: ${state.environment[0]}<br>
-        Temperatur: ${state.environment[1]}<br>
-        Wetterextreme: ${state.environment[2]}<br>
-        Wasserverfügbarkeit: ${state.environment[3]}
-    `;
-}
-
-function updateEnvDropdownForAction(environmentEffects) {
-    const effectsArray = Array.isArray(environmentEffects) ? environmentEffects : [environmentEffects, environmentEffects, environmentEffects, environmentEffects];
-    envDropdown.innerHTML = `
-        <strong>Umwelt-Effekte:</strong><br>
-        Meeresspiegelanstieg: ${effectsArray[0] > 0 ? '+' : ''}${effectsArray[0]}<br>
-        Temperatur: ${effectsArray[1] > 0 ? '+' : ''}${effectsArray[1]}<br>
-        Wetterextreme: ${effectsArray[2] > 0 ? '+' : ''}${effectsArray[2]}<br>
-        Wasserverfügbarkeit: ${effectsArray[3] > 0 ? '+' : ''}${effectsArray[3]}
-    `;
-}
-
+// Event Listener für die Umwelt-Ressource Bar, um das Dropdown mit den aktuellen Umweltwerten anzuzeigen.
 document.querySelector('.bar.env').addEventListener('mouseover', (e) => {
     updateEnvDropdown();
     const rect = e.target.getBoundingClientRect();
@@ -499,21 +537,47 @@ document.querySelector('.bar.env').addEventListener('mouseleave', () => {
     envDropdown.style.display = 'none';
 });
 
+// Funktion, die die aktuellen Umweltwerte in einem Dropdown anzeigt -> für Ressource Bar
+function updateEnvDropdown() {
+    envDropdown.innerHTML = `
+        <strong>Umwelt-Effekte:</strong><br>
+        Meeresspiegelanstieg: ${state.environment[0]}<br>
+        Temperatur: ${state.environment[1]}<br>
+        Wetterextreme: ${state.environment[2]}<br>
+        Wasserverfügbarkeit: ${state.environment[3]}
+    `;
+}
+
+// Funktion, die die aktuellen Umweltwerte in einem Dropdown anzeigt -> für Aktionen
+function updateEnvDropdownForAction(environmentEffects) {
+    const effectsArray = Array.isArray(environmentEffects) ? environmentEffects : [environmentEffects, environmentEffects, environmentEffects, environmentEffects];
+    envDropdown.innerHTML = `
+        <strong>Umwelt-Effekte:</strong><br>
+        Meeresspiegelanstieg: ${effectsArray[0] > 0 ? '+' : ''}${effectsArray[0]}<br>
+        Temperatur: ${effectsArray[1] > 0 ? '+' : ''}${effectsArray[1]}<br>
+        Wetterextreme: ${effectsArray[2] > 0 ? '+' : ''}${effectsArray[2]}<br>
+        Wasserverfügbarkeit: ${effectsArray[3] > 0 ? '+' : ''}${effectsArray[3]}
+    `;
+}
+
+// Offscreen-Canvas wird erstellt, um die Pixelwerte des Hintergrundbildes auszulesen und zu überprüfen, ob ein Tile als Fluss-Tile erkannt werden kann.
+// Idee und Basisstruktur des Codes von ChatGPT generiert -> Überarbeitung und Anpassung anschließend
 const offscreen = document.createElement('canvas');
 const dimension = offscreen.getContext('2d');
 const realCanvas = document.querySelector('.backgroundImage');
 
+initRiverDetection();
+
+// Funktion, die die Werte des echten Hintergrundbildes auf den Offscreen-Canvas überträgt, damit die Pixelwerte später ausgelesen und für die Flusserkennung verwendet werden können.
 function initRiverDetection() {
     // Werte von echtem Bild auf Offscreen-Canvas übertragen
     offscreen.width = realCanvas.naturalWidth;
     offscreen.height = realCanvas.naturalHeight;
+    // echtes Bild auf Offscreen-Canvas zeichnen, um Pixelwerte auslesen zu können
     dimension.drawImage(realCanvas, 0, 0);
 }
 
-if (realCanvas.complete) {
-    initRiverDetection();
-}
-
+// Funktion, die bei der Platzierung von Gebäuden aufgerufen wird, um zu überprüfen, ob das Gebäude auf einem Fluss-Tile platziert wird.
 function isTileRiver(gridX, gridY) {
     if (offscreen.width === 0) return false;
     const imgRect = realCanvas.getBoundingClientRect();
@@ -546,71 +610,87 @@ function isTileRiver(gridX, gridY) {
         // Flusswasser: blau als dominante Farbe
         if (b > 120 && r < 120 && g < 160) riverCount++;
     }
-    // Mindestens 1 von 5 Samples müssen Wasser sein
+    // Mindestens 2 von 5 Samples müssen Wasser sein
     return riverCount >= 2;
 }
 
-let buildings = [];
-
-fetch('src/data/buildings.json')
-    .then(response => response.json())
-    .then(data => {
-        buildings = data.buildings;
-    });
-
-
-document.querySelector('.shop').addEventListener('click', () => {
+// Event Listener für den Shop Button, um den Shop bei Klick zu öffnen.
+document.querySelector('.shopButton').addEventListener('click', () => {
     openShop();
 });
 
-
-document.getElementById('shopCloseBtn').addEventListener('click', () => {
+// Event Listener für den Close Button, um den Shop bei Klick zu schließen.
+document.querySelector('.shop-close').addEventListener('click', () => {
     closeShop();
 });
 
-
-document.getElementById('shopModal').addEventListener('click', (e) => {
-    if (e.target.id === 'shopModal') {
+// Event Listener für den Shop Container, um den Shop zu schließen, wenn außerhalb des Shopfensters geklickt wird.
+document.querySelector('.shop').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) {
         closeShop();
     }
 });
 
+// Funktion, die die Ressourcenwerte im Shop aktualisiert
+function updateShopResources() {
+    document.getElementById('shopMoneyValue').textContent = state.money;
+    document.getElementById('shopHappinessValue').textContent = state.happiness;
+    document.getElementById('shopEnvValue').textContent = getMeanEnvironment(state.environment).toFixed(0);
+}
+
+// Funktion, die den Shop öffnet, die Gebäude rendert und die Ressourcen im Shop aktualisiert.
 function openShop() {
-    const shopModal = document.getElementById('shopModal');
-    shopModal.classList.add('active');
+    const shop = document.querySelector('.shop');
+    shop.classList.add('active');
     renderShopBuildings();
     updateShopResources();
 }
 
+// Funktion, die den Shop schließt.
 function closeShop() {
-    const shopModal = document.getElementById('shopModal');
-    shopModal.classList.remove('active');
+    const shop = document.querySelector('.shop');
+    shop.classList.remove('active');
 }
 
+// Gebäude im Shop werden gerendert.
 function renderShopBuildings() {
-    const shopContent = document.getElementById('shopContent');
+    const shopContent = document.querySelector('.shop-content');
     shopContent.innerHTML = '';
-    
+
+    // für jedes Gebäude wird ein Fenster erstellt und zum Shop-Content hinzugefügt.
     buildings.forEach(building => {
         const card = createBuildingCard(building);
         shopContent.appendChild(card);
     });
 }
 
+let buildings = [];
+
+// Gebäude werden aus JSON-File eingelesen
+fetch('src/data/buildings.json')
+    .then(response => response.json())
+    .then(data => {
+        buildings = data.buildings;
+    });
+
+// Funktion, die für jedes Gebäude ein Fenster mit den entsprechenden Informationen und Effekten erstellt.
 function createBuildingCard(building) {
     const card = document.createElement('div');
     card.className = 'building-card';
 
+    // Durchschnittlichen Umwelteffekt berechnen. Wenn es sich um ein Array handelt, wird der Durchschnitt berechnet, ansonsten wird der einzelne Wert genommen.
     const avgEnvChange = Array.isArray(building.effects.environment) 
         ? building.effects.environment.reduce((a, b) => a + b, 0) / building.effects.environment.length
         : building.effects.environment;
 
-    const imageHTML = building.image 
+    // Wenn ein Bild für das Gebäude vorhanden ist, wird dieses angezeigt, ansonsten wird ein Platzhalter angezeigt. -> Code von Claude übernommen
+    const imageHTML = building.image
         ? `<div class="building-image-placeholder" style="background: none; padding: 0;">
                <img src="${building.image}" alt="${building.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
            </div>`
         : `<div class="building-image-placeholder"></div>`;
-    
+
+    // HTML-Struktur des Gebäude-Fensters, die den Namen, die Beschreibung und die Effekte des Gebäudes anzeigt. -> Code von Claude übernommen
     card.innerHTML = `
         ${imageHTML}
         <div class="building-name">${building.name}</div>
@@ -637,15 +717,16 @@ function createBuildingCard(building) {
             </div>
         </div>
     `;
-    
+
+    // bei Klick auf das Gebäude-Fenster wird das Gebäude gekauft.
     card.addEventListener('click', () => {
         card.classList.remove('selected');
-        void card.offsetWidth;
         card.classList.add('selected');
         setTimeout(() => card.classList.remove('selected'), 500);
         purchaseBuilding(building);
     });
 
+    // Dropdown für die Umwelteffekte wird angezeigt, wenn im Shop über den Umwelteffekt im Gebäude-Fenster gehovert wird.
     const envSpan = card.querySelector('.env');
     if (envSpan) {
         envSpan.addEventListener('mouseover', (e) => {
@@ -665,25 +746,34 @@ function createBuildingCard(building) {
 }
 
 
+// Startwerte für die Gebäudeplatzierung und die Überprüfung der belegten Tiles.
+
+// Pixelgröße eines Tiles
 const TILE_SIZE = 256;
 let placementMode = false;
 let selectedBuilding = null;
 let ghostBuilding = null;
-// speichert belegte Building-Tiles
+
+// speichert belegte Building-Tiles -> keine Gebäude können aufeinander oder auf Fluss-Tiles platziert werden.
 let occupiedTiles = new Set();
 
+
+// Funktion, die beim Kauf eines Gebäudes aufgerufen wird.
 function purchaseBuilding(building) {
 
+    // Gebäude-Limit pro Tag -> es kann nur ein Gebäude pro Tag gebaut werden.
     if(buildingsPerRound >= 1){
         ErrorBox(`Du kannst pro Tag nur ein Gebäude bauen! Bitte klicke auf "Nächster Tag", um weitere Gebäude bauen zu können.`);
         return;
     }
 
+    // Überprüfen, ob genug Geld für das Gebäude vorhanden ist.
     if (building.effects.money < 0 && state.money < Math.abs(building.effects.money)) {
         ErrorBox(`Nicht genug Geld! Du benötigst ${Math.abs(building.effects.money)} Geld, hast aber nur ${state.money}.`);
         return;
     }
 
+    // Überprüfen, ob die maximale Anzahl an platzierten Gebäuden dieser Art bereits erreicht wurde.
     if(state.history.includes(building.name)){
         if(state.history.filter(name => name === building.name).length >= building.limit){
         ErrorBox(`Du hast die maximale mögliche Anzahl der Gebäude bereits überschritten.`);
@@ -691,6 +781,7 @@ function purchaseBuilding(building) {
         }
     }
 
+    // Wenn alle Vorraussetzungen erfüllt -> Shop wird geschlossen und ghostBuilding wird erstellt.
     selectedBuilding = building;
     placementMode = true;
 
@@ -698,7 +789,9 @@ function purchaseBuilding(building) {
     createGhostBuilding(building);
 }
 
+// ghostBuilding wird erstellt, um dem Spieler eine Vorschau des Gebäudes zu geben, bevor es platziert wird. -> Idee und Basisstruktur des Codes von ChatGPT
 function createGhostBuilding(building) {
+    // bestehende ghostBuildings werden resettet
     if (ghostBuilding) {
         ghostBuilding.remove();
         ghostBuilding = null;
@@ -706,15 +799,18 @@ function createGhostBuilding(building) {
 
     const map = document.querySelector('.mapContainer');
 
+    // ghostBuilding wird erstellt
     ghostBuilding = document.createElement('div');
     ghostBuilding.className = 'ghost-building';
     ghostBuilding.style.position = 'absolute';
     ghostBuilding.style.pointerEvents = 'none';
 
+    // Bild des Gebäudes wird zum ghostBuilding hinzugefügt.
     const img = document.createElement('img');
     img.src = building.image;
     img.className = `building_image`;
 
+    // Overlay wird erstellt -> rot oder grün gefärbt.
     const overlay = document.createElement('div');
     overlay.className = 'ghost-overlay';
 
@@ -723,15 +819,12 @@ function createGhostBuilding(building) {
     map.appendChild(ghostBuilding);
 }
 
-
+// Funktion, um zu prüfen, ob das der Nutzer über ein belegtes oder unbelegtes Tile hovert.
 function checkTileOccupation() {
     const mapElem = document.querySelector('.mapContainer');
 
+    // Position des ghostBuildings wird bei Mausbewegung aktualisiert.
     mapElem.addEventListener('mousemove', (e) => {
-
-        if (!placementMode || !ghostBuilding) {
-            return;
-        }
 
         const rect = mapElem.getBoundingClientRect();
         // Berechne Grid-Position basierend auf Mausposition -> Code teilweise übernommen von ChatGPT
@@ -744,8 +837,10 @@ function checkTileOccupation() {
         // Koordinaten werden gespeichert als "x,y"
         const tileKey = `${gridX},${gridY}`;
         const overlay = ghostBuilding.querySelector('.ghost-overlay');
+        // Überprüfen, ob das Tile ein River Tile ist.
         const river = isTileRiver(gridX, gridY);
 
+        // Wenn das Tile bereits belegt ist oder ein River Tile ist, wird das Overlay rot gefärbt, ansonsten grün.
         if (occupiedTiles.has(tileKey) || river) {
             overlay.style.background = 'rgba(255,0,0,0.45)';
             overlay.style.borderColor = 'red';
@@ -755,8 +850,8 @@ function checkTileOccupation() {
         }
     });
 
+    // Bei Klick wird das Gebäude versucht zu platzieren. -> Code teilweise von ChatGPT
     mapElem.addEventListener('click', (e) => {
-        if (!placementMode) return;
 
         const rect = mapElem.getBoundingClientRect();
         const gridX = Math.floor((e.clientX - rect.left) / TILE_SIZE);
@@ -764,6 +859,7 @@ function checkTileOccupation() {
 
         const tileKey = `${gridX},${gridY}`;
 
+        // Abbruchbedingungen bei Platzierung: wenn Tile bereits belegt ist oder ein River Tile ist.
         if (occupiedTiles.has(tileKey)) {
             ErrorBox('Dieser Platz ist bereits belegt! Wähle eine andere Position.');
             return;
@@ -773,14 +869,17 @@ function checkTileOccupation() {
             return;
         }
 
+        // Wenn alle Bedingungen erfüllt sind -> drei Methoden aufgerufen zur endgültigen Platzierung, Kaufabwicklung und Cleanup.
         placeBuildingOnMap(selectedBuilding, gridX, gridY);
         finalizePurchase(selectedBuilding);
         cleanupPlacement();
     });
 }
 
+// Check, ob Platzierung auf Tile möglich ist.
 checkTileOccupation();
 
+// Funktion, die das Gebäude endgültig auf der Karte platziert.
 function placeBuildingOnMap(building, gridX, gridY) {
     const map = document.querySelector('.mapContainer');
 
@@ -789,6 +888,7 @@ function placeBuildingOnMap(building, gridX, gridY) {
     // Tile zum Set hinzugefügt
     occupiedTiles.add(tileKey);
 
+    // Gebäude als div-Element mit Bild zur Karte hinzugefügt
     const buildingElem = document.createElement('div');
     buildingElem.className = 'map-building';
     buildingElem.style.left = gridX * TILE_SIZE + 'px';
@@ -804,6 +904,7 @@ function placeBuildingOnMap(building, gridX, gridY) {
     map.appendChild(buildingElem);
 }
 
+// Funktion, die die Auswirkungen des Kaufs eines Gebäudes auf die Werte anwendet.
 function finalizePurchase(building) {
     for (let i = 0; i < state.environment.length; i++) {
         state.environment[i] = clamp(
@@ -819,10 +920,13 @@ function finalizePurchase(building) {
     state.money = clamp(state.money + building.effects.money, MIN_VALUE, MAX_MONEY);
     state.happiness = clamp(state.happiness + building.effects.happiness, MIN_VALUE, MAX_HAPPINESS);
 
+    // Gebäude wird zur Historie hinzugefügt, um die Anzahl der gebauten Gebäude zu tracken.
     state.history.push(building.name);
 
+    // Log-Eintrag für das gebaute Gebäude wird erstellt.
     log(`Tag ${state.day}: Gebäude "${building.name}" gebaut.`);
 
+    // Anzahl der gebauten Gebäude pro Tag wird erhöht. -> nur ein Gebäude pro Tag erlaubt.
     buildingsPerRound++;
 
     updateUI();
@@ -834,7 +938,7 @@ function finalizePurchase(building) {
     }
 }
 
-
+// Funktion, die ghostBuildings entfernt und aus dem Platzierungsmodus herausgeht.
 function cleanupPlacement() {
     placementMode = false;
     selectedBuilding = null;
@@ -845,26 +949,29 @@ function cleanupPlacement() {
     }
 }
 
-
+// Escape als Abbruchtaste für die Gebäudeplatzierung
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && placementMode) {
         cleanupPlacement();
     }
 });
 
-function updateShopResources() {
-    document.getElementById('shopMoneyValue').textContent = state.money;
-    document.getElementById('shopHappinessValue').textContent = state.happiness;
-    document.getElementById('shopEnvValue').textContent = getMeanEnvironment(state.environment).toFixed(0);
-}
+// Rechtsklick als Abbruchtaste für die Gebäudeplatzierung -> https://stackoverflow.com/questions/44620877/eventlistener-for-right-click
+document.addEventListener('mousedown', (e) => {
+    if (e.button === 2 && placementMode) {
+        cleanupPlacement();
+    }
+});
 
-function ErrorBox(message) {
+// Funktion, die eine Fehlermeldung in einem ErrorBox-Element anzeigt.
 
     const existing = document.querySelector('.errorBox');
+    // Wenn bereits eine ErrorBox angezeigt wird, wird diese entfernt.
     if (existing){
         existing.remove();
     }
 
+    // Generieren der ErrorBox.
     const errorBox = document.createElement('div');
     const errorBoxPicture = document.createElement('img');
     const errorBoxText = document.createElement('p');
@@ -878,12 +985,14 @@ function ErrorBox(message) {
 
     document.body.appendChild(errorBox);
 
+    // Timeout von 5 Sekunden, nach dem die ErrorBox automatisch entfernt wird.
     setTimeout(() => {
         if (errorBox && errorBox.parentElement) errorBox.remove();
     }, 5000);
-}
 
+// Funktion, welche eine zufällige Avatar-Nachricht anzeigt, wenn bestimmte Bedingungen erfüllt sind.
 function showRandomAvatar(message) {
+    // Generieren eines Containers für den Avatar und die Sprechblase.
     const avatarContainer = document.createElement('div');
     avatarContainer.className = 'avatarContainer';
     document.body.appendChild(avatarContainer);
@@ -893,14 +1002,18 @@ function showRandomAvatar(message) {
         'assets/Avatars/EmilyPham.png',
         'assets/Avatars/TuanaFranke.png',
     ];
+
+    // zufällige Auswahl eines Avatarbildes.
     const randomAvatar = avatarPictures[Math.floor(Math.random() * avatarPictures.length)];
     const img = document.createElement('img');
-    // RegEx von Copilot
+
+    // RegEx von Copilot mit dem Name aus dem Dateinamen extrahiert wird, um ihn die Sprechblase einzufügen.
     const avatarName = randomAvatar.match(/\/([^\/]+)\.png$/)[1].replace(/([A-Z])/g, ' $1').trim();
     img.src = randomAvatar;
     img.className = 'avatarImage';
     avatarContainer.appendChild(img);
 
+    // Erstellen der Sprechblase mit der Nachricht.
     const SprechblaseWrapper = document.createElement('div');
     SprechblaseWrapper.className = 'SprechblaseWrapper';
     const Sprechblase = document.createElement('img');
@@ -913,6 +1026,7 @@ function showRandomAvatar(message) {
     SprechblaseWrapper.appendChild(bubbleText);
     avatarContainer.appendChild(SprechblaseWrapper);
 
+    // Timeout von 7 Sekunden, nach dem der Avatar automatisch entfernt wird.
     setTimeout(() => {
         if (avatarContainer && avatarContainer.parentElement) avatarContainer.remove();
     }, 7000);
