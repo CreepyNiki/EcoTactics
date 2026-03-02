@@ -154,6 +154,7 @@ nav.scrolled {
     letter-spacing: .06rem;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .btn-primary::before {
@@ -183,7 +184,8 @@ nav.scrolled {
     font-family: sans-serif;
     font-size: 1rem;
     letter-spacing: .06rem;
-    transition: border-color .2s, color .2s, transform .15s; 
+    transition: border-color .2s, color .2s, transform .15s;
+    cursor: pointer;
 }
 
 .btn-secondary:hover {
