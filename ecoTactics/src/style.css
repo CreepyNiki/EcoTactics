@@ -319,24 +319,26 @@ nav.scrolled {
     line-height: 1.7;
 }
 
-/* Footer */
-footer {
-    position: relative;
-    z-index: 1;
-    border-top: 1px solid #2e9e571a;
-    background-color: #25995c;
-    padding: 2.5rem 5vw;
-    display: flex; 
+.footer {
+    padding: 6px 12px;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem; 
-    font-size: .8rem;
-    opacity: .45;
+    gap: clamp(12px, 3vw, 32px);
+    background-color: #25995c;
+    color: white;
+    width: 100vw;
+    height: 4vh;
+    min-height: 28px;
+    left: 0;
+    bottom: 0;
+    z-index: 20;
 }
 
-.footer-txt {
-    color: white;
+.footerText {
+    text-align: center;
+    margin: 0;
+    font-size: clamp(11px, 1.3vw, 13px);
 }
 
 footer img {
