@@ -1,7 +1,5 @@
 // Vollbild aktivieren für das volle Spielerlebnis
 
-showRandomAvatar(`Der KI wird die Zukunft gehören! Unser neues Rechenzentrum ist da genau das Richtige, um für die Zukunft gerüstet zu sein! Aber woher kommen denn die neuen Stromausfälle?`);
-
 // Wertebereiche
 const MAX_ENVIRONMENT = 100;
 const MAX_MONEY = 100000;
@@ -586,59 +584,83 @@ function initRiverDetection() {
     dimension.drawImage(realCanvas, 0, 0);
 }
 
-// Funktion, die bei der Platzierung von Gebäuden aufgerufen wird, um zu überprüfen, ob das Gebäude auf einem Fluss-Tile platziert wird.
+// Funktion, die bei der Platzierung von Gebäuden aufgerufen wird, um zu überprüfen, ob das Gebäude auf einem Fluss- oder Baum-Tile platziert wird.
 function isTileRiver(gridX, gridY) {
     if (offscreen.width === 0) return false;
-    const imgRect = realCanvas.getBoundingClientRect();
 
-    // Skalierungsfaktor berechnen, da Bild auf unterschiedlichen Bildschirmgrößen unterschiedlich skaliert wird
+    const mapElem   = document.querySelector('.mapContainer');
+    const mapRect   = mapElem.getBoundingClientRect();
+    const imgRect   = realCanvas.getBoundingClientRect();
+
+    // Offset des Hintergrundbildes relativ zum mapContainer.
+    const imgOffsetX = imgRect.left - mapRect.left;
+    const imgOffsetY = imgRect.top  - mapRect.top;
+
+    // Skalierungsfaktor: natürliche Bildgröße -> angezeigte Bildgröße
     const scaleX = realCanvas.naturalWidth  / imgRect.width;
     const scaleY = realCanvas.naturalHeight / imgRect.height;
 
     // Mittelpunkt des Tiles -> auf echte Bildkoordinaten skalieren -> mit Claude generiert
-    const tileCenterX = (gridX * TILE_SIZE + TILE_SIZE / 2) * scaleX;
-    const tileCenterY = (gridY * TILE_SIZE + TILE_SIZE / 2) * scaleY;
+    const tileCenterCssX = gridX * TILE_SIZE + TILE_SIZE / 2;
+    const tileCenterCssY = gridY * TILE_SIZE + TILE_SIZE / 2;
 
-    // Mehrere Punkte rund um Bildmitte gesammelt
-    const samples = [
-        [tileCenterX, tileCenterY],
-        [tileCenterX - TILE_SIZE * scaleX * 0.25, tileCenterY],
-        [tileCenterX + TILE_SIZE * scaleX * 0.25, tileCenterY],
-        [tileCenterX, tileCenterY - TILE_SIZE * scaleY * 0.25],
-        [tileCenterX, tileCenterY + TILE_SIZE * scaleY * 0.25],
-    ];
+    // Tile-Mittelpunkt in CSS-Pixeln relativ zum Bild
+    const relCssX = tileCenterCssX - imgOffsetX;
+    const relCssY = tileCenterCssY - imgOffsetY;
 
-    const treeColors = [
-        [78, 130, 40],   // rgba(31,89,22)
-        [26, 79, 18]  // rgba(107,158,10)
-    ];
+    // Umrechnung in natürliche Bildpixel
+    const tileCenterImgX = relCssX * scaleX;
+    const tileCenterImgY = relCssY * scaleY;
 
-    const waterColors = [
-        [27, 117, 149],  // rgba(0,120,200)
-        [30, 132, 162]    // rgba(20,90,130)
-    ];
+    // Halbe Tile-Größe in natürlichen Bildpixeln
+    const halfW = (TILE_SIZE / 2) * scaleX;
+    const halfH = (TILE_SIZE / 2) * scaleY;
 
-    let riverCount = 0;
-    for (const [sampleX, sampleY] of samples) {
-        // abrunden auf ganze Pixelkoordinaten
-        const x = Math.floor(sampleX);
-        const y = Math.floor(sampleY);
-        // wenn Pixel außerhalb des Bildes liegt, ignorieren
-        if (x < 0 || y < 0 || x >= offscreen.width || y >= offscreen.height) continue;
-        const [r, g, b] = dimension.getImageData(x, y, 1, 1).data;
-        // Flusswasser: blau als dominante Farbe
-        if (colorMatches(r, g, b, waterColors[0]) || colorMatches(r, g, b, waterColors[1])) {
-            console.log(`River sample at (${x}, ${y}): RGB(${r}, ${g}, ${b})`);
-            riverCount++;
-        }
-        // Bäume: grün als dominante Farbe
-        else if (colorMatches(r, g, b, treeColors[0]) || colorMatches(r, g, b, treeColors[1])) {
-            console.log(`Tree sample at (${x}, ${y}): RGB(${r}, ${g}, ${b})`);
-            riverCount++;
+    // 4x4 gleichmäßiges Sampling-Grid über das Tile -> Code von Claude generiert
+    const GRID = 4;
+    const samples = [];
+    for (let row = 0; row < GRID; row++) {
+        for (let col = 0; col < GRID; col++) {
+            const sx = tileCenterImgX - halfW + halfW * 2 * (col + 0.5) / GRID;
+            const sy = tileCenterImgY - halfH + halfH * 2 * (row + 0.5) / GRID;
+            samples.push([sx, sy]);
         }
     }
-    // Mindestens 2 von 5 Samples müssen Wasser sein
-    return riverCount >= 2;
+
+    // Wasser: Blau klar dominant, mittlere Sättigung (Fluss-Blau des Kartenbildes)
+    const isWater = (r, g, b) =>
+        b > 110 && b > r + 35 && b > g - 20 && r < 140;
+
+    // Nadelbäume: rgb(23,68,19) -> sehr dunkles Grün, r und b sehr niedrig
+    const isConifer = (r, g, b) =>
+        g > r + 20 && g > b + 20 && g < 100 && r < 50 && b < 50;
+
+    // Laubbäume: rgb(107,158,10), rgb(74,130,45), rgb(56,115,39)
+    // Zusammengefügte RGB
+    const isLeafTree = (r, g, b) =>
+        g > r + 20 && g > b + 60 && b < 60 && b >= 5 &&
+        g >= 100 && g < 175 && r >= 40 && r < 125;
+
+    let waterHits = 0;
+    let treeHits  = 0;
+    const totalSamples = samples.length;
+
+    for (const [sampleX, sampleY] of samples) {
+        const x = Math.floor(sampleX);
+        const y = Math.floor(sampleY);
+        if (x < 0 || y < 0 || x >= offscreen.width || y >= offscreen.height) continue;
+        const [r, g, b] = dimension.getImageData(x, y, 1, 1).data;
+
+        if (isWater(r, g, b))         waterHits++;
+        else if (isConifer(r, g, b))  treeHits++;
+        else if (isLeafTree(r, g, b)) treeHits++;
+    }
+
+    // Wasser: ≥2 von 16 Treffern reichen (Wasserfarbe ist sehr eindeutig)
+    if (waterHits >= 2) return true;
+    // Bäume: mindestens 15 % der Samples müssen Baum-Pixel sein
+    if (treeHits >= Math.ceil(totalSamples * 0.15)) return true;
+    return false;
 }
 
 // Event Listener für den Shop Button, um den Shop bei Klick zu öffnen.
