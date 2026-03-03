@@ -752,30 +752,28 @@ button.action {
 
 .SprechblaseWrapper {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: inline-block;
     margin-bottom: clamp(90px, 11vw, 185px);
     flex-shrink: 0;
     pointer-events: auto;
+    width: clamp(260px, 30vw, 440px);
 }
 
 .Sprechblase {
-    position: relative;
-    width: clamp(500px, 18vw, 300px);
+    width: 100%;
     height: auto;
     display: block;
-    top: 100px; 
-    left: 100px; 
 }
 
 .bubbleText {
     position: absolute;
-    top: 70%;
-    left: 70%;
+    top: 48%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    width: 50%;
-    font-size: clamp(11px, 1.1vw, 16px);
+    width: 65%;
+    max-height: 44%;
+    overflow: hidden;
+    font-size: clamp(10px, 1.05vw, 14px);
     color: #111;
     font-weight: bold;
     text-align: center;
@@ -798,16 +796,13 @@ button.action {
         height: clamp(90px, 22vw, 140px);
     }
 
-    .Sprechblase {
-        width: clamp(100px, 26vw, 170px);
+    .SprechblaseWrapper {
+        width: clamp(160px, 38vw, 260px);
+        margin-bottom: clamp(52px, 13vw, 86px);
     }
 
     .bubbleText {
-        font-size: clamp(9px, 2.2vw, 12px);
-    }
-
-    .SprechblaseWrapper {
-        margin-bottom: clamp(52px, 13vw, 86px);
+        font-size: clamp(8px, 2.2vw, 11px);
     }
 }
 
@@ -897,16 +892,13 @@ button.action {
         height: 340px;
     }
 
-    .Sprechblase {
-        width: 320px;
+    .SprechblaseWrapper {
+        width: 420px;
+        margin-bottom: 210px;
     }
 
     .bubbleText {
         font-size: 15px;
-    }
-
-    .SprechblaseWrapper {
-        margin-bottom: 210px;
     }
 
     passiveCostsLabel {
@@ -1008,16 +1000,13 @@ button.action {
         height: 400px;
     }
 
-    .Sprechblase {
-        width: 500px;
+    .SprechblaseWrapper {
+        width: 520px;
+        margin-bottom: 260px;
     }
 
     .bubbleText {
-        font-size: 18px;
-    }
-
-    .SprechblaseWrapper {
-        margin-bottom: 440px;
+        font-size: 17px;
     }
 
     .footer {
