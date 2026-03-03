@@ -4,7 +4,7 @@
       "id": "botanical_garden",
       "name": "Botanischer Garten",
       "desc": "Bildungs- und Erholungsstätte mit vielfältiger Flora",
-      "image": "assets/buildings/garden.png",
+      "image": "assets/buildings/botanicalgarden.png",
       "limit": 3,
       "effects": {
         "environment": [3, 6, 2, 6],
@@ -52,7 +52,7 @@
       "id": "fast_fashion_factory",
       "name": "Fast-Fashion-Fabrik",
       "desc": "Billige Kleidung auf Kosten der Umwelt.",
-      "image": "assets/buildings/fashion.png",
+      "image": "assets/buildings/fastfashion.png",
       "limit": 2,
       "effects": {
         "environment": [-8, -11, -3, -12],
@@ -76,7 +76,7 @@
       "id": "luxury_hotel",
       "name": "Luxus-Hotel",
       "desc": "Fünf-Sterne-Resort mit hohem Wasser- und Energieverbrauch.",
-      "image": "assets/buildings/hotel.PNG",
+      "image": "assets/buildings/hotel.png",
       "limit": 2,
       "effects": {
         "environment": [-10, -14, -4, -11],
@@ -88,7 +88,7 @@
       "id": "mega_mall",
       "name": "Mega-Einkaufszentrum",
       "desc": "Riesiges Shopping-Center mit massivem Energieverbrauch.",
-      "image": "assets/buildings/Mall.PNG",
+      "image": "assets/buildings/Mall.png",
       "limit": 1,
       "effects": {
         "environment": [-12, -16, -5, -8],
@@ -100,7 +100,7 @@
       "id": "incinerator",
       "name": "Müllverbrennungsanlage",
       "desc": "Verbrenne Abfall statt Recycling.",
-      "image": "assets/buildings/WastePlant.PNG",
+      "image": "assets/buildings/WastePlant.png",
       "limit": 2,
       "effects": {
         "environment": [-9, -16, -4, -3],
@@ -112,7 +112,7 @@
       "id": "green_housing",
       "name": "Öko-Wohnkomplex",
       "desc": "Energieeffiziente Wohngebäude mit Solardächern",
-      "image": "assets/buildings/housing.png",
+      "image": "assets/buildings/ecohouse.png",
       "limit": 4,
       "effects": {
         "environment": [4, 9, 4, 6],
@@ -136,7 +136,7 @@
       "id": "data_center",
       "name": "Rechenzentrum",
       "desc": "Hoher Energieverbrauch für Cloud-Dienste.",
-      "image": "assets/buildings/DataCenter.PNG",
+      "image": "assets/buildings/DataCenter.png",
       "limit": 2,
       "effects": {
         "environment": [-11, -7, -5, -12],
@@ -148,7 +148,7 @@
       "id": "recycling_center",
       "name": "Recyclingzentrum",
       "desc": "Hochmoderne Anlage zur Müllverwertung und Wiederverwertung",
-      "image": "assets/buildings/Recyclingcenter.PNG",
+      "image": "assets/buildings/Recyclingcenter.png",
       "limit": 2,
       "effects": {
         "environment": [5, 3, 2, 8],
@@ -172,7 +172,7 @@
       "id": "solar_park",
       "name": "Solarpark",
       "desc": "Großflächige Solaranlage zur nachhaltigen Stromerzeugung",
-      "image": "assets/buildings/Solarpark.PNG",
+      "image": "assets/buildings/Solarpark.png",
       "limit": 2,
       "effects": {
         "environment": [4, 12, 3, 0],
@@ -196,7 +196,7 @@
       "id": "education_center",
       "name": "Umwelt-Bildungszentrum",
       "desc": "Lehranstalt für nachhaltige Entwicklung und Klimaschutz",
-      "image": "assets/buildings/education.png",
+      "image": "assets/buildings/environmenteducation.png",
       "limit": 2,
       "effects": {
         "environment": [3, 4, 2, 3],
@@ -220,7 +220,7 @@
       "id": "water_tank",
       "name": "Wassertank",
       "desc": "Versorgt die Bewohner der Stadt mit sauberem Wasser.",
-      "image": "assets/buildings/wassertank.png",
+      "image": "assets/buildings/watertank.png",
       "limit": 2,
       "effects": {
         "environment": [3, 5, 2, 8],
@@ -232,7 +232,7 @@
       "id": "wind_farm",
       "name": "Windpark",
       "desc": "Moderne Windkraftanlagen für saubere Energie",
-      "image": "assets/buildings/wind.png",
+      "image": "assets/buildings/windpark.png",
       "limit": 4,
       "effects": {
         "environment": [6, 14, 2, 0],

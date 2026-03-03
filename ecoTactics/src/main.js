@@ -975,7 +975,7 @@ document.addEventListener('mousedown', (e) => {
     const errorBox = document.createElement('div');
     const errorBoxPicture = document.createElement('img');
     const errorBoxText = document.createElement('p');
-    errorBoxPicture.src = 'assets/warning.png';
+    errorBoxPicture.src = 'assets/ErrorBox.png';
     errorBoxPicture.className = 'errorBoxImage';
     errorBoxText.textContent = message;
     errorBoxText.className = 'errorBoxText';
@@ -1017,7 +1017,7 @@ function showRandomAvatar(message) {
     const SprechblaseWrapper = document.createElement('div');
     SprechblaseWrapper.className = 'SprechblaseWrapper';
     const Sprechblase = document.createElement('img');
-    Sprechblase.src = 'assets/Sprechblase.png';
+    Sprechblase.src = 'assets/speechBubble.png';
     Sprechblase.className = 'Sprechblase';
     const bubbleText = document.createElement('p');
     bubbleText.innerHTML = `<span class="bubbleName">${avatarName}:</span><br>${message}`
