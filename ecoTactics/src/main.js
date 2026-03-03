@@ -570,6 +570,13 @@ const realCanvas = document.querySelector('.backgroundImage');
 
 initRiverDetection();
 
+// Funktion die überprüft, ob die RGB-Werte eines Pixels innerhalb eines bestimmten Toleranzbereichs um einen Ziel-RGB-Wert liegen.
+function colorMatches(r, g, b, target, tol = 25) {
+    return Math.abs(r - target[0]) <= tol &&
+        Math.abs(g - target[1]) <= tol &&
+        Math.abs(b - target[2]) <= tol;
+}
+
 // Funktion, die die Werte des echten Hintergrundbildes auf den Offscreen-Canvas überträgt, damit die Pixelwerte später ausgelesen und für die Flusserkennung verwendet werden können.
 function initRiverDetection() {
     // Werte von echtem Bild auf Offscreen-Canvas übertragen
@@ -601,6 +608,16 @@ function isTileRiver(gridX, gridY) {
         [tileCenterX, tileCenterY + TILE_SIZE * scaleY * 0.25],
     ];
 
+    const treeColors = [
+        [78, 130, 40],   // rgba(31,89,22)
+        [26, 79, 18]  // rgba(107,158,10)
+    ];
+
+    const waterColors = [
+        [27, 117, 149],  // rgba(0,120,200)
+        [30, 132, 162]    // rgba(20,90,130)
+    ];
+
     let riverCount = 0;
     for (const [sampleX, sampleY] of samples) {
         // abrunden auf ganze Pixelkoordinaten
@@ -610,7 +627,15 @@ function isTileRiver(gridX, gridY) {
         if (x < 0 || y < 0 || x >= offscreen.width || y >= offscreen.height) continue;
         const [r, g, b] = dimension.getImageData(x, y, 1, 1).data;
         // Flusswasser: blau als dominante Farbe
-        if (b > 120 && r < 120 && g < 160) riverCount++;
+        if (colorMatches(r, g, b, waterColors[0]) || colorMatches(r, g, b, waterColors[1])) {
+            console.log(`River sample at (${x}, ${y}): RGB(${r}, ${g}, ${b})`);
+            riverCount++;
+        }
+        // Bäume: grün als dominante Farbe
+        else if (colorMatches(r, g, b, treeColors[0]) || colorMatches(r, g, b, treeColors[1])) {
+            console.log(`Tree sample at (${x}, ${y}): RGB(${r}, ${g}, ${b})`);
+            riverCount++;
+        }
     }
     // Mindestens 2 von 5 Samples müssen Wasser sein
     return riverCount >= 2;
@@ -824,9 +849,11 @@ function createGhostBuilding(building) {
 // Funktion, um zu prüfen, ob das der Nutzer über ein belegtes oder unbelegtes Tile hovert.
 function checkTileOccupation() {
     const mapElem = document.querySelector('.mapContainer');
+    if (!mapElem) return;
 
     // Position des ghostBuildings wird bei Mausbewegung aktualisiert.
     mapElem.addEventListener('mousemove', (e) => {
+        if (!placementMode || !ghostBuilding) return;
 
         const rect = mapElem.getBoundingClientRect();
         // Berechne Grid-Position basierend auf Mausposition -> Code teilweise übernommen von ChatGPT
@@ -854,6 +881,7 @@ function checkTileOccupation() {
 
     // Bei Klick wird das Gebäude versucht zu platzieren. -> Code teilweise von ChatGPT
     mapElem.addEventListener('click', (e) => {
+        if (!placementMode || !selectedBuilding) return;
 
         const rect = mapElem.getBoundingClientRect();
         const gridX = Math.floor((e.clientX - rect.left) / TILE_SIZE);
@@ -966,10 +994,11 @@ document.addEventListener('mousedown', (e) => {
 });
 
 // Funktion, die eine Fehlermeldung in einem ErrorBox-Element anzeigt.
+function ErrorBox(message) {
 
     const existing = document.querySelector('.errorBox');
     // Wenn bereits eine ErrorBox angezeigt wird, wird diese entfernt.
-    if (existing){
+    if (existing) {
         existing.remove();
     }
 
@@ -991,46 +1020,47 @@ document.addEventListener('mousedown', (e) => {
     setTimeout(() => {
         if (errorBox && errorBox.parentElement) errorBox.remove();
     }, 5000);
+}
 
 // Funktion, welche eine zufällige Avatar-Nachricht anzeigt, wenn bestimmte Bedingungen erfüllt sind.
-function showRandomAvatar(message) {
-    // Generieren eines Containers für den Avatar und die Sprechblase.
-    const avatarContainer = document.createElement('div');
-    avatarContainer.className = 'avatarContainer';
-    document.body.appendChild(avatarContainer);
-    const avatarPictures = [
-        'assets/Avatars/AchimNovak.png',
-        'assets/Avatars/AndreasBruno.png',
-        'assets/Avatars/EmilyPham.png',
-        'assets/Avatars/TuanaFranke.png',
-    ];
+    function showRandomAvatar(message) {
+        // Generieren eines Containers für den Avatar und die Sprechblase.
+        const avatarContainer = document.createElement('div');
+        avatarContainer.className = 'avatarContainer';
+        document.body.appendChild(avatarContainer);
+        const avatarPictures = [
+            'assets/Avatars/AchimNovak.png',
+            'assets/Avatars/AndreasBruno.png',
+            'assets/Avatars/EmilyPham.png',
+            'assets/Avatars/TuanaFranke.png',
+        ];
 
-    // zufällige Auswahl eines Avatarbildes.
-    const randomAvatar = avatarPictures[Math.floor(Math.random() * avatarPictures.length)];
-    const img = document.createElement('img');
+        // zufällige Auswahl eines Avatarbildes.
+        const randomAvatar = avatarPictures[Math.floor(Math.random() * avatarPictures.length)];
+        const img = document.createElement('img');
 
-    // RegEx von Copilot mit dem Name aus dem Dateinamen extrahiert wird, um ihn die Sprechblase einzufügen.
-    const avatarName = randomAvatar.match(/\/([^\/]+)\.png$/)[1].replace(/([A-Z])/g, ' $1').trim();
-    img.src = randomAvatar;
-    img.className = 'avatarImage';
-    avatarContainer.appendChild(img);
+        // RegEx von Copilot mit dem Name aus dem Dateinamen extrahiert wird, um ihn die Sprechblase einzufügen.
+        const avatarName = randomAvatar.match(/\/([^\/]+)\.png$/)[1].replace(/([A-Z])/g, ' $1').trim();
+        img.src = randomAvatar;
+        img.className = 'avatarImage';
+        avatarContainer.appendChild(img);
 
-    // Erstellen der Sprechblase mit der Nachricht.
-    const SprechblaseWrapper = document.createElement('div');
-    SprechblaseWrapper.className = 'SprechblaseWrapper';
-    const Sprechblase = document.createElement('img');
-    Sprechblase.src = 'assets/speechBubble.png';
-    Sprechblase.className = 'Sprechblase';
-    const bubbleText = document.createElement('p');
-    bubbleText.innerHTML = `<span class="bubbleName">${avatarName}:</span><br>${message}`
-    bubbleText.className = 'bubbleText';
-    SprechblaseWrapper.appendChild(Sprechblase);
-    SprechblaseWrapper.appendChild(bubbleText);
-    avatarContainer.appendChild(SprechblaseWrapper);
+        // Erstellen der Sprechblase mit der Nachricht.
+        const SprechblaseWrapper = document.createElement('div');
+        SprechblaseWrapper.className = 'SprechblaseWrapper';
+        const Sprechblase = document.createElement('img');
+        Sprechblase.src = 'assets/speechBubble.png';
+        Sprechblase.className = 'Sprechblase';
+        const bubbleText = document.createElement('p');
+        bubbleText.innerHTML = `<span class="bubbleName">${avatarName}:</span><br>${message}`
+        bubbleText.className = 'bubbleText';
+        SprechblaseWrapper.appendChild(Sprechblase);
+        SprechblaseWrapper.appendChild(bubbleText);
+        avatarContainer.appendChild(SprechblaseWrapper);
 
-    // Timeout von 7 Sekunden, nach dem der Avatar automatisch entfernt wird.
-    setTimeout(() => {
-        if (avatarContainer && avatarContainer.parentElement) avatarContainer.remove();
-    }, 7000);
-}
+        // Timeout von 7 Sekunden, nach dem der Avatar automatisch entfernt wird.
+        setTimeout(() => {
+            if (avatarContainer && avatarContainer.parentElement) avatarContainer.remove();
+        }, 7000);
+    }
 
