@@ -1,5 +1,7 @@
 // Vollbild aktivieren für das volle Spielerlebnis
 
+showRandomAvatar(`Der KI wird die Zukunft gehören! Unser neues Rechenzentrum ist da genau das Richtige, um für die Zukunft gerüstet zu sein! Aber woher kommen denn die neuen Stromausfälle?`);
+
 // Wertebereiche
 const MAX_ENVIRONMENT = 100;
 const MAX_MONEY = 100000;
