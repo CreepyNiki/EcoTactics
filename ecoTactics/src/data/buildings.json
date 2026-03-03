@@ -111,7 +111,7 @@
     {
       "id": "green_housing",
       "name": "Öko-Wohnkomplex",
-      "desc": "Energieeffiziente Wohngebäude mit Gründächern",
+      "desc": "Energieeffiziente Wohngebäude mit Solardächern",
       "image": "assets/buildings/housing.png",
       "limit": 4,
       "effects": {
