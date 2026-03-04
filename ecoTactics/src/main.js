@@ -147,13 +147,13 @@ function updateUI() {
 // verschiedene Game Over Bedingungen werden überprüft und je nach erfüllter Bedingung wird das Spiel mit einer entsprechenden Nachricht beendet.
 function checkGameOver() {
     if (state.money <= 0) {
-        endGame('Bankrott! Dein Budget ist erschöpft. Spiel vorbei.');
+        endGame('Bankrott!', false);
     } else if (state.environment.some(v => v <= 0)) {
-        endGame('Ökologische Katastrophe! Die Umweltwerte sind zu niedrig. Spiel vorbei.');
+        endGame('Ökologische Katastrophe!', false);
     } else if (state.happiness <= 0) {
-        endGame('Soziale Unruhe! Zufriedenheit zu niedrig. Spiel vorbei.');
+        endGame('Soziale Unruhe!', false);
     } else if (state.day > 30) {
-        endGame('Glückwunsch! 30 Tage überstanden — du hast gezeigt, dass Nachhaltigkeit möglich ist.');
+        endGame('Glückwunsch!', true);
     }
 }
 
@@ -473,10 +473,16 @@ function checkBuildingAvatarRequirements(building) {
 }
 
 // Funktion, die das Spielende einleitet.
-function endGame(message) {
+function endGame(message, won) {
     gameOver = true;
-    ErrorBox(message);
-    resetGame()
+    if (won === true) {
+        setTimeout(() => {
+        window.location.href = 'index6.html';
+        }, 1000);
+    } else { setTimeout(() => {
+        window.location.href = 'index5.html';
+    }, 1000)
+    }
 }
 
 // Funktion, die alle Werte und UI Elemente auf die Startwerte zurücksetzt, um ein neues Spiel zu starten.

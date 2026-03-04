@@ -1,0 +1,105 @@
+* {
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+    
+}
+
+html, body {
+    width: 100%; 
+    height: 100%; 
+    background: #0d1a10; 
+    font-family: 'VT323', monospaced; 
+    overflow: hidden; 
+}
+
+/* Main */
+#screen {
+    position: relatative; 
+    z-index: 10; 
+    width: 100vw; 
+    height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    gap: 0; 
+    padding: 2rem; 
+    text-align: center; 
+    
+}
+
+/* Logo */
+.logo-small {
+    font-family: 'Press Start 2P', monospace; 
+    font-size: .5rem; 
+    color: darkgreen; 
+    margin-bottom: 2.5rem; 
+}
+    
+/* Game Over Title */ 
+ .winning-title {
+    font-family: 'Press Start 2P', monospace; 
+     color: green; 
+     line-height: 1.4; 
+    }
+
+/* Divider */ 
+.pixel-divider {
+    width: 0; 
+    height: 2px; 
+    background: darkgreen;
+    margin: 2rem auto; 
+    animation: expandLine .6s 1.2s steps(8) forwards; 
+}
+@keyframes expandLine {to {width: min(480px, 80vw); }}
+
+/*Subtitle*/ 
+.subtitle {
+    font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+    color: darkseagreen; 
+    text-transform: uppercase; 
+    line-height: 1.6; 
+}
+
+/* Epitaph */ 
+.epitaph {
+    margin-top: 1.8rem; 
+    font-size: clamp(1rem, 2vw, 1.3rem); 
+    color: darkgreen; 
+    max-width: 500px; 
+    line-height: 1.7;
+}
+
+/* Buttons */
+.end-buttons {
+    margin-top: 2rem; 
+    display: flex; 
+    gap: 1.5rem; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+}
+
+.btn-retry {
+    color: green; 
+    border-color: green; 
+}
+
+.btn-retry:hover {
+    background: green; 
+    color: #fff; 
+    box-shadow: 0 0 20px #c0392b99; 
+}
+
+.btn-menu {
+    background: transparent; 
+    color: green; 
+    text-transform: uppercase; 
+
+}
+
+.btn-menu:hover {
+    color: var(--text); 
+    border-color: var(--text); 
+}
+
