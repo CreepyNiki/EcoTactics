@@ -1,5 +1,4 @@
 // Vollbild aktivieren für das volle Spielerlebnis
-showRandomAvatar("Willkommen, Bürgermeister*in! Deine Aufgabe ist es, die Stadt nachhaltig zu gestalten und dabei Umwelt, Geld und Zufriedenheit der Bürger im Gleichgewicht zu halten.");
 
 // Wertebereiche
 const MAX_ENVIRONMENT = 100;
