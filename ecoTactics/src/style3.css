@@ -753,6 +753,8 @@ button.action {
 .SprechblaseWrapper {
     position: relative;
     display: inline-block;
+    top: calc(clamp(100px, 3.5vw, 180px));
+    left: calc(clamp(100px, 3.5vw, 180px));
     margin-bottom: clamp(90px, 11vw, 185px);
     flex-shrink: 0;
     pointer-events: auto;
@@ -799,6 +801,8 @@ button.action {
     .SprechblaseWrapper {
         width: clamp(160px, 38vw, 260px);
         margin-bottom: clamp(52px, 13vw, 86px);
+        top: calc(clamp(60px, 5vw, 120px));
+        left: calc(clamp(60px, 5vw, 120px));
     }
 
     .bubbleText {
@@ -895,6 +899,8 @@ button.action {
     .SprechblaseWrapper {
         width: 420px;
         margin-bottom: 210px;
+        top: calc(clamp(130px, 4vw, 200px));
+        left: calc(clamp(130px, 4vw, 200px));
     }
 
     .bubbleText {
@@ -1003,6 +1009,8 @@ button.action {
     .SprechblaseWrapper {
         width: 520px;
         margin-bottom: 260px;
+        top: calc(clamp(160px, 4vw, 190px));
+        left: calc(clamp(160px, 4vw, 190px));
     }
 
     .bubbleText {
