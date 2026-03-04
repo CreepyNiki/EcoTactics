@@ -1,4 +1,4 @@
-# 🎮 Spielbechreibung
+# 🎮 Spielbeschreibung
 Projekt der **Universität zu Köln** im Rahmen des Seminars **"Digital Humanities und Informatik der Geisteswissenschaften" (SM2)** von Senem Celik und Niklas Halft.
 
 EcoTactics ist ein Stadtsimulationsspiel mit dem Ziel, die Herausforderungen des Klimawandels erfolgreich zu bewältigen.
