@@ -169,7 +169,10 @@ nav.scrolled {
 
 }
 
-
+.btn-primary:hover {
+    background: darkgreen;
+    transform: translateY(-2px);
+}
 
 
 /* Statisitk bar */
@@ -308,6 +311,7 @@ chapter {
     font-size: 20px; 
     color: lightgreen; 
     line-height: 1; 
+padding: 30px; 
 }
 
 /* chapter body */ 
@@ -317,10 +321,11 @@ chapter {
 
 .chapter-title {
     font-family: sans-serif; 
-    font-size: 30px; 
+    font-size: 20px; 
     font-weight: 700;
     line-height: 1.12; 
-    margin-bottom: 1.2rem; 
+    margin-bottom: 30px; 
+    padding-left: 50px; 
 }
 
 /* Steps */ 
@@ -335,6 +340,7 @@ chapter {
     opacity: .6; 
     line-height: 1.7; 
     margin-bottom: 4rem; 
+    padding-left: 50px; 
 }
 
 
