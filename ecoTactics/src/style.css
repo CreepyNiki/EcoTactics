@@ -93,6 +93,9 @@ nav.scrolled {
     transform: translateY(-1px);
 }
 
+.game-link {
+    color: darkgreen; 
+}
 
 /* HERO */ 
 #hero {
