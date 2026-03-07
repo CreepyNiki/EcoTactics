@@ -75,15 +75,6 @@ nav.scrolled {
     transition: width .3s;
 }
 
--nav-links a:hover {
-    opacity: 1;
-    color: lightgreen;
-}
-
--nav-links a:hover::after {
-    width: 100% 
-}
-
 .nav-cta {
     background: green;
     color: white; 
@@ -101,6 +92,11 @@ nav.scrolled {
 .nav-cta:hover {
     background: lightgreen;
     transform: translateY(-1px);
+}
+
+.nav-links .nav-highlight {
+
+color: lightgreen;
 }
 
 

@@ -93,6 +93,11 @@ nav.scrolled {
     transform: translateY(-1px);
 }
 
+.nav-links .nav-highlight {
+
+color: lightgreen;
+}
+
 
 /* HERO */ 
 #hero {
@@ -288,6 +293,10 @@ nav.scrolled {
     font-size: .9rem;
     line-height: 1.7;
     opacity: .6;
+}
+
+a {
+    color: lightgreen;
 }
 
 /* CTA Section */

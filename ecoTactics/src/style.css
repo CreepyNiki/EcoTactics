@@ -1,3 +1,4 @@
+/* CSS für die Startseite */
 html {
     overflow-y: scroll; 
     scroll-behavior: smooth;
@@ -19,7 +20,7 @@ p {
     justify-content: center;
 }
 
-/* NAV-BAR */ 
+/* Darstellung der Navigation */ 
 nav {
     position: fixed;
     top: 0;
@@ -34,11 +35,6 @@ nav {
     background: #0d1a10b3;
     backdrop-filter: blur(18px);
     border-bottom: 1px solid #2e9e5726;
-    transition: box-shadow .3s;
-}
-
-nav.scrolled {
-    box-shadow: 0 4px 40px #00000080;
 }
 
 .nav-logo img {
@@ -64,40 +60,13 @@ nav.scrolled {
     position: relative;
 }
 
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 0;
-    height: 1px;
-    background: lightgreen;
-    transition: width .3s;
+/* Hervorhebung in der Navigation vom Link zum Spielstart */
+.nav-links .nav-highlight {
+
+color: lightgreen;
 }
 
-.nav-cta {
-    background: green;
-    color: white; 
-    border: none;
-    padding: .55rem 1.4rem;
-    border-radius: 4px;
-    font-family: sans-serif;
-    font-size: .85rem;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    transition: transform .15s;
-}
-
-.nav-cta:hover {
-    background: lightgreen;
-    transform: translateY(-1px);
-}
-
-.game-link {
-    color: darkgreen; 
-}
-
-/* HERO */ 
+/* Hero-Stage auf der Seite, als Blickfang mit Link zum Spielstart */ 
 #hero {
     position: relative;
     min-height: 100vh;
@@ -138,6 +107,7 @@ nav.scrolled {
     margin-bottom: 3rem;
 }
 
+/* Buttons mit Link zum Spiel und mit Link, welches zum Spielprinzip führt*/
 .hero-buttons {
     display: flex; 
     gap: 1rem; 
