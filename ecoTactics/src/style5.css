@@ -1,3 +1,6 @@
+/* CSS für die Game Over Seite */
+
+/* Allgemeine CSS Einstellungen für die gesamte Seite */
 * {
     box-sizing: border-box; 
     margin: 0; 
@@ -13,7 +16,7 @@ html, body {
     overflow: hidden; 
 }
 
-/* Main */
+/* Einstellungen für den gesamten Bildschirm */
 #screen {
     position: relatative; 
     z-index: 10; 
@@ -28,23 +31,15 @@ html, body {
     text-align: center; 
     
 }
-
-/* Logo */
-.logo-small {
-    font-family: 'Press Start 2P', monospace; 
-    font-size: .5rem; 
-    color: darkred; 
-    margin-bottom: 2.5rem; 
-}
     
-/* Game Over Title */ 
+/* Game Over Titel der Seite */ 
  .gameover-title {
     font-family: 'Press Start 2P', monospace; 
      color: red; 
      line-height: 1.4; 
     }
 
-/* Divider */ 
+/* Trennstrich mit Animation */ 
 .pixel-divider {
     width: 0; 
     height: 2px; 
@@ -54,7 +49,7 @@ html, body {
 }
 @keyframes expandLine {to {width: min(480px, 80vw); }}
 
-/*Subtitle*/ 
+/* Untertitel mit Botschaft für Spieler:innen */ 
 .subtitle {
     font-size: clamp(1.2rem, 2.5vw, 1.7rem);
     color: orange; 
@@ -62,16 +57,8 @@ html, body {
     line-height: 1.6; 
 }
 
-/* Epitaph */ 
-.epitaph {
-    margin-top: 1.8rem; 
-    font-size: clamp(1rem, 2vw, 1.3rem); 
-    color: darkred; 
-    max-width: 500px; 
-    line-height: 1.7;
-}
 
-/* Buttons */
+/* Buttons für Neustart und für Startseite */
 .end-buttons {
     margin-top: 2rem; 
     display: flex; 
@@ -80,26 +67,14 @@ html, body {
     justify-content: center; 
 }
 
-.btn-retry {
+.btn-pixel {
     color: red; 
     border-color: red; 
+    text-transform: uppercase;
 }
 
-.btn-retry:hover {
-    background: red; 
-    color: #fff; 
-    box-shadow: 0 0 20px #c0392b99; 
+.btn-pixel:hover { 
+    color: #ff9898; 
 }
 
-.btn-menu {
-    background: transparent; 
-    color: red; 
-    text-transform: uppercase; 
-
-}
-
-.btn-menu:hover {
-    color: var(--text); 
-    border-color: var(--text); 
-}
 

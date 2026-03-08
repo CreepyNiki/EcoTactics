@@ -1,4 +1,6 @@
 /* CSS für die Startseite */
+
+/* Allgemeine Einstellungen für die Seite */ 
 html {
     overflow-y: scroll; 
     scroll-behavior: smooth;
@@ -66,7 +68,7 @@ nav {
 color: lightgreen;
 }
 
-/* Hero-Stage auf der Seite, als Blickfang mit Link zum Spielstart */ 
+/* Hero-Element auf der Seite */ 
 #hero {
     position: relative;
     min-height: 100vh;
@@ -107,7 +109,7 @@ color: lightgreen;
     margin-bottom: 3rem;
 }
 
-/* Buttons mit Link zum Spiel und mit Link, welches zum Spielprinzip führt*/
+/* Hero-Buttons mit Link zum Spiel und mit Link, welches zum Spielprinzip führt*/
 .hero-buttons {
     display: flex; 
     gap: 1rem; 
@@ -168,7 +170,7 @@ color: lightgreen;
 }
 
 
-/* Statisitk bar */
+/* Statisitk bar, damit die Seite ansprechender gestaltet ist */
 #stats-bar {
     position: relative;
     z-index: 1;
@@ -201,7 +203,7 @@ color: lightgreen;
     opacity: .55;
 }
 
-/* Features */
+/* Text der Seite (Features vom Spiel) */
 #features {
     position: relative;
     z-index: 1;
@@ -262,36 +264,7 @@ color: lightgreen;
     opacity: .6;
 }
 
-/* CTA Section */
-#cta {
-    position: relative;
-    z-index: 1;
-    padding: 10rem 5vw;
-    text-align: center;
-}
-
-.cta-inner {
-    max-width: 700px;
-    margin: 0 auto; 
-    background: linear-gradient(135deg, #1a66374d, #0d1a1099);
-    border: 1px solid #2e9e5740; 
-    border-radius: 8px;
-    padding: 5rem 3rem;
-    backdrop-filter: blur(12px);
-}
-
-.cta-inner h2 {
-    font-family: serif;
-    font-size: clamp(2rem, 4vw, 3rem); 
-    margin-bottom: 1rem; 
-}
-
-.cta-inner p {
-    opacity: .6;
-    margin-bottom: 2.5rem;
-    line-height: 1.7;
-}
-
+/* Footer der Seite */ 
 .footer {
     padding: 6px 12px;
     display: flex;
@@ -324,9 +297,5 @@ footer img {
     flex-shrink: 0;
 }
 
-@keyframes fadeUp {
-    from { opacity: 0; 
-    transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0);}
-}
+
 

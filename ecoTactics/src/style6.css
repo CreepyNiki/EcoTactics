@@ -1,3 +1,6 @@
+/* CSS für die Gewonnen-Seite (identisch zur Game-Over Seite mit anderer Botschaft */
+
+/* Allgemeine CSS Einstellungen für die Seite */
 * {
     box-sizing: border-box; 
     margin: 0; 
@@ -13,7 +16,7 @@ html, body {
     overflow: hidden; 
 }
 
-/* Main */
+/* Einstellungen für den gesamten Bildschirm */
 #screen {
     position: relatative; 
     z-index: 10; 
@@ -29,22 +32,15 @@ html, body {
     
 }
 
-/* Logo */
-.logo-small {
-    font-family: 'Press Start 2P', monospace; 
-    font-size: .5rem; 
-    color: darkgreen; 
-    margin-bottom: 2.5rem; 
-}
     
-/* Game Over Title */ 
+/* Gewonnen Titel */ 
  .winning-title {
     font-family: 'Press Start 2P', monospace; 
      color: green; 
      line-height: 1.4; 
     }
 
-/* Divider */ 
+/* Trennstrich mit Animation */ 
 .pixel-divider {
     width: 0; 
     height: 2px; 
@@ -54,7 +50,7 @@ html, body {
 }
 @keyframes expandLine {to {width: min(480px, 80vw); }}
 
-/*Subtitle*/ 
+/* Untertitel mit Botschaft zum Sieg */ 
 .subtitle {
     font-size: clamp(1.2rem, 2.5vw, 1.7rem);
     color: darkseagreen; 
@@ -62,16 +58,7 @@ html, body {
     line-height: 1.6; 
 }
 
-/* Epitaph */ 
-.epitaph {
-    margin-top: 1.8rem; 
-    font-size: clamp(1rem, 2vw, 1.3rem); 
-    color: darkgreen; 
-    max-width: 500px; 
-    line-height: 1.7;
-}
-
-/* Buttons */
+/* Buttons für Neustart des Spiels und für Link zur Startseite */
 .end-buttons {
     margin-top: 2rem; 
     display: flex; 
@@ -80,26 +67,13 @@ html, body {
     justify-content: center; 
 }
 
-.btn-retry {
+.btn-pixel {
     color: green; 
     border-color: green; 
-}
-
-.btn-retry:hover {
-    background: green; 
-    color: #fff; 
-    box-shadow: 0 0 20px #c0392b99; 
-}
-
-.btn-menu {
-    background: transparent; 
-    color: green; 
     text-transform: uppercase; 
-
 }
 
-.btn-menu:hover {
-    color: var(--text); 
-    border-color: var(--text); 
+.btn-pixel:hover {
+    color: lightgreen; 
 }
 
