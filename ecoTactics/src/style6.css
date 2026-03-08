@@ -46,7 +46,7 @@ html, body {
     height: 2px; 
     background: darkgreen;
     margin: 2rem auto; 
-    animation: expandLine .6s 1.2s steps(8) forwards; 
+    animation: expandLine 0.6s 1.2s steps(8) forwards; 
 }
 @keyframes expandLine {to {width: min(480px, 80vw); }}
 
