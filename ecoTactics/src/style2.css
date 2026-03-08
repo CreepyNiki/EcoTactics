@@ -37,11 +37,6 @@ nav {
     background: #0d1a10b3;
     backdrop-filter: blur(18px);
     border-bottom: 1px solid #2e9e5726;
-    transition: box-shadow .3s;
-}
-
-nav.scrolled {
-    box-shadow: 0 4px 40px #00000080;
 }
 
 .nav-logo img {
@@ -67,24 +62,7 @@ nav.scrolled {
     position: relative;
 }
 
-
-.nav-cta {
-    background: green;
-    color: white; 
-    border: none;
-    padding: .55rem 1.4rem;
-    border-radius: 4px;
-    font-family: sans-serif;
-    font-size: .85rem;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    cursor: none;
-    transition: transform .15s;
-}
-
-
 .nav-links .nav-highlight {
-
 color: lightgreen;
 }
 
@@ -122,20 +100,12 @@ color: lightgreen;
 
 }
 
-
 .hero-sub {
     font-size: clamp(.96rem, 1.5vw, 1.2rem);
-    color: rgba (244,240,230,.6);
+    color: #f4f0e699;
     max-width: 560px;
     line-height: 1.7;
     margin-bottom: 3rem;
-}
-
-.hero-buttons {
-    display: flex; 
-    gap: 1rem; 
-    flex-wrap: wrap;
-    justify-content: center;
 }
 
 .btn-primary {
@@ -161,15 +131,6 @@ color: lightgreen;
 
 
 /* Text mti wichtigen Hinweisen  */
-
-.section-label {
-    font-size: .75rem;
-    letter-spacing: .25em;
-    text-transform: uppercase;
-    color: lightgreen;
-    margin-bottom: 1rem;
-}
-
 .section-title {
     font-family: sans-serif;
     font-size: 30px;
@@ -205,17 +166,6 @@ color: lightgreen;
 
 }
 
-.feature-card::before {
-    content: '';
-    position: absolute;
-    top: 0; 
-    left: 0; 
-    width: 2px; 
-    height: 0; 
-    transition: height .4s; 
-}
-
-
 .feature-title {
     font-family: sans-serif;
     font-size: 1.25rem;
@@ -229,13 +179,6 @@ color: lightgreen;
 }
 
 /* Call to Action am Ende der Seite, um Spiel zu starten */
-#cta {
-    position: relative;
-    z-index: 1;
-    padding: 10rem 5vw;
-    text-align: center;
-}
-
 .cta-inner {
     padding: 5rem 3rem;
     display: flex; 
@@ -244,15 +187,6 @@ color: lightgreen;
 
 
 /* Text-Elemente mit Erklärungen zum Spiel, eingeteilt in Chapter */ 
-chapter {
-    display: grid; 
-    grid-template-columns: 140px 1fr; 
-    gap: 0 4rem; 
-    max-width: 1100px; 
-    margin: 0 auto; 
-    padding: 6rem 5vw; 
-}
-
 .chapter-badge {
     display: flex; 
     flex-direction: column; 

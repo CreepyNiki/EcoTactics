@@ -1,6 +1,6 @@
 /* CSS für die Gewonnen-Seite (identisch zur Game-Over Seite mit anderer Botschaft */
 
-/* Allgemeine CSS Einstellungen für die Seite */
+/* Allgemeine CSS Einstellungen für die Seite und Eindindung externer Schriftart */
 * {
     box-sizing: border-box; 
     margin: 0; 

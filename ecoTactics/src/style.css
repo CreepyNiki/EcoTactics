@@ -5,6 +5,7 @@ html {
     overflow-y: scroll; 
     scroll-behavior: smooth;
 } 
+
 * { 
     box-sizing: border-box; 
     margin: 0; 
@@ -46,7 +47,7 @@ nav {
 
 .nav-links {
     display: flex;
-    gap: 2.5rem; 
+    gap: 40px; 
     list-style: none;
 }
 
@@ -54,36 +55,33 @@ nav {
     text-decoration: none;
     align-content: center;
     color: beige;
-    font-size: .88rem;
-    letter-spacing: .12rem;
+    font-size: 14px;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    opacity: 7;
-    transition: opacity .2s, color .2s;
     position: relative;
 }
 
 /* Hervorhebung in der Navigation vom Link zum Spielstart */
 .nav-links .nav-highlight {
-
 color: lightgreen;
 }
 
 /* Hero-Element auf der Seite */ 
 #hero {
     position: relative;
-    min-height: 100vh;
+    min-height: 800px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 100px 5vw 60px;
+    padding: 100px 72px 60px;
     z-index: 1;
 }
 
 .hero-eyebrow {
     font-size: 25px;
-    letter-spacing: .28em;
+    letter-spacing: 4px;
     text-transform: uppercase;
     color: lightgreen;
     margin-bottom: 1.6rem;
@@ -240,17 +238,6 @@ color: lightgreen;
     overflow: hidden;
     padding-top: 20px;
 }
-
-.feature-card::before {
-    content: '';
-    position: absolute;
-    top: 0; 
-    left: 0; 
-    width: 2px; 
-    height: 0; 
-    transition: height .4s; 
-}
-
 
 .feature-title {
     font-family: sans-serif;

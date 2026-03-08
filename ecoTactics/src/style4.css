@@ -39,10 +39,6 @@ nav {
     transition: box-shadow .3s;
 }
 
-nav.scrolled {
-    box-shadow: 0 4px 40px #00000080;
-}
-
 .nav-logo img {
     height: 150px; 
     object-fit: contain;
@@ -68,7 +64,6 @@ nav.scrolled {
 
 
 .nav-links .nav-highlight {
-
 color: lightgreen;
 }
 
@@ -115,13 +110,6 @@ color: lightgreen;
     margin-bottom: 3rem;
 }
 
-.hero-buttons {
-    display: flex; 
-    gap: 1rem; 
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
 
 /* Hintergrundinformationen zum Spiel */
 #features {
@@ -129,7 +117,8 @@ color: lightgreen;
     z-index: 1;
     padding: 4rem 5vw;
     max-width: 1200px;
-    margin: 0 auto, 
+    margin: 0 auto; 
+    padding-bottom: 100px;
 }
 
 .section-label {

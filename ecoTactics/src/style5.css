@@ -1,6 +1,6 @@
 /* CSS für die Game Over Seite */
 
-/* Allgemeine CSS Einstellungen für die gesamte Seite */
+/* Allgemeine CSS Einstellungen für die gesamte Seite und Einbindung externer Fonts*/
 * {
     box-sizing: border-box; 
     margin: 0; 
