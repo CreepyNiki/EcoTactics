@@ -1034,7 +1034,7 @@ function ErrorBox(message) {
     const errorBox = document.createElement('div');
     const errorBoxPicture = document.createElement('img');
     const errorBoxText = document.createElement('p');
-    errorBoxPicture.src = 'assets/ErrorBox.png';
+    errorBoxPicture.src = 'assets/warning.png';
     errorBoxPicture.className = 'errorBoxImage';
     errorBoxText.textContent = message;
     errorBoxText.className = 'errorBoxText';
