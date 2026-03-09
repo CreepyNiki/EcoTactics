@@ -1089,6 +1089,6 @@ function ErrorBox(message) {
         // Timeout von 7 Sekunden, nach dem der Avatar automatisch entfernt wird.
         setTimeout(() => {
             if (avatarContainer && avatarContainer.parentElement) avatarContainer.remove();
-        }, 7000000);
+        }, 7000);
     }
 
