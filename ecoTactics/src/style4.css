@@ -43,6 +43,11 @@ nav {
     object-fit: contain;
 }
 
+.nav-logo:hover{
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
 .nav-links {
     display: flex;
     gap: 2.5rem; 
@@ -60,11 +65,18 @@ nav {
     position: relative;
 }
 
-
 .nav-links .nav-highlight {
 color: lightgreen;
 }
 
+.nav-links a:hover {
+    color: lightgreen;
+}
+
+a.active {
+    background: #0b430b;
+    padding: 8px;
+}
 
 /* Hero-Element wie auf den anderen Seiten für eine schnelle Einleitung, worum es in der Seite geht */ 
 #hero {

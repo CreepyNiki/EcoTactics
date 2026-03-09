@@ -38,6 +38,11 @@ header {
     flex-shrink: 0;
 }
 
+.logo:hover{
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
 .day {
     font-size: clamp(12px, 1.5vw, 16px);
     white-space: nowrap;
