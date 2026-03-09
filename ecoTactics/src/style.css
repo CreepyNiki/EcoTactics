@@ -75,12 +75,20 @@ nav {
 }
 
 .nav-links .nav-highlight {
+color: green;
+}
+
+.nav-links .nav-highlight:hover {
 color: lightgreen;
 }
 
 a.active {
     background: #0b430b;
     padding: 8px;
+    border-radius: 5px;
+}
+a.active:hover {
+    color: beige;
 }
 
 /* Hero-Element auf der Seite */ 
@@ -117,7 +125,7 @@ a.active {
 
 
 .hero-sub {
-    font-size: clamp(0.96rem, 1.5vw, 1.2rem);
+    font-size: 19px;
     color: #f4f0e699;
     max-width: 560px;
     line-height: 1.7;
@@ -263,7 +271,7 @@ a.active {
 }
 
 .feature-desc {
-    font-size:0.9rem;
+    font-size: 18px;
     line-height: 1.7;
     opacity: 0.6;
 }

@@ -67,6 +67,10 @@ nav {
 }
 
 .nav-links .nav-highlight {
+color: green;
+}
+
+.nav-links .nav-highlight:hover {
 color: lightgreen;
 }
 
@@ -77,8 +81,12 @@ color: lightgreen;
 a.active {
     background: #0b430b;
     padding: 8px;
+    border-radius: 4px;
 }
 
+a.active:hover {
+    color: beige;
+}
 
 /* Hero-Element, wie auf der Startseite */ 
 #hero {
@@ -114,7 +122,7 @@ a.active {
 }
 
 .hero-sub {
-    font-size: clamp(0.96rem, 1.5vw, 1.2rem);
+    font-size: 19px;
     color: #f4f0e699;
     max-width: 560px;
     line-height: 1.7;
@@ -186,7 +194,7 @@ a.active {
 }
 
 .feature-desc {
-    font-size: 17px;
+    font-size: 18px;
     line-height: 1.7;
     opacity: 0.6;
 }
@@ -234,7 +242,7 @@ a.active {
 
 
 .chapter-lead {
-    font-size: 1.05rem; 
+    font-size: 18px; 
     opacity: 0.6; 
     line-height: 1.7; 
     margin-bottom: 4rem; 
@@ -242,7 +250,7 @@ a.active {
 }
 
 .chapter-lead2 {
-    font-size: 1.05rem; 
+    font-size: 18px; 
     opacity: 0.6; 
     line-height: 1.7; 
     margin-bottom: 4rem; 
@@ -250,7 +258,7 @@ a.active {
 }
 
 .chapter-list {
-    font-size: 1.05rem; 
+    font-size: 18px; 
     opacity: 0.6; 
     line-height: 1.7; 
     margin-bottom: 4rem; 
