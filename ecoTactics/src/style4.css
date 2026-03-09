@@ -178,11 +178,9 @@ a {
     height: 4vh;
     min-height: 28px;
     left: 0;
-    position: fixed;
     bottom: 0;
     z-index: 20;
 }
-
 .footerText {
     text-align: center;
     margin: 0;
