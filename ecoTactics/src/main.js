@@ -187,18 +187,18 @@ function nextDay() {
 
     // Zufällige Events -> unterteilt in common (30% Chance), uncommon (10% Chance) und rare (2% Chance). Je seltener das Event, desto größer sind die Auswirkungen auf die Werte. Es gibt sowohl positive als auch negative Events.
     const rareEvents = [
-        { environment: -69, message: 'Nukleare Verseuchung. Die Bürger der Stadt sind in größter Gefahr (-69 Umwelt)' },
-        { environment: -56, message: 'Ein Hurricane schockt die Stadt. (-56 Umwelt)' },
+        { environment: -45, message: 'Nukleare Verseuchung. Die Bürger der Stadt sind in größter Gefahr (-45 Umwelt)' },
+        { environment: -37, message: 'Ein Hurricane schockt die Stadt. (-37 Umwelt)' },
         { money: -46000, message: 'Weltwirtschaftskrise! Die Wirtschaft kollabiert. (-46000 Geld)' },
-        { happiness: -50, message: 'Eine Pandemie bricht aus. Die Bevölkerung vereinsamt und verarmt. (-50 Zufriedenheit)' },
+        { happiness: -38, message: 'Eine Pandemie bricht aus. Die Bevölkerung vereinsamt und verarmt. (-38 Zufriedenheit)' },
     ];
     const uncommonEvents = [
         { happiness: 15, message: 'Es gibt so viele Bildungsplätze, wie nie zuvor in der Stadt. (+15 Zufriedenheit)' },
         { environment: -15, message: 'Ein Rekordhitzesommer erschüttert die Tier- und Pflanzenwelt.  (-15 Umwelt)' },
         { money: 21000, message: 'Ein Investor sieht Potential in der Stadt und investiert viel Geld in diese. (+21000 Geld)' },
-        { happiness: -24, message: 'Saurer Regen sorgt für erhebliche gesundheitliche Probleme. (-24 Zufriedenheit)' },
+        { happiness: -18, message: 'Saurer Regen sorgt für erhebliche gesundheitliche Probleme. (-18 Zufriedenheit)' },
         { environment: 19, message: 'Ein neue KI-Technologie gegen den Klimawandel wurde erforscht. (+19 Umwelt)' },
-        { environment: -23, message: 'Ein Hagelsturm verwüstet die Infrastruktur. (-23 Umwelt)' },
+        { environment: -16, message: 'Ein Hagelsturm verwüstet die Infrastruktur. (-16 Umwelt)' },
         { money: -29000, message: 'Aufgrund größerer Hochwassergefahr muss ein neuer Damm gebaut werden. (-29000 Geld)' },
         { happiness: -15, message: 'Aufgrund Probleme anderer Regionen bleiben die Supermarktregale leer. (-15 Zufriedenheit)' }
     ];
