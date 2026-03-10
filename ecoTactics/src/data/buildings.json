@@ -175,7 +175,7 @@
       "image": "assets/Buildings/Solarpark.png",
       "limit": 2,
       "effects": {
-        "environment": [4, 12, 3, 0],
+        "environment": [9, 16, 8, 2],
         "money": -30000,
         "happiness": 6
       }
@@ -187,7 +187,7 @@
       "image": "assets/Buildings/forest.png",
       "limit": 4,
       "effects": {
-        "environment": [9, 13, 5, 11],
+        "environment": [7, 11, 3, 9],
         "money": -12000,
         "happiness": 15
       }
@@ -211,7 +211,7 @@
       "image": "assets/Buildings/museum.png",
       "limit": 1,
       "effects": {
-        "environment": [2, 3, 2, 2],
+        "environment": [5, 8, 5, 5],
         "money": -18000,
         "happiness": 16
       }
@@ -235,7 +235,7 @@
       "image": "assets/Buildings/windpark.png",
       "limit": 4,
       "effects": {
-        "environment": [6, 14, 2, 0],
+        "environment": [9, 17, 6, 3],
         "money": -36000,
         "happiness": 5
       }

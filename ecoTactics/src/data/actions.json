@@ -35,7 +35,7 @@
       "name": "Bergbau erlauben",
       "desc": "Gebe Schutzgebiete für den Rohstoffabbau frei.",
       "effects": {
-        "environment": [-16, -10, -8, -14],
+        "environment": [-16, -15, -11, -14],
         "money": 50000,
         "happiness": -25
       }
@@ -65,9 +65,9 @@
       "name": "Bio-Landwirtschaft fördern",
       "desc": "Unterstütze lokale Bio-Bauern.",
       "effects": {
-        "environment": [3, 4, 2, 7],
+        "environment": [6, 7, 5, 7],
         "money": -12000,
-        "happiness": 9
+        "happiness": 6
       }
     },
     {
@@ -135,9 +135,9 @@
       "name": "Fleischsteuer erhöhen",
       "desc": "Verteure Fleischkonsum für Klimaschutz.",
       "effects": {
-        "environment": [3, 7, 1, 4],
-        "money": 17000,
-        "happiness": -12
+        "environment": [3, 7, 3, 8],
+        "money": 10000,
+        "happiness": -17
       }
     },
     {
@@ -227,7 +227,7 @@
       "effects": {
         "environment": [10, 8, 4, 7],
         "money": -7000,
-        "happiness": 10
+        "happiness": 7
       }
     },
     {
@@ -307,7 +307,7 @@
       "effects": {
         "environment": [-6, -11, -3, -8],
         "money": 32000,
-        "happiness": 4
+        "happiness": 0
       }
     },
     {
