@@ -818,7 +818,7 @@ function purchaseBuilding(building) {
 
     // Gebäude-Limit pro Tag -> es kann nur ein Gebäude pro Tag gebaut werden.
     if(buildingsPerRound >= 1){
-        ErrorBox(`Du kannst pro Tag nur ein Gebäude bauen! Bitte klicke auf "Nächster Tag", um weitere Gebäude bauen zu können.`);
+        ErrorBox(`Du kannst pro Tag nur ein Gebäude bauen! Bitte klicke auf eine Aktion, um weitere Gebäude am nächsten Tag bauen zu können.`);
         return;
     }
 
@@ -1047,7 +1047,7 @@ function ErrorBox(message) {
     // Timeout von 5 Sekunden, nach dem die ErrorBox automatisch entfernt wird.
     setTimeout(() => {
         if (errorBox && errorBox.parentElement) errorBox.remove();
-    }, 5000);
+    }, 3000);
 }
 
 // Funktion, welche eine zufällige Avatar-Nachricht anzeigt, wenn bestimmte Bedingungen erfüllt sind.
