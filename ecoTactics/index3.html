@@ -1,132 +1,79 @@
-<!-- Website zu großen Teilen auf einem 24 Zoll Monitor erstellt. Auf kleineren Bildschirmen kann es zu Darstellungsproblemen kommen. -->
-<!doctype html>
+<!-- INFOSEITE (Hintergrundinformationen) -->
+<!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>EcoTactics</title>
-    <link rel="stylesheet" href="src/style3.css"/>
-    <link rel="icon" href="assets/favicon.png"/>
-    <script src="src/main.js" defer></script>
-</head>
-<body>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infothek</title>
+  <link rel="stylesheet" href="src/style3.css">
+  <link rel="icon" href="assets/favicon.png"/>
+ </head>
+ <body>
 
-<!-- Logs -->
-<div class="logDropdown">
-    <div class="log"></div>
-</div>
+    <!-- Navigation mit Links zu den anderen Seiten -->
+<nav id="navbar">
+    <a href="/index.html" class="nav-logo">
+        <img src="assets/logo_green.png" alt="EcoTactics Logo">
+    </a>
+<ul class="nav-links" id="navLinks">
+    <li><a href="/index.html">Startseite</a></li>
+    <li><a href="/index2.html">Spielprinzip</a></li>
+    <li><a href="/index3.html" class="active">Infothek</a></li>
+    <li><a href="/index4.html" class="nav-highlight">Spiel starten</a></li>
+</ul>
+</nav>
+    
+<!-- Hero Element mit kurzer Zusammenfassung, was auf der Seite thematisiert wird -->
+<section id="hero">
+    <p class="hero-eyebrow">Infothek</p>
+  <h1 class="hero-title">Hintergrundinformationen</h1>
+    <p class="hero-sub">Auf dieser Seite sind Informationen zum Spiel und zur Erstellung zu finden. <br> 
+    Was war die Idee hinter dem Spiel? Woran haben wir uns orientiert?</p>
+</section>
 
-<!-- Header -->
-    <header>
-       <a href="index.html"><img class="logo" src="assets/logo_green.png" alt="EcoTactics Logo"/></a>
-        <div class="day"></div>
-        <div class="headerRight">
-            <div class="populationCounter">
-                <img class="populationIcon" src="assets/population.png" alt="populationIcon"/>
-                <p class="population"></p>
+<!-- Hintergrundinformationen -->
+ <section id="features">
+    <p class="section-label">Das Spiel</p>
+    <h2 class="section-title">Informationen zum Spiel</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3 class="feature-title">Was war die Idee hinter dem Spiel?</h3>
+                <p class="feature-desc">Das Spiel ist im Rahmen des Seminars "Digital Humanities und Informatik der Geisteswissenschaften" im Masterstudiengang 
+                    Informationsverarbeitung an der Uni Köln entstanden. Ziel dieses Projekts ist es, komplexe Themen rund um Gesellschaft und Umwelt
+                    spielerisch erfahrbar zu machen. Die zentrale Idee hinter dem Spiel war es, Nachhaltigkeit mit wirtschaftlichen Denken und politischer Verantwortung
+                    zu verbinden. Das Spiel ist aber hauptsächlich aus Unterhaltungszwecken entstanden.<br><br>
+                </p>
             </div>
-            <div class="passiveCostsDisplay">
-                <span class="passiveCostsLabel">vorrausichtliche Kosten/Tag:</span>
-                <span class="passiveCostsCounter"></span>
+            
+             <div class="feature-card">
+                <h3 class="feature-title">Woran haben wir uns orientiert?</h3>
+                <p class="feature-desc">Orientiert haben wir uns an der Organisation von Klimaexperimenten des World Cliamte Research Programs (WCRP). Das Modell 
+                    <a href="https://wcrp-cmip.org/cmip-phases/cmip6/">CMIP6</a> kommt den Zielen unseres Spieles am nächsten, da es sich auf Wetterdaten, Zugängnlichkeit von Wasser, Klimawandel, etc. konzentriert. 
+                    Wir haben uns jedoch nicht auf ein bestimmtes Experiment des CMIP6 bezogen, sondern die Organisation und die Elemente der Experimente in den Fokus gestellt.
+                    Desweiteren standen die <a href="https://sdgs.un.org/goals">17 Nachhaltigkeitsziele</a> der United Nations bei der Erstellung des Spiels im Vordergrund.<br><br> 
+                    Als Inspiration dienten zudem Stadtaufbau-Spiele wie SimCity. Hier konnten wir uns an der Spielmechanik orientieren und Konzepte zur Visualisierung
+                    unseres Spiels erstellen.<br><br> 
+                    Das Thema Klima ist ein wichtiges gesellschaftliches und politisches Thema. Das Spiel soll die Wichtigkeit Klimabedingter Entscheidungen darstellen, ist jedoch nicht 
+                    exakt realitätsgetreu. Reale Probleme und Lösungen werden thematisiert, spiegeln jedoch nicht aktuelle Themen und Krisen wider.
+                </p>
             </div>
-        </div>
-    </header>
+            
+                      <div class="feature-card">
+                <h3 class="feature-title">Wer steckt hinter EcoTactics?</h3>
+                <p class="feature-desc">EcoTactics wurde von Niklas Halft und Senem Celik konzepiert und verwirklicht. Entstanden ist das Spiel mit dem Anspruch, einen 
+                    technischen als auch inhaltlichen Beitrag zum Thema nachhaltige Stadtentwicklung zu leisten.
+                </p>
+            </div>
 
-<!-- Main Page -->
-    <div class="canvas">
-        <!-- News Ticker -->
-        <div class="newsTicker">
-            <marquee behavior="scroll" direction="left" scrollamount="8" class="newsText">
-                Willkommen zu EcoTactics! Baue deine Stadt nachhaltig und halte deine Bürger glücklich!
-            </marquee>
-        </div>
-        <!-- Karte -->
-        <div class="mapContainer">
-            <img class="backgroundImage" src="assets/Maps/map.png" alt="backgroundImage"/>
-        </div>
+            </div>
+ </section>
+
+ <!-- Footer mit Link zum GitHub Repository -->
+<footer>
+    <div class="footer">
+        <p class="footerText">EcoTactics von Senem und Niklas</p>
+        <a href="https://github.com/CreepyNiki/EcoTactics"><img class="gitHubIcon" src="assets/githubLogo.svg" alt="Link zum GithubRepo"></a>
     </div>
-
-    <input type="image" src="assets/log.png" class="logButton" alt="logButton"/>
-
-    <!-- Ressourcenanzeige -->
-    <div class="statusCard">
-        <div class="stat">
-            <div class="bar">
-                <div class="moneyCounter"></div>
-                <div class="moneyBar"></div>
-            </div>
-            <img class="moneyIcon" src="assets/money.png" alt="moneyIcon"/>
-        </div>
-        <div class="stat">
-            <div class="bar">
-                <div class="happinessCounter"></div>
-                <div class="happinessBar"></div>
-            </div>
-            <img class="happinessIcon" src="assets/happiness.png" alt="happinessIcon"/>
-        </div>
-        <div class="stat">
-            <div class="bar env">
-                <div class="envCounter"></div>
-                <div class="envBar"></div>
-                <div class="envDropdown"></div>
-            </div>
-            <img class="envIcon" src="assets/environment.png" alt="envIcon"/>
-        </div>
-    </div>
-
-<!-- Reset Button -->
-<img class="resetButton" src="assets/reset.png" alt="shopIcon"/>
-
-<!-- Aktionsauswahl -->
-    <div class="selection">
-        <div class="upperSelectionRow">
-            <div class="selectHeader">Wähle eine Aktion:</div>
-        </div>
-        <div class="actions">
-        </div>
-
-        <!-- Shop Button -->
-        <div class="shopButton">
-            <img class="shopIcon" src="assets/shop.png" alt="shopIcon"/>
-            <p class="shopParagraph">Shop</p>
-        </div>
-
-    </div>
-
-<!-- Shop -->
-    <div class="shop" id="shopModal">
-        <div class="shop-container">
-            <div class="shop-header">
-                <h2 class="shop-title">Gebäude Shop</h2>
-                <button class="shop-close">✕</button>
-            </div>
-            <div class="shop-content">
-            </div>
-            <div class="shop-footer">
-                <div class="shop-resources">
-                    <div class="shop-resource">
-                        <img src="assets/money.png" alt="Geld" class="resource-icon">
-                        <span class="resource-value" id="shopMoneyValue"></span>
-                    </div>
-                    <div class="shop-resource">
-                        <img src="assets/happiness.png" alt="Zufriedenheit" class="resource-icon">
-                        <span class="resource-value" id="shopHappinessValue"></span>
-                    </div>
-                    <div class="shop-resource">
-                        <img src="assets/environment.png" alt="Umwelt" class="resource-icon">
-                        <span class="resource-value" id="shopEnvValue"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-<!-- Footer -->
-    <footer>
-        <div class="footer">
-            <p class="footerText">EcoTactics von Senem und Niklas</p>
-            <a href="https://github.com/CreepyNiki/EcoTactics"><img class="gitHubIcon" src="assets/githubLogo.svg" alt="Link zum GithubRepo"></a>
-    </div>
-    </footer>
-</body>
-</html>
+</footer>
+ </body>
+ </html>
