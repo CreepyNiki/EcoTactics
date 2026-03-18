@@ -164,7 +164,7 @@
       "limit": 3,
       "effects": {
         "environment": [6, 3, 4, 7],
-        "money": -8,
+        "money": -20000,
         "happiness": 8
       }
     },

@@ -123,10 +123,12 @@ function applyAction(action) {
     log(`Tag ${state.day}: Aktion "${action.name}" ausgeführt. Effekte - Umwelt: ${action.effects.environment}, Geld: ${action.effects.money}, Zufriedenheit: ${action.effects.happiness}`);
     // Der nächste Tag wird gestartet.
     nextDay();
+    if (!gameOver) {
     // Ein Game Over Check wird durchgeführt.
     checkGameOver();
     // UI wird geupdated, um die aktuellen Werte anzuzeigen.
     updateUI();
+    }
 }
 
 // verschiedene UI Elemente werden nach einem Ereignis aktualisiert, um die aktuellen Werte anzuzeigen.
@@ -163,6 +165,7 @@ function nextDay() {
 
     // Tag wird um 1 erhöht.
     state.day += 1;
+    buildingsPerRound = 0;
 
     // passive Kosten werden berechnet und anschließend vom Geld abgezogen. Passive Kosten setzen sich zusammen aus einem Grundwert von 4000 und einem variablen Anteil, der von der Bevölkerungszahl abhängt.
     const passiveCosts = Math.round(4000 + state.population * 0.1);
@@ -249,8 +252,6 @@ function nextDay() {
         newsLog = event.message;
         newsTicker(newsLog);
 
-        // Building-Limit pro Tag wird resettet.
-        buildingsPerRound = 0;
     }
     checkGameOver();
     if(!gameOver){
@@ -488,13 +489,14 @@ function endGame(message, won) {
 // Funktion, die alle Werte und UI Elemente auf die Startwerte zurücksetzt, um ein neues Spiel zu starten.
 function resetGame() {
     document.querySelector('.log').innerHTML = '';
+    buildingsPerRound = 0;
     state = {
         environment: [defaultValues[0], defaultValues[1], defaultValues[2], defaultValues[3]],
         money: defaultValues[4],
         happiness: defaultValues[5],
         day: defaultValues[6],
         population: defaultValues[7],
-        history: []
+        history: [],
     };
     gameOver = false;
 
